@@ -16,5 +16,6 @@ namespace WebApplication1.Models
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public int ProyectoID { get; set; }
+        public string NombreProyecto { get; set; }
     }
 }

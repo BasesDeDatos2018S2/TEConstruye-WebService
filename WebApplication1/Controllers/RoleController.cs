@@ -4,39 +4,36 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using WebApplication1.Logic;
 using WebApplication1.Models;
-using System.Web.Http.Cors;
-
+using WebApplication1.Logic;
 
 namespace WebApplication1.Controllers
 {
-    public class BillController : ApiController
+    public class RoleController : ApiController
     {
 
-       
-        public List<Object> GetBill(int id)
+        public List<Object> GetRole(int id)
         {
-            BillLogic billLogic = new BillLogic();
-            Bill_Data bill = billLogic.GetBill(id);
+            RoleSpecificationLogic roleSpecification = new RoleSpecificationLogic();
+            RoleSpecification_Data role = roleSpecification.GetRole(id);
             List<Object> list = new List<Object>();
-            if (bill == null)
+            if (role == null)
             {
                 list.Add(new { status = "404" });
                 return list;
             }
             else
             {
-                list.Add(bill);
+                list.Add(role);
                 return list;
             }
         }
 
-        public List<Object> GetAllBill()
+        public List<Object> GetAllRole()
         {
-            BillLogic billLogic = new BillLogic();
+            RoleSpecificationLogic roleSpecification = new RoleSpecificationLogic();
             List<Object> list = new List<Object>();
-            list = billLogic.GetListBill();
+            list = roleSpecification.GetListRole();
             if (list == null)
             {
                 list.Add(new { status = "404" });
@@ -50,5 +47,4 @@ namespace WebApplication1.Controllers
         }
 
     }
-
 }

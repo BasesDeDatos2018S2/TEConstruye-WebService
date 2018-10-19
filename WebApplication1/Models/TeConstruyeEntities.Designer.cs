@@ -1,4 +1,4 @@
-﻿// La generación de código T4 está habilitada para el modelo 'C:\Users\ggg\Documents\Semestre 2 2018\Bases de datos\Proyecto1\TEConstruye-WebService\WebApplication1\WebApplication1\Models\Model1.edmx'. 
+﻿// La generación de código T4 está habilitada para el modelo 'C:\Users\ggg\Documents\GitHub\TEConstruye-WebService\WebApplication1\Models\TeConstruyeEntities.edmx'. 
 // Para habilitar la generación de código heredada, cambie el valor de la propiedad del diseñador 'Estrategia de generación de código'
 // por 'ObjectContext heredado'. Esta propiedad está disponible en la ventana Propiedades cuando se abre
 // el modelo en el diseñador.

@@ -11,7 +11,7 @@ namespace WebApplication1.Logic
         public Employee_Data GetEmployee(int ID)
         {
             Employee_Data employee = new Employee_Data();
-            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 try
                 {
@@ -29,6 +29,7 @@ namespace WebApplication1.Logic
                     employee.lname1 = emp.lastname1;
                     employee.lname2 = emp.lastname2;
                     employee.phone = emp.phone;
+                    employee.hour_cost = emp.hour_cost;
                     return employee;
 
                 }
@@ -43,7 +44,7 @@ namespace WebApplication1.Logic
         public List<Object> GetListEmployee()
         {
             List<Object> dataList = new List<object>();
-            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 try
                 {
@@ -66,6 +67,7 @@ namespace WebApplication1.Logic
                             data.lname1 = employeeList.ElementAt(i).lastname1;
                             data.lname2 = employeeList.ElementAt(i).lastname2;
                             data.phone = employeeList.ElementAt(i).phone;
+                            data.hour_cost = employeeList.ElementAt(i).hour_cost;
                             dataList.Add(data);
                         }
                         return dataList;

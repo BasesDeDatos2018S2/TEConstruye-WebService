@@ -20,6 +20,6 @@ namespace WebApplication1.Models
         public int Costo { get; set; }
         public Nullable<int> Total { get; set; }
         public string Nombre { get; set; }
-        public string Apellido { get; set; }
+        public string ProyectoNombre { get; set; }
     }
 }

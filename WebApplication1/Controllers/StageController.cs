@@ -4,39 +4,36 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using WebApplication1.Logic;
 using WebApplication1.Models;
-using System.Web.Http.Cors;
-
+using WebApplication1.Logic;
 
 namespace WebApplication1.Controllers
 {
-    public class BillController : ApiController
+    public class StageController : ApiController
     {
 
-       
-        public List<Object> GetBill(int id)
+        public List<Object> GetStage(int id)
         {
-            BillLogic billLogic = new BillLogic();
-            Bill_Data bill = billLogic.GetBill(id);
+            StageLogic stageLogic = new StageLogic();
+            Stage_Data stage = stageLogic.GetStage(id);
             List<Object> list = new List<Object>();
-            if (bill == null)
+            if (stage == null)
             {
                 list.Add(new { status = "404" });
                 return list;
             }
             else
             {
-                list.Add(bill);
+                list.Add(stage);
                 return list;
             }
         }
 
-        public List<Object> GetAllBill()
+        public List<Object> GetAllStage()
         {
-            BillLogic billLogic = new BillLogic();
+            StageLogic stageLogic = new StageLogic();
             List<Object> list = new List<Object>();
-            list = billLogic.GetListBill();
+            list = stageLogic.GetListStage();
             if (list == null)
             {
                 list.Add(new { status = "404" });
@@ -49,6 +46,6 @@ namespace WebApplication1.Controllers
 
         }
 
-    }
 
+    }
 }

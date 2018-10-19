@@ -13,9 +13,8 @@ namespace WebApplication1.Models
     
     public partial class usp_employee_payment_Result
     {
-        public string name { get; set; }
+        public string Proyecto { get; set; }
         public string Nombre { get; set; }
-        public string Apellido { get; set; }
         public int Horas { get; set; }
         public int Costo { get; set; }
         public Nullable<int> Total { get; set; }

@@ -17,7 +17,6 @@ namespace WebApplication1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Employee()
         {
-            this.Roles = new HashSet<Roles>();
             this.Worked_hours = new HashSet<Worked_hours>();
         }
     
@@ -27,10 +26,10 @@ namespace WebApplication1.Models
         public string lastname1 { get; set; }
         public string lastname2 { get; set; }
         public string phone { get; set; }
+        public int hour_cost { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Roles> Roles { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Worked_hours> Worked_hours { get; set; }
+        public virtual Role_specification Role_specification { get; set; }
     }
 }

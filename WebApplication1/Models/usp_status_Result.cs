@@ -10,14 +10,13 @@
 namespace WebApplication1.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Roles
+    public partial class usp_status_Result
     {
-        public int id_role { get; set; }
-        public int id_employee { get; set; }
-        public string role { get; set; }
-    
-        public virtual Employee Employee { get; set; }
+        public string Etapa { get; set; }
+        public Nullable<int> TotalPresupuesto { get; set; }
+        public Nullable<int> TotalReal { get; set; }
+        public Nullable<int> Diferencia { get; set; }
+        public string Proyecto { get; set; }
     }
 }

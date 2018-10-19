@@ -13,7 +13,7 @@ namespace WebApplication1.Logic
         {
             Bill_Data result = new Bill_Data();
             Bill bill;
-            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 try
                 {
@@ -44,7 +44,7 @@ namespace WebApplication1.Logic
         public List<Object> GetListBill()
         {
             List<Object> dataList = new List<object>();
-            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 try
                 {

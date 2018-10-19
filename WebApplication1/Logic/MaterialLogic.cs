@@ -12,7 +12,7 @@ namespace WebApplication1.Logic
         public Material_Data GetMaterial(int id)
         {
             Material_Data material = new Material_Data();
-            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 try
                 {
@@ -42,7 +42,7 @@ namespace WebApplication1.Logic
         public List<Object> GetListMaterial()
         {
             List<Object> dataList = new List<object>();
-            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 try
                 {

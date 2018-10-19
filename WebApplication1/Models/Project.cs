@@ -26,6 +26,7 @@ namespace WebApplication1.Models
         public string name { get; set; }
         public string ubication { get; set; }
         public string id_client { get; set; }
+        public int manager { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Anotations> Anotations { get; set; }

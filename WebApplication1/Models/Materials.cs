@@ -17,6 +17,7 @@ namespace WebApplication1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Materials()
         {
+            this.Bill = new HashSet<Bill>();
             this.MaterialsxStage = new HashSet<MaterialsxStage>();
         }
     
@@ -25,6 +26,8 @@ namespace WebApplication1.Models
         public string description { get; set; }
         public int price { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Bill> Bill { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MaterialsxStage> MaterialsxStage { get; set; }
     }

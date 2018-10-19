@@ -19,8 +19,10 @@ namespace WebApplication1.Models
         public string serial { get; set; }
         public int price { get; set; }
         public int id_stage { get; set; }
+        public int id_material { get; set; }
         public int id_provider { get; set; }
     
+        public virtual Materials Materials { get; set; }
         public virtual Provider Provider { get; set; }
         public virtual Stage Stage { get; set; }
     }

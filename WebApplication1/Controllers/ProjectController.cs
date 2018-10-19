@@ -6,37 +6,35 @@ using System.Net.Http;
 using System.Web.Http;
 using WebApplication1.Logic;
 using WebApplication1.Models;
-using System.Web.Http.Cors;
-
 
 namespace WebApplication1.Controllers
 {
-    public class BillController : ApiController
+    public class ProjectController : ApiController
     {
 
-       
-        public List<Object> GetBill(int id)
+
+        public List<Object> GetProject(int id)
         {
-            BillLogic billLogic = new BillLogic();
-            Bill_Data bill = billLogic.GetBill(id);
+            ProjectLogic projectLogic = new ProjectLogic();
+            Project_Data project = projectLogic.GetProject(id);
             List<Object> list = new List<Object>();
-            if (bill == null)
+            if (project == null)
             {
                 list.Add(new { status = "404" });
                 return list;
             }
             else
             {
-                list.Add(bill);
+                list.Add(project);
                 return list;
             }
         }
 
-        public List<Object> GetAllBill()
+        public List<Object> GetAllProject()
         {
-            BillLogic billLogic = new BillLogic();
+            ProjectLogic projectLogic = new ProjectLogic();
             List<Object> list = new List<Object>();
-            list = billLogic.GetListBill();
+            list = projectLogic.GetListProject();
             if (list == null)
             {
                 list.Add(new { status = "404" });
@@ -49,6 +47,6 @@ namespace WebApplication1.Controllers
 
         }
 
-    }
 
+    }
 }

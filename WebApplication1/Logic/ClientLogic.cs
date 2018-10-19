@@ -13,7 +13,7 @@ namespace WebApplication1.Logic
         public Client_Data GetClient(string ssn)
         {
             Client_Data client = new Client_Data();
-            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 try
                 {
@@ -45,7 +45,7 @@ namespace WebApplication1.Logic
         public List<Object> GetListClient()
         {
             List<Object> dataList = new List<object>();
-            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 try
                 {

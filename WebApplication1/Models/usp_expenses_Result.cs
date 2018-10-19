@@ -10,17 +10,14 @@
 namespace WebApplication1.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Worked_hours
+    public partial class usp_expenses_Result
     {
-        public int id { get; set; }
-        public int id_project { get; set; }
-        public int id_employee { get; set; }
-        public System.DateTime date { get; set; }
-        public int hours { get; set; }
-    
-        public virtual Employee Employee { get; set; }
-        public virtual Project Project { get; set; }
+        public string Factura { get; set; }
+        public string Proveedor { get; set; }
+        public System.DateTime Fecha { get; set; }
+        public string Etapa { get; set; }
+        public int Precio { get; set; }
+        public string Proyecto { get; set; }
     }
 }

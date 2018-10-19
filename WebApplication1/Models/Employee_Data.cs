@@ -13,5 +13,6 @@ namespace WebApplication1.Models
         public string lname1 { get; set; }
         public string lname2 { get; set; }
         public string phone { get; set; }
+        public int hour_cost { get; set; } 
     }
 }

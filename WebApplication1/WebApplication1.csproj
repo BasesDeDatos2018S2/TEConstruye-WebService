@@ -32,6 +32,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <IncludeIisSettings>false</IncludeIisSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -95,15 +96,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Models\Model1.Context.tt">
+    <Content Include="Models\TeConstruyeEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-      <DependentUpon>Model1.edmx</DependentUpon>
+      <DependentUpon>TeConstruyeEntities.edmx</DependentUpon>
+      <LastGenOutput>TeConstruyeEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Model1.tt">
+    <Content Include="Models\TeConstruyeEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
+      <DependentUpon>TeConstruyeEntities.edmx</DependentUpon>
+      <LastGenOutput>TeConstruyeEntities.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config" />
   </ItemGroup>
@@ -113,6 +114,10 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\BillController.cs" />
     <Compile Include="Controllers\MaterialController.cs" />
+    <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="Controllers\ProviderController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\StageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -120,77 +125,91 @@
     <Compile Include="Logic\ClientLogic.cs" />
     <Compile Include="Logic\EmployeeLogic.cs" />
     <Compile Include="Logic\MaterialLogic.cs" />
+    <Compile Include="Logic\ProjectLogic.cs" />
+    <Compile Include="Logic\ProviderLogic.cs" />
+    <Compile Include="Logic\RoleSpecificationLogic.cs" />
+    <Compile Include="Logic\StageLogic.cs" />
     <Compile Include="Models\Anotations.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>TeConstruyeEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AnotationsData.cs" />
     <Compile Include="Models\Bill.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>TeConstruyeEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Bill_Data.cs" />
     <Compile Include="Models\Client.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>TeConstruyeEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Client_Data.cs" />
     <Compile Include="Models\Employee.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>TeConstruyeEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Employee_Data.cs" />
     <Compile Include="Models\Materials.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>TeConstruyeEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MaterialsxStage.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>TeConstruyeEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Material_Data.cs" />
-    <Compile Include="Models\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Project.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>TeConstruyeEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Project_Data.cs" />
     <Compile Include="Models\Provider.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>TeConstruyeEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Roles.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="Models\Provider_Data.cs" />
+    <Compile Include="Models\RoleSpecification_Data.cs" />
+    <Compile Include="Models\Role_specification.cs">
+      <DependentUpon>TeConstruyeEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Stage.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>TeConstruyeEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Stage_Data.cs" />
+    <Compile Include="Models\TeConstruyeEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TeConstruyeEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TeConstruyeEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TeConstruyeEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TeConstruyeEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TeConstruyeEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_budget_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>TeConstruyeEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_employee_payment_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>TeConstruyeEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_expenses_Result.cs">
+      <DependentUpon>TeConstruyeEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_project_client_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>TeConstruyeEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_status_Result.cs">
+      <DependentUpon>TeConstruyeEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Worked_hours.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>TeConstruyeEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Models\Model1.edmx">
+    <EntityDeploy Include="Models\TeConstruyeEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+      <LastGenOutput>TeConstruyeEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
+    <Content Include="Models\TeConstruyeEntities.edmx.diagram">
+      <DependentUpon>TeConstruyeEntities.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
