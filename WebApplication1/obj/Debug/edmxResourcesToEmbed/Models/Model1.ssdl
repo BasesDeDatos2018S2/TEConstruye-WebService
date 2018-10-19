@@ -1,0 +1,293 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TeConstruyeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Anotations">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_project" Type="int" Nullable="false" />
+    <Property Name="anotation" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Bill">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
+    <Property Name="serial" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="price" Type="int" Nullable="false" />
+    <Property Name="id_stage" Type="int" Nullable="false" />
+    <Property Name="id_provider" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="identification" />
+    </Key>
+    <Property Name="identification" Type="varchar" MaxLength="9" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="lastname1" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="lastname2" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="phone" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="40" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="identification" Type="varchar" MaxLength="9" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="lastname1" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="lastname2" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="phone" Type="varchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Materials">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="price" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MaterialsxStage">
+    <Key>
+      <PropertyRef Name="id_stage" />
+      <PropertyRef Name="id_material" />
+    </Key>
+    <Property Name="id_stage" Type="int" Nullable="false" />
+    <Property Name="id_material" Type="int" Nullable="false" />
+    <Property Name="quantity" Type="int" Nullable="false" />
+    <Property Name="price" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="ubication" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="id_client" Type="varchar" MaxLength="9" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Provider">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="40" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="id_role" />
+      <PropertyRef Name="id_employee" />
+    </Key>
+    <Property Name="id_role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_employee" Type="int" Nullable="false" />
+    <Property Name="role" Type="varchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Stage">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_project" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="status" Type="bit" Nullable="false" />
+    <Property Name="start_date" Type="date" Nullable="false" />
+    <Property Name="end_date" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Worked_hours">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_project" Type="int" Nullable="false" />
+    <Property Name="id_employee" Type="int" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
+    <Property Name="hours" Type="int" Nullable="false" />
+    <Property Name="hour_cost" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Anotation__id_pr__571DF1D5">
+    <End Role="Project" Type="Self.Project" Multiplicity="1" />
+    <End Role="Anotations" Type="Self.Anotations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Anotations">
+        <PropertyRef Name="id_project" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Bill__id_provide__6383C8BA">
+    <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
+    <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provider">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="id_provider" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Bill__id_stage__628FA481">
+    <End Role="Stage" Type="Self.Stage" Multiplicity="1" />
+    <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stage">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="id_stage" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Materials__id_ma__60A75C0F">
+    <End Role="Materials" Type="Self.Materials" Multiplicity="1" />
+    <End Role="MaterialsxStage" Type="Self.MaterialsxStage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Materials">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="MaterialsxStage">
+        <PropertyRef Name="id_material" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Materials__id_st__5FB337D6">
+    <End Role="Stage" Type="Self.Stage" Multiplicity="1" />
+    <End Role="MaterialsxStage" Type="Self.MaterialsxStage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stage">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="MaterialsxStage">
+        <PropertyRef Name="id_stage" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Project__id_clie__5629CD9C">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="Project" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="identification" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="id_client" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Roles__id_employ__59063A47">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Roles">
+        <PropertyRef Name="id_employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Stage__id_projec__5812160E">
+    <End Role="Project" Type="Self.Project" Multiplicity="1" />
+    <End Role="Stage" Type="Self.Stage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Stage">
+        <PropertyRef Name="id_project" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Worked_ho__id_em__5BE2A6F2">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Worked_hours" Type="Self.Worked_hours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Worked_hours">
+        <PropertyRef Name="id_employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Worked_ho__id_pr__5AEE82B9">
+    <End Role="Project" Type="Self.Project" Multiplicity="1" />
+    <End Role="Worked_hours" Type="Self.Worked_hours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Worked_hours">
+        <PropertyRef Name="id_project" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="usp_budget" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idProject" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_employee_payment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="first_date" Type="date" Mode="In" />
+    <Parameter Name="second_date" Type="date" Mode="In" />
+  </Function>
+  <Function Name="usp_project_client" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="TeConstruyeModelStoreContainer">
+    <EntitySet Name="Anotations" EntityType="Self.Anotations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bill" EntityType="Self.Bill" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Materials" EntityType="Self.Materials" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MaterialsxStage" EntityType="Self.MaterialsxStage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Provider" EntityType="Self.Provider" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Stage" EntityType="Self.Stage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Worked_hours" EntityType="Self.Worked_hours" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Anotation__id_pr__571DF1D5" Association="Self.FK__Anotation__id_pr__571DF1D5">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="Anotations" EntitySet="Anotations" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Bill__id_provide__6383C8BA" Association="Self.FK__Bill__id_provide__6383C8BA">
+      <End Role="Provider" EntitySet="Provider" />
+      <End Role="Bill" EntitySet="Bill" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Bill__id_stage__628FA481" Association="Self.FK__Bill__id_stage__628FA481">
+      <End Role="Stage" EntitySet="Stage" />
+      <End Role="Bill" EntitySet="Bill" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Materials__id_ma__60A75C0F" Association="Self.FK__Materials__id_ma__60A75C0F">
+      <End Role="Materials" EntitySet="Materials" />
+      <End Role="MaterialsxStage" EntitySet="MaterialsxStage" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Materials__id_st__5FB337D6" Association="Self.FK__Materials__id_st__5FB337D6">
+      <End Role="Stage" EntitySet="Stage" />
+      <End Role="MaterialsxStage" EntitySet="MaterialsxStage" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Project__id_clie__5629CD9C" Association="Self.FK__Project__id_clie__5629CD9C">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Project" EntitySet="Project" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Roles__id_employ__59063A47" Association="Self.FK__Roles__id_employ__59063A47">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Roles" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Stage__id_projec__5812160E" Association="Self.FK__Stage__id_projec__5812160E">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="Stage" EntitySet="Stage" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Worked_ho__id_em__5BE2A6F2" Association="Self.FK__Worked_ho__id_em__5BE2A6F2">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Worked_hours" EntitySet="Worked_hours" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Worked_ho__id_pr__5AEE82B9" Association="Self.FK__Worked_ho__id_pr__5AEE82B9">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="Worked_hours" EntitySet="Worked_hours" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

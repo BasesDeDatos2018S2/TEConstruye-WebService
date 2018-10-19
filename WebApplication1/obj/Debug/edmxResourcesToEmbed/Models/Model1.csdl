@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TeConstruyeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Anotations">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_project" Type="Int32" Nullable="false" />
+    <Property Name="anotation" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Project" Relationship="Self.FK__Anotation__id_pr__571DF1D5" FromRole="Anotations" ToRole="Project" />
+  </EntityType>
+  <EntityType Name="Bill">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="serial" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="price" Type="Int32" Nullable="false" />
+    <Property Name="id_stage" Type="Int32" Nullable="false" />
+    <Property Name="id_provider" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Provider" Relationship="Self.FK__Bill__id_provide__6383C8BA" FromRole="Bill" ToRole="Provider" />
+    <NavigationProperty Name="Stage" Relationship="Self.FK__Bill__id_stage__628FA481" FromRole="Bill" ToRole="Stage" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="identification" />
+    </Key>
+    <Property Name="identification" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lastname1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lastname2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Project" Relationship="Self.FK__Project__id_clie__5629CD9C" FromRole="Client" ToRole="Project" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="identification" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lastname1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lastname2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Roles" Relationship="Self.FK__Roles__id_employ__59063A47" FromRole="Employee" ToRole="Roles" />
+    <NavigationProperty Name="Worked_hours" Relationship="Self.FK__Worked_ho__id_em__5BE2A6F2" FromRole="Employee" ToRole="Worked_hours" />
+  </EntityType>
+  <EntityType Name="Materials">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="price" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="MaterialsxStage" Relationship="Self.FK__Materials__id_ma__60A75C0F" FromRole="Materials" ToRole="MaterialsxStage" />
+  </EntityType>
+  <EntityType Name="MaterialsxStage">
+    <Key>
+      <PropertyRef Name="id_stage" />
+      <PropertyRef Name="id_material" />
+    </Key>
+    <Property Name="id_stage" Type="Int32" Nullable="false" />
+    <Property Name="id_material" Type="Int32" Nullable="false" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <Property Name="price" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Materials" Relationship="Self.FK__Materials__id_ma__60A75C0F" FromRole="MaterialsxStage" ToRole="Materials" />
+    <NavigationProperty Name="Stage" Relationship="Self.FK__Materials__id_st__5FB337D6" FromRole="MaterialsxStage" ToRole="Stage" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ubication" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_client" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Anotations" Relationship="Self.FK__Anotation__id_pr__571DF1D5" FromRole="Project" ToRole="Anotations" />
+    <NavigationProperty Name="Client" Relationship="Self.FK__Project__id_clie__5629CD9C" FromRole="Project" ToRole="Client" />
+    <NavigationProperty Name="Stage" Relationship="Self.FK__Stage__id_projec__5812160E" FromRole="Project" ToRole="Stage" />
+    <NavigationProperty Name="Worked_hours" Relationship="Self.FK__Worked_ho__id_pr__5AEE82B9" FromRole="Project" ToRole="Worked_hours" />
+  </EntityType>
+  <EntityType Name="Provider">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Bill" Relationship="Self.FK__Bill__id_provide__6383C8BA" FromRole="Provider" ToRole="Bill" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="id_role" />
+      <PropertyRef Name="id_employee" />
+    </Key>
+    <Property Name="id_role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_employee" Type="Int32" Nullable="false" />
+    <Property Name="role" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK__Roles__id_employ__59063A47" FromRole="Roles" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Stage">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_project" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="status" Type="Boolean" Nullable="false" />
+    <Property Name="start_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="end_date" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Bill" Relationship="Self.FK__Bill__id_stage__628FA481" FromRole="Stage" ToRole="Bill" />
+    <NavigationProperty Name="MaterialsxStage" Relationship="Self.FK__Materials__id_st__5FB337D6" FromRole="Stage" ToRole="MaterialsxStage" />
+    <NavigationProperty Name="Project" Relationship="Self.FK__Stage__id_projec__5812160E" FromRole="Stage" ToRole="Project" />
+  </EntityType>
+  <EntityType Name="Worked_hours">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_project" Type="Int32" Nullable="false" />
+    <Property Name="id_employee" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="hours" Type="Int32" Nullable="false" />
+    <Property Name="hour_cost" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK__Worked_ho__id_em__5BE2A6F2" FromRole="Worked_hours" ToRole="Employee" />
+    <NavigationProperty Name="Project" Relationship="Self.FK__Worked_ho__id_pr__5AEE82B9" FromRole="Worked_hours" ToRole="Project" />
+  </EntityType>
+  <Association Name="FK__Anotation__id_pr__571DF1D5">
+    <End Role="Project" Type="Self.Project" Multiplicity="1" />
+    <End Role="Anotations" Type="Self.Anotations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Anotations">
+        <PropertyRef Name="id_project" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Bill__id_provide__6383C8BA">
+    <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
+    <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provider">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="id_provider" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Bill__id_stage__628FA481">
+    <End Role="Stage" Type="Self.Stage" Multiplicity="1" />
+    <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stage">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="id_stage" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Project__id_clie__5629CD9C">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="Project" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="identification" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="id_client" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Roles__id_employ__59063A47">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Roles">
+        <PropertyRef Name="id_employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Worked_ho__id_em__5BE2A6F2">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Worked_hours" Type="Self.Worked_hours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Worked_hours">
+        <PropertyRef Name="id_employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Materials__id_ma__60A75C0F">
+    <End Role="Materials" Type="Self.Materials" Multiplicity="1" />
+    <End Role="MaterialsxStage" Type="Self.MaterialsxStage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Materials">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="MaterialsxStage">
+        <PropertyRef Name="id_material" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Materials__id_st__5FB337D6">
+    <End Role="Stage" Type="Self.Stage" Multiplicity="1" />
+    <End Role="MaterialsxStage" Type="Self.MaterialsxStage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stage">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="MaterialsxStage">
+        <PropertyRef Name="id_stage" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Stage__id_projec__5812160E">
+    <End Role="Project" Type="Self.Project" Multiplicity="1" />
+    <End Role="Stage" Type="Self.Stage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Stage">
+        <PropertyRef Name="id_project" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Worked_ho__id_pr__5AEE82B9">
+    <End Role="Project" Type="Self.Project" Multiplicity="1" />
+    <End Role="Worked_hours" Type="Self.Worked_hours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Worked_hours">
+        <PropertyRef Name="id_project" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TeConstruyeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Anotations" EntityType="Self.Anotations" />
+    <EntitySet Name="Bill" EntityType="Self.Bill" />
+    <EntitySet Name="Client" EntityType="Self.Client" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" />
+    <EntitySet Name="Materials" EntityType="Self.Materials" />
+    <EntitySet Name="MaterialsxStage" EntityType="Self.MaterialsxStage" />
+    <EntitySet Name="Project" EntityType="Self.Project" />
+    <EntitySet Name="Provider" EntityType="Self.Provider" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" />
+    <EntitySet Name="Stage" EntityType="Self.Stage" />
+    <EntitySet Name="Worked_hours" EntityType="Self.Worked_hours" />
+    <AssociationSet Name="FK__Anotation__id_pr__571DF1D5" Association="Self.FK__Anotation__id_pr__571DF1D5">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="Anotations" EntitySet="Anotations" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Bill__id_provide__6383C8BA" Association="Self.FK__Bill__id_provide__6383C8BA">
+      <End Role="Provider" EntitySet="Provider" />
+      <End Role="Bill" EntitySet="Bill" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Bill__id_stage__628FA481" Association="Self.FK__Bill__id_stage__628FA481">
+      <End Role="Stage" EntitySet="Stage" />
+      <End Role="Bill" EntitySet="Bill" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Project__id_clie__5629CD9C" Association="Self.FK__Project__id_clie__5629CD9C">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Project" EntitySet="Project" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Roles__id_employ__59063A47" Association="Self.FK__Roles__id_employ__59063A47">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Roles" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Worked_ho__id_em__5BE2A6F2" Association="Self.FK__Worked_ho__id_em__5BE2A6F2">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Worked_hours" EntitySet="Worked_hours" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Materials__id_ma__60A75C0F" Association="Self.FK__Materials__id_ma__60A75C0F">
+      <End Role="Materials" EntitySet="Materials" />
+      <End Role="MaterialsxStage" EntitySet="MaterialsxStage" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Materials__id_st__5FB337D6" Association="Self.FK__Materials__id_st__5FB337D6">
+      <End Role="Stage" EntitySet="Stage" />
+      <End Role="MaterialsxStage" EntitySet="MaterialsxStage" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Stage__id_projec__5812160E" Association="Self.FK__Stage__id_projec__5812160E">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="Stage" EntitySet="Stage" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Worked_ho__id_pr__5AEE82B9" Association="Self.FK__Worked_ho__id_pr__5AEE82B9">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="Worked_hours" EntitySet="Worked_hours" />
+    </AssociationSet>
+    <FunctionImport Name="usp_budget" ReturnType="Collection(TeConstruyeModel.usp_budget_Result)">
+      <Parameter Name="idProject" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_employee_payment" ReturnType="Collection(TeConstruyeModel.usp_employee_payment_Result)">
+      <Parameter Name="first_date" Mode="In" Type="DateTime" />
+      <Parameter Name="second_date" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="usp_project_client" ReturnType="Collection(TeConstruyeModel.usp_project_client_Result)" />
+  </EntityContainer>
+  <ComplexType Name="usp_budget_Result">
+    <Property Type="String" Name="Etapa" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="Material" Nullable="false" MaxLength="60" />
+    <Property Type="String" Name="Detalle" Nullable="false" MaxLength="60" />
+    <Property Type="Int32" Name="Cantidad" Nullable="false" />
+    <Property Type="Int32" Name="Costo" Nullable="false" />
+    <Property Type="Int32" Name="Total" Nullable="true" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Apellido" Nullable="false" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_employee_payment_Result">
+    <Property Type="String" Name="name" Nullable="false" MaxLength="30" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Apellido" Nullable="false" MaxLength="20" />
+    <Property Type="Int32" Name="Horas" Nullable="false" />
+    <Property Type="Int32" Name="Costo" Nullable="false" />
+    <Property Type="Int32" Name="Total" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="usp_project_client_Result">
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Apellido" Nullable="false" MaxLength="20" />
+    <Property Type="Int32" Name="ProyectoID" Nullable="false" />
+  </ComplexType>
+</Schema>
