@@ -110,10 +110,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AnotationsController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\BillController.cs" />
     <Compile Include="Controllers\MaterialController.cs" />
+    <Compile Include="Controllers\MaterialsxStageController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\ProviderController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
@@ -121,10 +123,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Logic\AnotationsLogic.cs" />
     <Compile Include="Logic\BillLogic.cs" />
     <Compile Include="Logic\ClientLogic.cs" />
     <Compile Include="Logic\EmployeeLogic.cs" />
     <Compile Include="Logic\MaterialLogic.cs" />
+    <Compile Include="Logic\MStageLogic.cs" />
     <Compile Include="Logic\ProjectLogic.cs" />
     <Compile Include="Logic\ProviderLogic.cs" />
     <Compile Include="Logic\RoleSpecificationLogic.cs" />
@@ -132,7 +136,7 @@
     <Compile Include="Models\Anotations.cs">
       <DependentUpon>TeConstruyeEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AnotationsData.cs" />
+    <Compile Include="Models\Anotations_Data.cs" />
     <Compile Include="Models\Bill.cs">
       <DependentUpon>TeConstruyeEntities.tt</DependentUpon>
     </Compile>
@@ -152,6 +156,7 @@
       <DependentUpon>TeConstruyeEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Material_Data.cs" />
+    <Compile Include="Models\MStage_Data.cs" />
     <Compile Include="Models\Project.cs">
       <DependentUpon>TeConstruyeEntities.tt</DependentUpon>
     </Compile>

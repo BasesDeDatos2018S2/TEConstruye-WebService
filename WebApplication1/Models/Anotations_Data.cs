@@ -5,7 +5,7 @@ using System.Web;
 
 namespace WebApplication1.Models
 {
-    public class AnotationsData
+    public class Anotations_Data
     {
 
         public int id { get; set; }
