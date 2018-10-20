@@ -14,8 +14,8 @@ namespace WebApplication1.Controllers
     {
 
 
-        [Route("api/client/{id_material}/{id_stage}")]
-        public List<Object> GetClient(int id_material, int id_stage)
+        [Route("api/materialsxstage/{id_stage}/{id_material}")]
+        public List<Object> GetClient(int id_stage, int id_material)
         {
 
             MStageLogic logic = new MStageLogic();
@@ -32,7 +32,7 @@ namespace WebApplication1.Controllers
                 return list;
             }
         }
-
+        [Route("api/materialsxstage/")]
         public List<Object> GetAllClient()
         {
 

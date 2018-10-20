@@ -81,5 +81,92 @@ namespace WebApplication1.Logic
             }
         }
 
+        public bool existeMStage(int id_stage, int id_material)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+                int i = construyeEntities.MaterialsxStage.Where(e => e.id_material == id_material && e.id_stage == id_stage).ToList().Count();
+                if (i == 0) return false;
+                else return true;
+
+            }
+        }
+
+        public bool addMStage(MStage_Data data)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+
+                MaterialsxStage newMs = new MaterialsxStage();
+                newMs.id_material = data.id_material;
+                newMs.id_stage = data.id_stage;
+                newMs.price = data.price;
+                newMs.quantity = data.quantity;
+                newMs.Materials = construyeEntities.Materials.Where(e => e.id == newMs.id_material).ToList().First();
+                newMs.Stage = construyeEntities.Stage.Where(e => e.id == newMs.id_stage).ToList().First();
+                try
+                {
+                    construyeEntities.MaterialsxStage.Add(newMs);
+                    construyeEntities.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+
+
+            }
+        }
+
+        public bool eraseMStage(int id_stage, int id_material)
+        {
+
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+                try
+                {
+                    var ms = construyeEntities.MaterialsxStage.Find(id_stage, id_material);
+                    construyeEntities.MaterialsxStage.Remove(ms);
+                    construyeEntities.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+                
+
+            }
+
+        }
+
+        public bool updateMStage(MStage_Data data)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+
+                try
+                {
+                    var ms = construyeEntities.MaterialsxStage.Find(data.id_stage, data.id_material);
+                    ms.price = data.price;
+                    ms.quantity = data.quantity;
+                    ms.Materials = construyeEntities.Materials.Find(data.id_material);
+                    ms.Stage = construyeEntities.Stage.Find(data.id_stage);
+
+
+
+                }
+                catch (Exception e)
+                {
+
+
+
+                }
+
+            }
+
+        }
+
     }
 }

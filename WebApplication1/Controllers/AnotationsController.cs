@@ -11,7 +11,7 @@ namespace WebApplication1.Controllers
 {
     public class AnotationsController : ApiController
     {
-
+        [Route("api/anotations/{id}")]
         public List<Object> GetAnotations(int id)
         {
             AnotationsLogic anotationsLogic = new AnotationsLogic();
@@ -28,7 +28,7 @@ namespace WebApplication1.Controllers
                 return list;
             }
         }
-
+        [Route("api/anotations")]
         public List<Object> GetAllAnotations()
         {
             AnotationsLogic anotationsLogic = new AnotationsLogic();
