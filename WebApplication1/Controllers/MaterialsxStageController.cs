@@ -41,12 +41,40 @@ namespace WebApplication1.Controllers
             list = logic.GetListMStage();
             if (list == null)
             {
+                //File not found
                 list.Add(new { status = "404" });
                 return list;
             }
             else
             {
                 return list;
+            }
+
+        }
+
+        [Route("api/materialsxstage/addmxs")]
+        public List<object> addMxS([FromBody] MStage_Data data)
+        {
+
+            MStageLogic ms = new MStageLogic();
+            List<Object> result = new List<Object>();
+            if (ms.existMStage(data.id_stage, data.id_material))
+            {
+                //petición correcta pero no pudo ser procesada porque ya existe el archivo
+                result.Add(new { status = "202" });
+                return result;
+            }
+            if (ms.addMStage(data))
+            {
+                //petición correcta y se ha creado un nuevo recurso
+                result.Add(new { status = "201" });
+                return result;
+            }
+            else
+            {
+                //No se pudo crear el recurso por un error interno
+                result.Add(new { status = "500" });
+                return result;
             }
 
         }

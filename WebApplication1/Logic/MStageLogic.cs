@@ -81,7 +81,7 @@ namespace WebApplication1.Logic
             }
         }
 
-        public bool existeMStage(int id_stage, int id_material)
+        public bool existMStage(int id_stage, int id_material)
         {
             using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
@@ -149,18 +149,21 @@ namespace WebApplication1.Logic
                 try
                 {
                     var ms = construyeEntities.MaterialsxStage.Find(data.id_stage, data.id_material);
+                    ms.id_material = data.id_material;
+                    ms.id_stage = data.id_stage;
                     ms.price = data.price;
                     ms.quantity = data.quantity;
                     ms.Materials = construyeEntities.Materials.Find(data.id_material);
                     ms.Stage = construyeEntities.Stage.Find(data.id_stage);
-
+                    construyeEntities.SaveChanges();
+                    return true;
 
 
                 }
                 catch (Exception e)
                 {
 
-
+                    return false;
 
                 }
 
