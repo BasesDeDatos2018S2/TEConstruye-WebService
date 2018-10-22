@@ -15,8 +15,8 @@ namespace WebApplication1.Controllers
     {
 
 
-        [Route("api/materialsxstage/{id_stage}/{id_material}")]
-        public List<Object> GetClient(int id_stage, int id_material)
+        [Route("api/materialsxstage/get/{id_stage}/{id_material}")]
+        public IHttpActionResult GetClient(int id_stage, int id_material)
         {
 
             MStageLogic logic = new MStageLogic();
@@ -24,17 +24,17 @@ namespace WebApplication1.Controllers
             List<Object> list = new List<Object>();
             if (data == null)
             {
-                list.Add(new { status = "404" });
-                return list;
+
+                return NotFound();
             }
             else
             {
                 list.Add(data);
-                return list;
+                return Ok(list);
             }
         }
         [Route("api/materialsxstage/")]
-        public List<Object> GetAllClient()
+        public IHttpActionResult GetAllClient()
         {
 
             MStageLogic logic = new MStageLogic();
@@ -44,47 +44,90 @@ namespace WebApplication1.Controllers
             {
                 //File not found
                 list.Add(new { status = "404" });
-                return list;
+                return NotFound();
             }
             else
             {
-                return list;
+                //Return list of objects
+                return Ok(list);
             }
 
         }
 
         [Route("api/materialsxstage/add")]
-        public HttpStatusCode addMxS([FromBody] MStage_Data data)
+        public IHttpActionResult addMxS([FromBody] MStage_Data data)
         {
             MStageLogic ms = new MStageLogic();
-            List<Object> result = new List<Object>();
             if (data == null)
             {
-                //Bad request
-             
-                return HttpStatusCode.BadRequest;
+                //Bad request code 400
+                return BadRequest();
             }
             if (ms.existMStage(data.id_stage, data.id_material))
             {
-                //petición correcta pero no pudo ser procesada porque ya existe el archivo
-                
-                return HttpStatusCode.Accepted;
+                //petición correcta pero no pudo ser procesada porque ya existe el archivo code 202
+                return StatusCode(HttpStatusCode.Accepted);
             }
             if (ms.addMStage(data))
             {
-                //petición correcta y se ha creado un nuevo recurso
-                
-                return HttpStatusCode.Created;
+                //petición correcta y se ha creado un nuevo recurso code 201
+                return StatusCode(HttpStatusCode.Created);
             }
             else
             {
-                //No se pudo crear el recurso por un error interno
-               
-                return HttpStatusCode.InternalServerError;
+                //No se pudo crear el recurso por un error interno code 500
+                return InternalServerError();
             }
 
         }
 
+        [Route("api/materialsxstage/update")]
+        public IHttpActionResult updateMxs([FromBody] MStage_Data data)
+        {
+            MStageLogic ms = new MStageLogic();
+            if (data == null)
+            {
+                //Bad request
+                return BadRequest();
+            }
+            if (!ms.existMStage(data.id_stage, data.id_material))
+            {
+                //petición correcta pero no pudo ser procesada porque ya existe el archivo
+                return NotFound();
+            }
+            if (ms.updateMStage(data))
+            {
+                //petición correcta y se ha creado un nuevo recurso
+                return Ok();
+            }
+            else
+            {
+                //No se pudo crear el recurso por un error interno
+                return InternalServerError();
+            }
+
+        }
+
+        [Route("api/materialsxstage/erase/{id_stage}/{id_material}")]
+        public IHttpActionResult eraseClient(int id_stage, int id_material)
+        {
+            MStageLogic ms = new MStageLogic();
+            if (!ms.existMStage(id_stage, id_material))
+            {
+                //petición correcta pero no pudo ser procesada porque ya existe el archivo
+                return NotFound();
+            }
+            if (ms.eraseMStage(id_stage, id_material))
+            {
+                //Se completó la solicitud con exito
+                return Ok();
+            }
+            else
+            {
+                return InternalServerError();
+            }
+
+        }
 
     }
 }
