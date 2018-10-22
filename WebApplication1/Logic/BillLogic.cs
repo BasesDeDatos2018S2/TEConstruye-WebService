@@ -48,7 +48,7 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    var billList = construyeEntities.Bill.Where(e => e.id != null).ToList();
+                    var billList = construyeEntities.Bill.ToList();
                     int n = billList.Count;
                     if (n == 0)
                     {
