@@ -8,6 +8,7 @@ using WebApplication1.Logic;
 using WebApplication1.Models;
 
 
+
 namespace WebApplication1.Controllers
 {
     public class MaterialsxStageController : ApiController
@@ -52,29 +53,34 @@ namespace WebApplication1.Controllers
 
         }
 
-        [Route("api/materialsxstage/addmxs")]
-        public List<object> addMxS([FromBody] MStage_Data data)
+        [Route("api/materialsxstage/add")]
+        public HttpStatusCode addMxS([FromBody] MStage_Data data)
         {
-
             MStageLogic ms = new MStageLogic();
             List<Object> result = new List<Object>();
+            if (data == null)
+            {
+                //Bad request
+             
+                return HttpStatusCode.BadRequest;
+            }
             if (ms.existMStage(data.id_stage, data.id_material))
             {
                 //petición correcta pero no pudo ser procesada porque ya existe el archivo
-                result.Add(new { status = "202" });
-                return result;
+                
+                return HttpStatusCode.Accepted;
             }
             if (ms.addMStage(data))
             {
                 //petición correcta y se ha creado un nuevo recurso
-                result.Add(new { status = "201" });
-                return result;
+                
+                return HttpStatusCode.Created;
             }
             else
             {
                 //No se pudo crear el recurso por un error interno
-                result.Add(new { status = "500" });
-                return result;
+               
+                return HttpStatusCode.InternalServerError;
             }
 
         }
