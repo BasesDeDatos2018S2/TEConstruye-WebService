@@ -42,8 +42,7 @@ namespace WebApplication1.Controllers
             list = logic.GetListMStage();
             if (list == null)
             {
-                //File not found
-                list.Add(new { status = "404" });
+                //File not found   
                 return NotFound();
             }
             else

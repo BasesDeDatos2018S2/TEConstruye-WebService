@@ -18,7 +18,7 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    var anotationsList = construyeEntities.Anotations.Where(e => e.id != null).ToList();
+                    var anotationsList = construyeEntities.Anotations.ToList();
                     int n = anotationsList.Count;
                     if (n == 0)
                     {
@@ -80,6 +80,94 @@ namespace WebApplication1.Logic
                     return result;
                 }
             }
+        }
+
+        public bool existAnotation(int id)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+                int i = construyeEntities.Anotations.Where(e => e.id == id).ToList().Count();
+                if (i == 0) return false;
+                else return true;
+
+            }
+        }
+
+        public bool addAnotation(Anotations_Data data)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+
+                Anotations newAnotation = new Anotations();
+                newAnotation.id = data.id;
+                newAnotation.id_project = data.id_project;
+                newAnotation.anotation = data.anotation;
+                newAnotation.date = data.date;
+                newAnotation.Project = construyeEntities.Project.Find(data.id_project);
+                try
+                {
+                    construyeEntities.Anotations.Add(newAnotation);
+                    construyeEntities.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+
+
+            }
+        }
+
+        public bool eraseAnotation(int id)
+        {
+
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+                try
+                {
+                    var ms = construyeEntities.Anotations.Find(id);
+                    construyeEntities.Anotations.Remove(ms);
+                    construyeEntities.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+
+
+            }
+
+        }
+
+        public bool updateAnotations(Anotations_Data data)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+
+                try
+                {
+                    var anotation = construyeEntities.Anotations.Find(data.id);
+                    anotation.id = data.id;
+                    anotation.id_project = data.id_project;
+                    anotation.anotation = data.anotation;
+                    anotation.date = data.date;
+                    anotation.Project = construyeEntities.Project.Find(data.id_project);
+                    construyeEntities.SaveChanges();
+                    return true;
+
+
+                }
+                catch (Exception e)
+                {
+
+                    return false;
+
+                }
+
+            }
+
         }
     }
 }

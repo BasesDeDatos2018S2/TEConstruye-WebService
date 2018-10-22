@@ -16,7 +16,7 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    var mstageList = construyeEntities.MaterialsxStage.Where(e => e.id_material != null).ToList();
+                    var mstageList = construyeEntities.MaterialsxStage.ToList();
                     int n = mstageList.Count;
                     if (n == 0)
                     {
@@ -58,14 +58,12 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    int i = construyeEntities.MaterialsxStage.Where(e => e.id_material == id_material && e.id_stage == id_stage).ToList().Count;
-
-                    if (i == 0)
+                    if (!this.existMStage(id_stage, id_material))
                     {
                         result = null;
                         return result;
                     }
-                    materialsxStage = construyeEntities.MaterialsxStage.Where(e => e.id_material == id_material && e.id_stage == id_stage).ToList().First();
+                    materialsxStage = construyeEntities.MaterialsxStage.Find(id_stage, id_material);
                     result.id_material = materialsxStage.id_material;
                     result.id_stage = materialsxStage.id_stage;
                     result.price = materialsxStage.price;
@@ -85,8 +83,8 @@ namespace WebApplication1.Logic
         {
             using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
-                int i = construyeEntities.MaterialsxStage.Where(e => e.id_material == id_material && e.id_stage == id_stage).ToList().Count();
-                if (i == 0) return false;
+                var i = construyeEntities.MaterialsxStage.Find(id_stage, id_material);
+                if (i == null) return false;
                 else return true;
 
             }
@@ -102,8 +100,8 @@ namespace WebApplication1.Logic
                 newMs.id_stage = data.id_stage;
                 newMs.price = data.price;
                 newMs.quantity = data.quantity;
-                newMs.Materials = construyeEntities.Materials.Where(e => e.id == newMs.id_material).ToList().First();
-                newMs.Stage = construyeEntities.Stage.Where(e => e.id == newMs.id_stage).ToList().First();
+                newMs.Materials = construyeEntities.Materials.Find(data.id_material);
+                newMs.Stage = construyeEntities.Stage.Find(data.id_stage);
                 try
                 {
                     construyeEntities.MaterialsxStage.Add(newMs);
