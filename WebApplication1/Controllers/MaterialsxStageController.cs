@@ -14,32 +14,31 @@ namespace WebApplication1.Controllers
     public class MaterialsxStageController : ApiController
     {
 
+        private MStageLogic ms = new MStageLogic();
 
         [Route("api/materialsxstage/get/{id_stage}/{id_material}")]
         public IHttpActionResult GetClient(int id_stage, int id_material)
         {
 
-            MStageLogic logic = new MStageLogic();
-            MStage_Data data = logic.GetMStage(id_material, id_stage);
+            MStage_Data data = ms.GetMStage(id_material, id_stage);
             List<Object> list = new List<Object>();
             if (data == null)
             {
-
+                // Recurso no encontrado code 404
                 return NotFound();
             }
             else
             {
                 list.Add(data);
+                //ok code 200
                 return Ok(list);
             }
         }
         [Route("api/materialsxstage/")]
         public IHttpActionResult GetAllClient()
         {
-
-            MStageLogic logic = new MStageLogic();
             List<Object> list = new List<Object>();
-            list = logic.GetListMStage();
+            list = ms.GetListMStage();
             if (list == null)
             {
                 //File not found   
@@ -56,7 +55,6 @@ namespace WebApplication1.Controllers
         [Route("api/materialsxstage/add")]
         public IHttpActionResult addMxS([FromBody] MStage_Data data)
         {
-            MStageLogic ms = new MStageLogic();
             if (data == null)
             {
                 //Bad request code 400
@@ -83,7 +81,6 @@ namespace WebApplication1.Controllers
         [Route("api/materialsxstage/update")]
         public IHttpActionResult updateMxs([FromBody] MStage_Data data)
         {
-            MStageLogic ms = new MStageLogic();
             if (data == null)
             {
                 //Bad request
@@ -110,7 +107,6 @@ namespace WebApplication1.Controllers
         [Route("api/materialsxstage/erase/{id_stage}/{id_material}")]
         public IHttpActionResult eraseClient(int id_stage, int id_material)
         {
-            MStageLogic ms = new MStageLogic();
             if (!ms.existMStage(id_stage, id_material))
             {
                 //petición correcta pero no pudo ser procesada porque ya existe el archivo

@@ -59,14 +59,12 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    int i = construyeEntities.Anotations.Where(e => e.id == ID).ToList().Count;
-
-                    if (i == 0)
+                    if (!this.existAnotation(ID))
                     {
                         result = null;
                         return result;
                     }
-                    anotations = construyeEntities.Anotations.Where(e => e.id == ID).ToList().First();
+                    anotations = construyeEntities.Anotations.Find(ID);
                     result.id = anotations.id;
                     result.id_project = anotations.id_project;
                     result.date = anotations.date;
@@ -86,8 +84,8 @@ namespace WebApplication1.Logic
         {
             using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
-                int i = construyeEntities.Anotations.Where(e => e.id == id).ToList().Count();
-                if (i == 0) return false;
+                var i = construyeEntities.Anotations.Find(id);
+                if (i == null) return false;
                 else return true;
 
             }
