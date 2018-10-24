@@ -14,6 +14,7 @@ namespace WebApplication1.Controllers
         private AnotationsLogic anotationsLogic = new AnotationsLogic();
 
         [Route("api/anotations/{id}")]
+        [HttpGet]
         public IHttpActionResult GetAnotations(int id)
         {
             Anotations_Data anotations = anotationsLogic.GetAnotation(id);
@@ -31,6 +32,7 @@ namespace WebApplication1.Controllers
             }
         }
         [Route("api/anotations")]
+        [HttpGet]
         public IHttpActionResult GetAllAnotations()
         {
             List<Object> list = new List<Object>();
@@ -49,6 +51,7 @@ namespace WebApplication1.Controllers
         }
 
         [Route("api/anotations/add")]
+        [HttpPost]
         public IHttpActionResult addAnotation([FromBody] Anotations_Data data)
         {
             if (data == null)
@@ -75,46 +78,49 @@ namespace WebApplication1.Controllers
         }
 
         [Route("api/anotations/update")]
-        public IHttpActionResult updateMxs([FromBody] Anotations_Data data)
+        [HttpPost]
+        public IHttpActionResult updateAnotation([FromBody] Anotations_Data data)
         {
             if (data == null)
             {
-                //Bad request
+                //Bad request code 400
                 return BadRequest();
             }
             if (!anotationsLogic.existAnotation(data.id))
             {
-                //petición correcta pero no pudo ser procesada porque ya existe el archivo
+                //petición correcta pero no pudo ser procesada porque no existe el archivo code 404
                 return NotFound();
             }
             if (anotationsLogic.updateAnotations(data))
             {
-                //petición correcta y se ha creado un nuevo recurso
+                //petición correcta y se ha creado un nuevo recurso code 200 ok
                 return Ok();
             }
             else
             {
-                //No se pudo crear el recurso por un error interno
+                //No se pudo crear el recurso por un error  code 500
                 return InternalServerError();
             }
 
         }
 
-        [Route("api/anotations/erase/{id}")]
-        public IHttpActionResult eraseClient(int id)
+        [Route("api/anotations/delete/{id}")]
+        [HttpDelete]
+        public IHttpActionResult deleteAnotation(int id)
         {
             if (!anotationsLogic.existAnotation(id))
             {
-                //petición correcta pero no pudo ser procesada porque ya existe el archivo
+                //petición correcta pero no pudo ser procesada porque no existe el archivo code 404
                 return NotFound();
             }
             if (anotationsLogic.eraseAnotation(id))
             {
-                //Se completó la solicitud con exito
+                //Se completó la solicitud con exito code 200 ok
                 return Ok();
             }
             else
             {
+                //No se completó la solicitud por un error interno code 500
                 return InternalServerError();
             }
 

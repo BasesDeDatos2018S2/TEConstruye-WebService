@@ -8,8 +8,8 @@ namespace WebApplication1.Models
     public class Material_Data
     {
         public int id { get; set; }
-        public string name { set; get; }
-        public string detail { set; get; }
-        public int price { set; get; }
+        public string name { get; set; }
+        public string description { get; set; }
+        public int price { get; set; }
     }
 }

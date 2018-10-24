@@ -10,9 +10,9 @@ namespace WebApplication1.Logic
     {
 
 
-
         public List<Object> GetListAnotations()
         {
+
             List<Object> dataList = new List<object>();
             using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
@@ -27,7 +27,6 @@ namespace WebApplication1.Logic
                     }
                     else
                     {
-
                         for (int i = 0; i < anotationsList.Count; ++i)
                         {
                             Anotations_Data data = new Anotations_Data();
@@ -42,14 +41,13 @@ namespace WebApplication1.Logic
                 }
                 catch
                 {
-
                     dataList = null;
                     return dataList;
-
                 }
             }
-
         }
+
+
 
         public Anotations_Data GetAnotation(int ID)
         {
@@ -80,6 +78,7 @@ namespace WebApplication1.Logic
             }
         }
 
+
         public bool existAnotation(int id)
         {
             using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
@@ -87,15 +86,15 @@ namespace WebApplication1.Logic
                 var i = construyeEntities.Anotations.Find(id);
                 if (i == null) return false;
                 else return true;
-
             }
         }
+
+
 
         public bool addAnotation(Anotations_Data data)
         {
             using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
-
                 Anotations newAnotation = new Anotations();
                 newAnotation.id = data.id;
                 newAnotation.id_project = data.id_project;
@@ -112,14 +111,13 @@ namespace WebApplication1.Logic
                 {
                     return false;
                 }
-
-
             }
         }
 
+
+
         public bool eraseAnotation(int id)
         {
-
             using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 try
@@ -133,17 +131,15 @@ namespace WebApplication1.Logic
                 {
                     return false;
                 }
-
-
             }
-
         }
+
+
 
         public bool updateAnotations(Anotations_Data data)
         {
             using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
-
                 try
                 {
                     var anotation = construyeEntities.Anotations.Find(data.id);
@@ -154,18 +150,12 @@ namespace WebApplication1.Logic
                     anotation.Project = construyeEntities.Project.Find(data.id_project);
                     construyeEntities.SaveChanges();
                     return true;
-
-
                 }
                 catch (Exception e)
                 {
-
                     return false;
-
                 }
-
             }
-
         }
     }
 }

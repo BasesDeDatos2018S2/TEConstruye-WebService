@@ -16,18 +16,16 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    int i = construyeEntities.Materials.Where(e => e.id == id).ToList().Count;
-
-                    if (i == 0)
+                    if (!this.existMaterial(id))
                     {
                         material = null;
                         return material;
                     }
-                    var mat = construyeEntities.Materials.Where(e => e.id == id).ToList().First();
+                    var mat = construyeEntities.Materials.Find(id);
                     material.id = mat.id;
                     material.name = mat.name;
                     material.price = mat.price;
-                    material.detail = mat.description;
+                    material.description = mat.description;
                     return material;
 
                 }
@@ -46,7 +44,7 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    var materialList = construyeEntities.Materials.Where(e => e.id != null).ToList();
+                    var materialList = construyeEntities.Materials.ToList();
                     int n = materialList.Count;
                     if (n == 0)
                     {
@@ -62,7 +60,7 @@ namespace WebApplication1.Logic
                             data.id = materialList.ElementAt(i).id;
                             data.name = materialList.ElementAt(i).name;
                             data.price = materialList.ElementAt(i).price;
-                            data.detail = materialList.ElementAt(i).description;
+                            data.description = materialList.ElementAt(i).description;
                             dataList.Add(data);
                         }
                         return dataList;
@@ -79,5 +77,75 @@ namespace WebApplication1.Logic
             }
         }
 
+        public bool existMaterial(int id)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+                var i = construyeEntities.Materials.Find(id);
+                if (i == null) return false;
+                else return true;
+            }
+        }
+
+        public bool addMaterial(Material_Data data)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+                Materials material = new Materials();
+                material.id = data.id;
+                material.name = data.name;
+                material.price = data.price;
+                material.description = data.description;
+                try
+                {
+                    construyeEntities.Materials.Add(material);
+                    construyeEntities.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool eraseEmployee(int id)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+                try
+                {
+                    var ms = construyeEntities.Employee.Find(id);
+                    construyeEntities.Employee.Remove(ms);
+                    construyeEntities.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool updateMaterial(Material_Data data)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+                try
+                {
+                    var material = construyeEntities.Materials.Find(data.id);
+                    material.id = data.id;
+                    material.name = data.name;
+                    material.price = data.price;
+                    material.description = data.description;
+                    construyeEntities.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+        }
     }
 }

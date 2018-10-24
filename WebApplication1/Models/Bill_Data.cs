@@ -8,10 +8,12 @@ namespace WebApplication1.Models
     public class Bill_Data
     {
         public int id { get; set; }
-        public String serial { get; set; }
-        public String provider { get; set; }
+        public System.DateTime date { get; set; }
+        public string serial { get; set; }
         public int price { get; set; }
-        public DateTime date { get; set; }
+        public int id_stage { get; set; }
+        public int id_material { get; set; }
+        public int id_provider { get; set; }
     }
 
 }

@@ -17,19 +17,19 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    int  i = construyeEntities.Bill.Where(e => e.id == ID).ToList().Count;
-
-                    if (i == 0)
+                    if (!this.existBill(ID))
                     {
                         result = null;
                         return result;
                     }
-                    bill = construyeEntities.Bill.Where(e => e.id == ID).ToList().First();
-                    result.date = bill.date;
+                    bill = construyeEntities.Bill.Find(ID);
                     result.id = bill.id;
+                    result.id_material = bill.id_material;
+                    result.id_provider = bill.id_provider;
+                    result.id_stage = bill.id_stage;
                     result.price = bill.price;
                     result.serial = bill.serial;
-                    result.provider = bill.Provider.name;
+                    result.date = bill.date;
                     return result;
 
                 }
@@ -61,11 +61,13 @@ namespace WebApplication1.Logic
                         for (int i = 0; i<billList.Count; ++i)
                         {
                             Bill_Data data = new Bill_Data();
-                            data.date = billList.ElementAt(i).date;
                             data.id = billList.ElementAt(i).id;
+                            data.id_material = billList.ElementAt(i).id_material;
+                            data.id_provider = billList.ElementAt(i).id_provider;
+                            data.id_stage = billList.ElementAt(i).id_stage;
                             data.price = billList.ElementAt(i).price;
                             data.serial = billList.ElementAt(i).serial;
-                            data.provider = billList.ElementAt(i).Provider.name;
+                            data.date = billList.ElementAt(i).date;
                             dataList.Add(data);
                         }
                         return dataList;
@@ -78,9 +80,104 @@ namespace WebApplication1.Logic
                     return dataList;
 
                 }
-                
-                
+            }
+        }
 
+        public bool existBill(int id)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+                var i = construyeEntities.Bill.Find(id);
+                if (i == null) return false;
+                else return true;
+
+            }
+        }
+
+        public bool addBill(Bill_Data data)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+
+                Bill bill = new Bill();
+                bill.id = data.id;
+                bill.id_material = data.id_material;
+                bill.id_provider = data.id_provider;
+                bill.id_stage = data.id_stage;
+                bill.price = data.price;
+                bill.serial = data.serial;
+                bill.date = data.date;
+                bill.Materials = construyeEntities.Materials.Find(data.id_material);
+                bill.Provider = construyeEntities.Provider.Find(data.id_provider);
+                bill.Stage = construyeEntities.Stage.Find(data.id_stage);
+                
+                
+                try
+                {
+                    construyeEntities.Bill.Add(bill);
+                    construyeEntities.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+
+
+            }
+        }
+
+        public bool eraseBill(int id)
+        {
+
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+                try
+                {
+                    var ms = construyeEntities.Bill.Find(id);
+                    construyeEntities.Bill.Remove(ms);
+                    construyeEntities.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+
+
+            }
+
+        }
+
+        public bool updateBill(Bill_Data data)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+
+                try
+                {
+                    var bill = construyeEntities.Bill.Find(data.id);
+                    bill.id = data.id;
+                    bill.id_material = data.id_material;
+                    bill.id_provider = data.id_provider;
+                    bill.id_stage = data.id_stage;
+                    bill.price = data.price;
+                    bill.serial = data.serial;
+                    bill.date = data.date;
+                    bill.Materials = construyeEntities.Materials.Find(data.id_material);
+                    bill.Provider = construyeEntities.Provider.Find(data.id_provider);
+                    bill.Stage = construyeEntities.Stage.Find(data.id_stage);
+                    construyeEntities.SaveChanges();
+                    return true;
+
+
+                }
+                catch (Exception e)
+                {
+
+                    return false;
+
+                }
 
             }
 
