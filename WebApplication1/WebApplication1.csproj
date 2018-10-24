@@ -160,6 +160,7 @@
     <Compile Include="Models\Project.cs">
       <DependentUpon>TeConstruyeEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProjectsxClient_Data.cs" />
     <Compile Include="Models\Project_Data.cs" />
     <Compile Include="Models\Provider.cs">
       <DependentUpon>TeConstruyeEntities.tt</DependentUpon>

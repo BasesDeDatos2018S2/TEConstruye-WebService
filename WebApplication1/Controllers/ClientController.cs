@@ -17,6 +17,7 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public IHttpActionResult GetClient(string ssn)
         {
+            System.Diagnostics.Debug.WriteLine("GetClient");
             Client_Data client = clientLogic.GetClient(ssn);
             List<Object> list = new List<Object>();
             if (client == null)
@@ -36,6 +37,7 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public IHttpActionResult GetAllClient()
         {
+            System.Diagnostics.Debug.WriteLine("GetAllClients");
             List<Object> list = new List<Object>();
             list = clientLogic.GetListClient();
             if (list == null)
@@ -55,6 +57,7 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IHttpActionResult addClient([FromBody] Client_Data data)
         {
+            System.Diagnostics.Debug.WriteLine("AddClient");
             if (data == null)
             {
                 //Bad request code 400
@@ -79,9 +82,10 @@ namespace WebApplication1.Controllers
         }
 
         [Route("api/client/update")]
-        [HttpPost]
+        [HttpPut]
         public IHttpActionResult updateClient([FromBody] Client_Data data)
         {
+            System.Diagnostics.Debug.WriteLine("UpdateClient");
             if (data == null)
             {
                 //Bad request code 400
@@ -109,6 +113,8 @@ namespace WebApplication1.Controllers
         [HttpDelete]
         public IHttpActionResult deleteClient(string id)
         {
+            System.Diagnostics.Debug.WriteLine("EraseClient");
+            Console.WriteLine("Si lo borra");
             if (!clientLogic.existClient(id))
             {
                 //petición correcta pero no pudo ser procesada porque no existe el archivo code 404
@@ -126,6 +132,30 @@ namespace WebApplication1.Controllers
             }
 
         }
+
+
+        /*
+        [Route("api/client/getpxc/{id}")]
+        [HttpGet]
+        public IHttpActionResult GetProjectxClient(string id)
+        {
+            System.Diagnostics.Debug.WriteLine("GetProjectsxClient");
+            List<Object> list = new List<Object>();
+            list = clientLogic.getProjectsxClient(id);
+            if (list == null)
+            {
+                // recurso no encontrado code 404
+                return NotFound();
+            }
+            else
+            {
+                // ok code 200
+                return Ok(list);
+            }
+
+        }
+
+    */
 
     }
 }

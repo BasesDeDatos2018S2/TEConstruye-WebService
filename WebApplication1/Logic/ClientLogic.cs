@@ -59,13 +59,20 @@ namespace WebApplication1.Logic
 
                         for (int i = 0; i < clientList.Count; ++i)
                         {
-                            Client_Data data = new Client_Data();
+                            ProjectsxClient_Data data = new ProjectsxClient_Data();
                             data.identification = clientList.ElementAt(i).identification;
                             data.name = clientList.ElementAt(i).name;
                             data.lastname1 = clientList.ElementAt(i).lastname1;
                             data.lastname2 = clientList.ElementAt(i).lastname2;
                             data.phone = clientList.ElementAt(i).phone;
                             data.email = clientList.ElementAt(i).email;
+                            var projects = construyeEntities.Project.Where(e => e.id_client == data.identification).ToList();
+                            List<Object> lis = new List<Object>();
+                            for (int j = 0; j < projects.Count; ++j)
+                            {
+                                lis.Add(projects.ElementAt(j).id);
+                            }
+                            data.projects = lis;
                             dataList.Add(data);
                         }
                         return dataList;
@@ -171,6 +178,50 @@ namespace WebApplication1.Logic
             }
 
         }
+
+        /*
+        public List<Object> getProjectsxClient(string id)
+        {
+            List<Object> list = new List<Object>();
+            List<Object> lis = new List<Object>();
+            ProjectsxClient_Data newPxC = new ProjectsxClient_Data();
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+
+                try
+                {
+                    var data = construyeEntities.Client.Find(id);
+                    newPxC.identification = data.identification;
+                    newPxC.name = data.name;
+                    newPxC.lastname1 = data.lastname1;
+                    newPxC.lastname2 = data.lastname2;
+                    newPxC.phone = data.phone;
+                    newPxC.email = data.email;
+                    var projects = construyeEntities.Project.Where(e => e.id_client == id).ToList();
+                    for (int i = 0; i < projects.Count; ++i)
+                    {
+                        int ident = projects.ElementAt(i).id;
+                        lis.Add(ident);
+                        
+                    }
+                    newPxC.projects = lis;
+                    list.Add(newPxC);
+                    return list;
+
+
+                }
+                catch (Exception e)
+                {
+
+                    return null;
+
+                }
+
+            }
+
+        }
+        */
+
 
 
     }
