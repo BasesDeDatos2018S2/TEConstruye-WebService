@@ -16,7 +16,7 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    var projectList = construyeEntities.Project.Where(e => e.id != null).ToList();
+                    var projectList = construyeEntities.Project.ToList();
                     int n = projectList.Count;
                     if (n == 0)
                     {
@@ -58,9 +58,7 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    int i = construyeEntities.Project.Where(e => e.id == ID).ToList().Count;
-
-                    if (i == 0)
+                    if (!this.existProject(ID))
                     {
                         result = null;
                         return result;
@@ -78,6 +76,82 @@ namespace WebApplication1.Logic
                 {
                     result = null;
                     return result;
+                }
+            }
+        }
+
+
+        public bool existProject(int id)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+                var i = construyeEntities.Project.Find(id);
+                if (i == null) return false;
+                else return true;
+            }
+        }
+
+        public bool addProject(Project_Data data)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+                Project newProject = new Project();
+                newProject.id = data.id;
+                newProject.id_client = data.id_client;
+                newProject.manager = data.manager;
+                newProject.name = data.name;
+                newProject.ubication = data.ubication;
+                newProject.Client = construyeEntities.Client.Find(data.id_client);
+                try
+                {
+                    construyeEntities.Project.Add(newProject);
+                    construyeEntities.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool eraseProject(int id)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+                try
+                {
+                    var ms = construyeEntities.Project.Find(id);
+                    construyeEntities.Project.Remove(ms);
+                    construyeEntities.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool updateProject(Project_Data data)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+                try
+                {
+                    var project = construyeEntities.Project.Find(data.id);
+                    project.id = data.id;
+                    project.id_client = data.id_client;
+                    project.manager = data.manager;
+                    project.name = data.name;
+                    project.ubication = data.ubication;
+                    project.Client = construyeEntities.Client.Find(data.id_client);
+                    construyeEntities.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
                 }
             }
         }

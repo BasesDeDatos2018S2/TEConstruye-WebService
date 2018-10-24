@@ -110,9 +110,9 @@ namespace WebApplication1.Controllers
 
         }
 
-        [Route("api/employee/erase/{id}")]
+        [Route("api/employee/delete/{id}")]
         [HttpDelete]
-        public IHttpActionResult eraseEmployee(int id)
+        public IHttpActionResult deleteEmployee(int id)
         {
             if (!employeeLogic.existEmployee(id))
             {

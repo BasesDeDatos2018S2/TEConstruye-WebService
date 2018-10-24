@@ -109,9 +109,9 @@ namespace WebApplication1.Controllers
 
         }
 
-        [Route("api/bill/erase/{id}")]
+        [Route("api/bill/delete/{id}")]
         [HttpDelete]
-        public IHttpActionResult eraseBill(int id)
+        public IHttpActionResult deleteBill(int id)
         {
             if (!billLogic.existBill(id))
             {

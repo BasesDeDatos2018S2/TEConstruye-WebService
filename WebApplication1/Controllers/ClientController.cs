@@ -105,9 +105,9 @@ namespace WebApplication1.Controllers
 
         }
 
-        [Route("api/client/erase/{id}")]
+        [Route("api/client/delete/{id}")]
         [HttpDelete]
-        public IHttpActionResult eraseClient(string id)
+        public IHttpActionResult deleteClient(string id)
         {
             if (!clientLogic.existClient(id))
             {

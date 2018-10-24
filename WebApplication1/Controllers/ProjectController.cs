@@ -11,38 +11,121 @@ namespace WebApplication1.Controllers
 {
     public class ProjectController : ApiController
     {
+        private ProjectLogic projectLogic = new ProjectLogic();
 
 
-        public List<Object> GetProject(int id)
+        [Route("api/project/{id}")]
+        [HttpGet]
+        public IHttpActionResult GetProject(int id)
         {
-            ProjectLogic projectLogic = new ProjectLogic();
             Project_Data project = projectLogic.GetProject(id);
             List<Object> list = new List<Object>();
             if (project == null)
             {
-                list.Add(new { status = "404" });
-                return list;
+                //No se encontró el recurso code 404
+                return NotFound();
             }
             else
             {
                 list.Add(project);
-                return list;
+                // ok code 200
+                return Ok(list);
             }
         }
 
-        public List<Object> GetAllProject()
+
+        [Route("api/project")]
+        [HttpGet]
+        public IHttpActionResult GetAllProject()
         {
-            ProjectLogic projectLogic = new ProjectLogic();
             List<Object> list = new List<Object>();
             list = projectLogic.GetListProject();
             if (list == null)
             {
-                list.Add(new { status = "404" });
-                return list;
+                // recurso no encontrado code 404
+                return NotFound();
             }
             else
             {
-                return list;
+                // ok code 200
+                return Ok(list);
+            }
+
+        }
+
+        [Route("api/project/add")]
+        [HttpPost]
+        public IHttpActionResult addProject([FromBody] Project_Data data)
+        {
+            if (data == null)
+            {
+                //Bad request code 400
+                return BadRequest();
+            }
+            if (projectLogic.existProject(data.id))
+            {
+                //petición correcta pero no pudo ser procesada porque ya existe el archivo code 202
+                return StatusCode(HttpStatusCode.Accepted);
+            }
+            if (projectLogic.addProject(data))
+            {
+                //petición correcta y se ha creado un nuevo recurso code 201
+                return StatusCode(HttpStatusCode.Created);
+            }
+            else
+            {
+                //No se pudo crear el recurso por un error interno code 500
+                return InternalServerError();
+            }
+
+        }
+
+
+        [Route("api/project/update")]
+        [HttpPost]
+        public IHttpActionResult updateProject([FromBody] Project_Data data)
+        {
+            if (data == null)
+            {
+                //Bad request code 400
+                return BadRequest();
+            }
+            if (!projectLogic.existProject(data.id))
+            {
+                //petición correcta pero no pudo ser procesada porque no existe el archivo code 404
+                return NotFound();
+            }
+            if (projectLogic.updateProject(data))
+            {
+                //petición correcta y se ha creado un nuevo recurso code 200 ok
+                return Ok();
+            }
+            else
+            {
+                //No se pudo crear el recurso por un error  code 500
+                return InternalServerError();
+            }
+
+        }
+
+        [Route("api/project/delete/{id}")]
+        [HttpDelete]
+        public IHttpActionResult deleteProject(int id)
+        {
+            if (!projectLogic.existProject(id))
+            {
+                //petición correcta pero no pudo ser procesada porque no existe el archivo code 404
+                return NotFound();
+            }
+            if (projectLogic.eraseProject(id))
+            {
+                //Se completó la solicitud con exito code 200 ok
+                return Ok();
+            }
+            else
+            {
+                //No se completó la solicitud por un error interno code 500
+                return InternalServerError();
             }
 
         }

@@ -16,7 +16,7 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    var providerList = construyeEntities.Provider.Where(e => e.id != null).ToList();
+                    var providerList = construyeEntities.Provider.ToList();
                     int n = providerList.Count;
                     if (n == 0)
                     {
@@ -54,15 +54,13 @@ namespace WebApplication1.Logic
             using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 try
-                {
-                    int i = construyeEntities.Bill.Where(e => e.id == ID).ToList().Count;
-
-                    if (i == 0)
+                { 
+                    if (!this.existProvider(ID))
                     {
                         result = null;
                         return result;
                     }
-                    provider = construyeEntities.Provider.Where(e => e.id == ID).ToList().First();
+                    provider = construyeEntities.Provider.Find(ID);
                     result.id = provider.id;
                     result.name = provider.name;
                     return result;
@@ -76,6 +74,72 @@ namespace WebApplication1.Logic
             }
         }
 
+        public bool existProvider(int id)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+                var i = construyeEntities.Provider.Find(id);
+                if (i == null) return false;
+                else return true;
+            }
+        }
+
+        public bool addProvider(Provider_Data data)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+                Provider newProvider = new Provider();
+                newProvider.id = data.id;
+                newProvider.name = data.name;
+                try
+                {
+                    construyeEntities.Provider.Add(newProvider);
+                    construyeEntities.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool eraseProvider(int id)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+                try
+                {
+                    var ms = construyeEntities.Provider.Find(id);
+                    construyeEntities.Provider.Remove(ms);
+                    construyeEntities.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool updateProvider(Provider_Data data)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+                try
+                {
+                    var provider = construyeEntities.Provider.Find(data.id);
+                    provider.id = data.id;
+                    provider.name = data.name;
+                    construyeEntities.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+        }
 
     }
 }

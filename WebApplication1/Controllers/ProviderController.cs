@@ -12,36 +12,122 @@ namespace WebApplication1.Controllers
     public class ProviderController : ApiController
     {
 
-        public List<Object> GetProvider(int id)
+        private ProviderLogic providerLogic = new ProviderLogic();
+
+
+        [Route("api/provider/{id}")]
+        [HttpGet]
+        public IHttpActionResult GetProvider(int id)
         {
-            ProviderLogic providerLogic = new ProviderLogic();
             Provider_Data provider = providerLogic.GetProvider(id);
             List<Object> list = new List<Object>();
             if (provider == null)
             {
-                list.Add(new { status = "404" });
-                return list;
+                //No se encontró el recurso code 404
+                return NotFound();
             }
             else
             {
                 list.Add(provider);
-                return list;
+                // ok code 200
+                return Ok(list);
             }
         }
 
-        public List<Object> GetAllProvider()
+
+        [Route("api/provider")]
+        [HttpGet]
+        public IHttpActionResult GetAllProvider()
         {
-            ProviderLogic providerLogic = new ProviderLogic();
             List<Object> list = new List<Object>();
             list = providerLogic.GetListProvider();
             if (list == null)
             {
-                list.Add(new { status = "404" });
-                return list;
+                // recurso no encontrado code 404
+                return NotFound();
             }
             else
             {
-                return list;
+                // ok code 200
+                return Ok(list);
+            }
+
+
+        }
+
+        [Route("api/provider/add")]
+        [HttpPost]
+        public IHttpActionResult addProvider([FromBody] Provider_Data data)
+        {
+            if (data == null)
+            {
+                //Bad request code 400
+                return BadRequest();
+            }
+            if (providerLogic.existProvider(data.id))
+            {
+                //petición correcta pero no pudo ser procesada porque ya existe el archivo code 202
+                return StatusCode(HttpStatusCode.Accepted);
+            }
+            if (providerLogic.addProvider(data))
+            {
+                //petición correcta y se ha creado un nuevo recurso code 201
+                return StatusCode(HttpStatusCode.Created);
+            }
+            else
+            {
+                //No se pudo crear el recurso por un error interno code 500
+                return InternalServerError();
+            }
+
+        }
+
+
+        [Route("api/provider/update")]
+        [HttpPost]
+        public IHttpActionResult updateAnotation([FromBody] Provider_Data data)
+        {
+            if (data == null)
+            {
+                //Bad request code 400
+                return BadRequest();
+            }
+            if (!providerLogic.existProvider(data.id))
+            {
+                //petición correcta pero no pudo ser procesada porque no existe el archivo code 404
+                return NotFound();
+            }
+            if (providerLogic.updateProvider(data))
+            {
+                //petición correcta y se ha creado un nuevo recurso code 200 ok
+                return Ok();
+            }
+            else
+            {
+                //No se pudo crear el recurso por un error  code 500
+                return InternalServerError();
+            }
+
+        }
+
+        [Route("api/provider/delete/{id}")]
+        [HttpDelete]
+        public IHttpActionResult deleteProvider(int id)
+        {
+            if (!providerLogic.existProvider(id))
+            {
+                //petición correcta pero no pudo ser procesada porque no existe el archivo code 404
+                return NotFound();
+            }
+            if (providerLogic.eraseProvider(id))
+            {
+                //Se completó la solicitud con exito code 200 ok
+                return Ok();
+            }
+            else
+            {
+                //No se completó la solicitud por un error interno code 500
+                return InternalServerError();
             }
 
         }
