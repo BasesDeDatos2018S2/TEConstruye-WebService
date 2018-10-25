@@ -170,6 +170,12 @@
     <Compile Include="Models\Role_specification.cs">
       <DependentUpon>TeConstruyeEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>TeConstruyeEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>TeConstruyeEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Stage.cs">
       <DependentUpon>TeConstruyeEntities.tt</DependentUpon>
     </Compile>

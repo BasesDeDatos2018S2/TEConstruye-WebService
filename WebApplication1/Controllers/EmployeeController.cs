@@ -21,18 +21,29 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public IHttpActionResult GetEmployee(int id)
         {
-            Employee_Data employee = employeeLogic.GetEmployee(id);
-            List<Object> list = new List<Object>();
-            if (employee == null)
+            if (!employeeLogic.existEmployee(id))
             {
+
                 //No se encontró el recurso code 404
                 return NotFound();
+
             }
-            else
+            Employee_Data employee = employeeLogic.GetEmployee(id);
+            List<Object> list = new List<Object>();
+            if (employee != null)
             {
+
                 list.Add(employee);
                 // ok code 200
                 return Ok(list);
+
+            }
+            else
+            {
+
+                //No se pudo crear el recurso por un error interno code 500
+                return InternalServerError();
+
             }
         }
 
@@ -45,8 +56,8 @@ namespace WebApplication1.Controllers
             list = employeeLogic.GetListEmployee();
             if (list == null)
             {
-                // recurso no encontrado code 404
-                return NotFound();
+                //La respuesta no tiene contenido code 204
+                return StatusCode(HttpStatusCode.NoContent);
             }
             else
             {
@@ -84,7 +95,7 @@ namespace WebApplication1.Controllers
         }
 
         [Route("api/employee/update")]
-        [HttpPost]
+        [HttpPut]
         public IHttpActionResult updateEmployee([FromBody] Employee_Data data)
         {
             if (data == null)

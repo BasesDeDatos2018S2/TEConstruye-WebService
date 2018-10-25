@@ -18,18 +18,30 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public IHttpActionResult GetProject(int id)
         {
-            Project_Data project = projectLogic.GetProject(id);
-            List<Object> list = new List<Object>();
-            if (project == null)
+            
+            if (!projectLogic.existProject(id))
             {
+
                 //No se encontró el recurso code 404
                 return NotFound();
+
             }
-            else
+            Project_Data project = projectLogic.GetProject(id);
+            List<Object> list = new List<Object>();
+            if (project != null)
             {
+
                 list.Add(project);
                 // ok code 200
                 return Ok(list);
+
+            }
+            else
+            {
+
+                //No se pudo crear el recurso por un error interno code 500
+                return InternalServerError();
+
             }
         }
 
@@ -42,8 +54,8 @@ namespace WebApplication1.Controllers
             list = projectLogic.GetListProject();
             if (list == null)
             {
-                // recurso no encontrado code 404
-                return NotFound();
+                //La respuesta no tiene contenido code 204
+                return StatusCode(HttpStatusCode.NoContent);
             }
             else
             {
@@ -82,7 +94,7 @@ namespace WebApplication1.Controllers
 
 
         [Route("api/project/update")]
-        [HttpPost]
+        [HttpPut]
         public IHttpActionResult updateProject([FromBody] Project_Data data)
         {
             if (data == null)

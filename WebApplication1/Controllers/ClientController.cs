@@ -18,18 +18,30 @@ namespace WebApplication1.Controllers
         public IHttpActionResult GetClient(string ssn)
         {
             System.Diagnostics.Debug.WriteLine("GetClient");
-            Client_Data client = clientLogic.GetClient(ssn);
-            List<Object> list = new List<Object>();
-            if (client == null)
+            
+            if (!clientLogic.existClient(ssn))
             {
+
                 //No se encontró el recurso code 404
                 return NotFound();
+
             }
-            else
+            Client_Data client = clientLogic.GetClient(ssn);
+            List<Object> list = new List<Object>();
+            if (client != null)
             {
+
                 list.Add(client);
                 // ok code 200
                 return Ok(list);
+
+            }
+            else
+            {
+
+                //No se pudo crear el recurso por un error interno code 500
+                return InternalServerError();
+
             }
         }
 
@@ -42,8 +54,8 @@ namespace WebApplication1.Controllers
             list = clientLogic.GetListClient();
             if (list == null)
             {
-                // recurso no encontrado code 404
-                return NotFound();
+                //La respuesta no tiene contenido code 204
+                return StatusCode(HttpStatusCode.NoContent);
             }
             else
             {

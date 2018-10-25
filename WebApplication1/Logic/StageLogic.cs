@@ -16,7 +16,7 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    var stageList = construyeEntities.Stage.Where(e => e.id != null).ToList();
+                    var stageList = construyeEntities.Stage.ToList();
                     int n = stageList.Count;
                     if (n == 0)
                     {
@@ -30,7 +30,7 @@ namespace WebApplication1.Logic
                         {
                             Stage_Data data = new Stage_Data();
                             data.id = stageList.ElementAt(i).id;
-                            data.projectName = stageList.ElementAt(i).Project.name;
+                            data.id_project = stageList.ElementAt(i).id_project;
                             data.name = stageList.ElementAt(i).name;
                             data.status = stageList.ElementAt(i).status;
                             data.description = stageList.ElementAt(i).description;
@@ -55,26 +55,24 @@ namespace WebApplication1.Logic
         public Stage_Data GetStage(int ID)
         {
             Stage_Data result = new Stage_Data();
-            Stage stage;
+            Stage data = new Stage();
             using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 try
                 {
-                    int i = construyeEntities.Stage.Where(e => e.id == ID).ToList().Count;
-
-                    if (i == 0)
+                    if (!this.existStage(ID))
                     {
                         result = null;
                         return result;
                     }
-                    stage = construyeEntities.Stage.Where(e => e.id == ID).ToList().First();
-                    result.id = stage.id;
-                    result.projectName = stage.Project.name;
-                    result.name = stage.name;
-                    result.status = stage.status;
-                    result.description = stage.description;
-                    result.start_date = stage.start_date;
-                    result.end_date = stage.end_date;
+                    data = construyeEntities.Stage.Find(ID);
+                    result.id = data.id;
+                    result.id_project = data.id_project;
+                    result.name = data.name;
+                    result.start_date = data.start_date;
+                    result.status = data.status;
+                    result.end_date = data.end_date;
+                    result.description = data.description;
                     return result;
 
                 }
@@ -82,6 +80,92 @@ namespace WebApplication1.Logic
                 {
                     result = null;
                     return result;
+                }
+            }
+        }
+
+        public bool existStage(int id)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+                var i = construyeEntities.Stage.Find(id);
+                if (i == null) return false;
+                else return true;
+            }
+        }
+
+
+
+        public bool addStage(Stage_Data data)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+                Stage newStage = new Stage();
+                newStage.id = data.id;
+                newStage.id_project = data.id_project;
+                newStage.name = data.name;
+                newStage.start_date = data.start_date;
+                newStage.status = data.status;
+                newStage.end_date = data.end_date;
+                newStage.description = data.description;
+                newStage.Project = construyeEntities.Project.Find(data.id_project);
+                
+                try
+                {
+                    construyeEntities.Stage.Add(newStage);
+                    construyeEntities.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+        }
+
+
+
+        public bool eraseStage(int id)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+                try
+                {
+                    var ms = construyeEntities.Stage.Find(id);
+                    construyeEntities.Stage.Remove(ms);
+                    construyeEntities.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+        }
+
+
+
+        public bool updateStage(Stage_Data data)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+                try
+                {
+                    var stage = construyeEntities.Stage.Find(data.id);
+                    stage.id = data.id;
+                    stage.id_project = data.id_project;
+                    stage.name = data.name;
+                    stage.start_date = data.start_date;
+                    stage.status = data.status;
+                    stage.end_date = data.end_date;
+                    stage.description = data.description;
+                    stage.Project = construyeEntities.Project.Find(data.id_project);
+                    construyeEntities.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
                 }
             }
         }

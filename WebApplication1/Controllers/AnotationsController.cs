@@ -17,18 +17,29 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public IHttpActionResult GetAnotations(int id)
         {
-            Anotations_Data anotations = anotationsLogic.GetAnotation(id);
-            List<Object> list = new List<Object>();
-            if (anotations == null)
+            if (!anotationsLogic.existAnotation(id))
             {
+
                 //No se encontró el recurso code 404
                 return NotFound();
+
             }
-            else
+            Anotations_Data anotations = anotationsLogic.GetAnotation(id);
+            List<Object> list = new List<Object>();
+            if (anotations != null)
             {
+
                 list.Add(anotations);
                 // ok code 200
                 return Ok(list);
+
+            }
+            else
+            {
+
+                //No se pudo crear el recurso por un error interno code 500
+                return InternalServerError();
+
             }
         }
         [Route("api/anotations")]
@@ -39,8 +50,8 @@ namespace WebApplication1.Controllers
             list = anotationsLogic.GetListAnotations();
             if (list == null)
             {
-                // recurso no encontrado code 404
-                return NotFound();
+                //La respuesta no tiene contenido code 204
+                return StatusCode(HttpStatusCode.NoContent);
             }
             else
             {
@@ -78,7 +89,7 @@ namespace WebApplication1.Controllers
         }
 
         [Route("api/anotations/update")]
-        [HttpPost]
+        [HttpPut]
         public IHttpActionResult updateAnotation([FromBody] Anotations_Data data)
         {
             if (data == null)

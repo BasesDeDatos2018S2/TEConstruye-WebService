@@ -19,18 +19,29 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public IHttpActionResult GetProvider(int id)
         {
-            Provider_Data provider = providerLogic.GetProvider(id);
-            List<Object> list = new List<Object>();
-            if (provider == null)
+            if (!providerLogic.existProvider(id))
             {
+
                 //No se encontró el recurso code 404
                 return NotFound();
+
             }
-            else
+            Provider_Data provider = providerLogic.GetProvider(id);
+            List<Object> list = new List<Object>();
+            if (provider != null)
             {
+
                 list.Add(provider);
                 // ok code 200
                 return Ok(list);
+
+            }
+            else
+            {
+
+                //No se pudo crear el recurso por un error interno code 500
+                return InternalServerError();
+
             }
         }
 
@@ -43,8 +54,8 @@ namespace WebApplication1.Controllers
             list = providerLogic.GetListProvider();
             if (list == null)
             {
-                // recurso no encontrado code 404
-                return NotFound();
+                //La respuesta no tiene contenido code 204
+                return StatusCode(HttpStatusCode.NoContent);
             }
             else
             {
@@ -84,7 +95,7 @@ namespace WebApplication1.Controllers
 
 
         [Route("api/provider/update")]
-        [HttpPost]
+        [HttpPut]
         public IHttpActionResult updateAnotation([FromBody] Provider_Data data)
         {
             if (data == null)

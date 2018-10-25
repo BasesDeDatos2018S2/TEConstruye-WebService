@@ -6,6 +6,7 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Logic
 {
+    //TODO: AGREGAR A EMPLOYEE EL ID ROLE
     public class RoleSpecificationLogic
     {
 
@@ -16,7 +17,7 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    var providerList = construyeEntities.Role_specification.Where(e => e.id != null).ToList();
+                    var providerList = construyeEntities.Role_specification.ToList();
                     int n = providerList.Count;
                     if (n == 0)
                     {
@@ -55,14 +56,12 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    int i = construyeEntities.Role_specification.Where(e => e.id == ID).ToList().Count;
-
-                    if (i == 0)
+                    if (!this.existRole(ID))
                     {
                         result = null;
                         return result;
                     }
-                    role_Specification = construyeEntities.Role_specification.Where(e => e.id == ID).ToList().First();
+                    role_Specification = construyeEntities.Role_specification.Find(ID); 
                     result.id_role = role_Specification.id;
                     result.specification = role_Specification.specification;
                     return result;
@@ -76,6 +75,78 @@ namespace WebApplication1.Logic
             }
         }
 
+        public bool existRole(int id)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+                var i = construyeEntities.Role_specification.Find(id);
+                if (i == null) return false;
+                else return true;
+            }
+        }
+
+
+        public bool addRole(RoleSpecification_Data data)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+                Role_specification role = new Role_specification();
+                role.id = data.id_role;
+                role.specification = data.specification;
+
+                try
+                {
+                    construyeEntities.Role_specification.Add(role);
+                    construyeEntities.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+        }
+
+
+
+        public bool eraseRole(int id)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+                try
+                {
+                    var ms = construyeEntities.Role_specification.Find(id);
+                    construyeEntities.Role_specification.Remove(ms);
+                    construyeEntities.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+        }
+
+
+
+        public bool updateRole(RoleSpecification_Data data)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+                try
+                {
+                    var role = construyeEntities.Role_specification.Find(data.id_role);
+                    role.id = data.id_role;
+                    role.specification = data.specification;
+                    construyeEntities.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+        }
 
     }
 }

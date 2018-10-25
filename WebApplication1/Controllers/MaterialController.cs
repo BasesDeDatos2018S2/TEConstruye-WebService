@@ -23,8 +23,8 @@ namespace WebApplication1.Controllers
             list = materialLogic.GetListMaterial();
             if (list == null)
             {
-                // recurso no encontrado code 404
-                return NotFound();
+                //La respuesta no tiene contenido code 204
+                return StatusCode(HttpStatusCode.NoContent);
             }
             else
             {
@@ -38,18 +38,30 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public IHttpActionResult GetMaterial(int id)
         {
-            Material_Data materials = materialLogic.GetMaterial(id);
-            List<Object> list = new List<Object>();
-            if (materials == null)
+            
+            if (!materialLogic.existMaterial(id))
             {
+
                 //No se encontró el recurso code 404
                 return NotFound();
+
             }
-            else
+            Material_Data materials = materialLogic.GetMaterial(id);
+            List<Object> list = new List<Object>();
+            if (materials != null)
             {
+
                 list.Add(materials);
                 // ok code 200
                 return Ok(list);
+
+            }
+            else
+            {
+
+                //No se pudo crear el recurso por un error interno code 500
+                return InternalServerError();
+
             }
         }
 
@@ -81,7 +93,7 @@ namespace WebApplication1.Controllers
         }
 
         [Route("api/material/update")]
-        [HttpPost]
+        [HttpPut]
         public IHttpActionResult updateMaterial([FromBody] Material_Data data)
         {
             if (data == null)

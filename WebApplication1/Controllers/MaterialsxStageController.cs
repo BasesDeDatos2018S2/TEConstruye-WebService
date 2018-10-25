@@ -21,18 +21,29 @@ namespace WebApplication1.Controllers
         public IHttpActionResult GetClient(int id_stage, int id_material)
         {
 
+            if (!ms.existMStage(id_stage, id_material))
+            {
+
+                //No se encontró el recurso code 404
+                return NotFound();
+
+            }
             MStage_Data data = ms.GetMStage(id_material, id_stage);
             List<Object> list = new List<Object>();
-            if (data == null)
+            if (data != null)
             {
-                // Recurso no encontrado code 404
-                return NotFound();
+
+                list.Add(data);
+                // ok code 200
+                return Ok(list);
+
             }
             else
             {
-                list.Add(data);
-                //ok code 200
-                return Ok(list);
+
+                //No se pudo crear el recurso por un error interno code 500
+                return InternalServerError();
+
             }
         }
         [Route("api/materialsxstage")]
@@ -43,8 +54,8 @@ namespace WebApplication1.Controllers
             list = ms.GetListMStage();
             if (list == null)
             {
-                //File not found   
-                return NotFound();
+                //La respuesta no tiene contenido code 204
+                return StatusCode(HttpStatusCode.NoContent);
             }
             else
             {
@@ -82,7 +93,7 @@ namespace WebApplication1.Controllers
         }
 
         [Route("api/materialsxstage/update")]
-        [HttpPost]
+        [HttpPut]
         public IHttpActionResult updateMxs([FromBody] MStage_Data data)
         {
             if (data == null)
