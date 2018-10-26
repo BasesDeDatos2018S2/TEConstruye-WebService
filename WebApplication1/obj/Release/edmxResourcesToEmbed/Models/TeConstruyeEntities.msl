@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TeConstruyeModelStoreContainer" CdmEntityContainer="TeConstruyeEntities1">
+    <EntitySetMapping Name="Anotations">
+      <EntityTypeMapping TypeName="TeConstruyeModel.Anotations">
+        <MappingFragment StoreEntitySet="Anotations">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_project" ColumnName="id_project" />
+          <ScalarProperty Name="anotation" ColumnName="anotation" />
+          <ScalarProperty Name="date" ColumnName="date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bill">
+      <EntityTypeMapping TypeName="TeConstruyeModel.Bill">
+        <MappingFragment StoreEntitySet="Bill">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="serial" ColumnName="serial" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="id_stage" ColumnName="id_stage" />
+          <ScalarProperty Name="id_material" ColumnName="id_material" />
+          <ScalarProperty Name="id_provider" ColumnName="id_provider" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Client">
+      <EntityTypeMapping TypeName="TeConstruyeModel.Client">
+        <MappingFragment StoreEntitySet="Client">
+          <ScalarProperty Name="identification" ColumnName="identification" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="lastname1" ColumnName="lastname1" />
+          <ScalarProperty Name="lastname2" ColumnName="lastname2" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employee">
+      <EntityTypeMapping TypeName="TeConstruyeModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="identification" ColumnName="identification" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="lastname1" ColumnName="lastname1" />
+          <ScalarProperty Name="lastname2" ColumnName="lastname2" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="hour_cost" ColumnName="hour_cost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Materials">
+      <EntityTypeMapping TypeName="TeConstruyeModel.Materials">
+        <MappingFragment StoreEntitySet="Materials">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="price" ColumnName="price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MaterialsxStage">
+      <EntityTypeMapping TypeName="TeConstruyeModel.MaterialsxStage">
+        <MappingFragment StoreEntitySet="MaterialsxStage">
+          <ScalarProperty Name="id_stage" ColumnName="id_stage" />
+          <ScalarProperty Name="id_material" ColumnName="id_material" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="price" ColumnName="price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Project">
+      <EntityTypeMapping TypeName="TeConstruyeModel.Project">
+        <MappingFragment StoreEntitySet="Project">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="ubication" ColumnName="ubication" />
+          <ScalarProperty Name="id_client" ColumnName="id_client" />
+          <ScalarProperty Name="manager" ColumnName="manager" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Provider">
+      <EntityTypeMapping TypeName="TeConstruyeModel.Provider">
+        <MappingFragment StoreEntitySet="Provider">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role_specification">
+      <EntityTypeMapping TypeName="TeConstruyeModel.Role_specification">
+        <MappingFragment StoreEntitySet="Role_specification">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="specification" ColumnName="specification" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stage">
+      <EntityTypeMapping TypeName="TeConstruyeModel.Stage">
+        <MappingFragment StoreEntitySet="Stage">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_project" ColumnName="id_project" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Worked_hours">
+      <EntityTypeMapping TypeName="TeConstruyeModel.Worked_hours">
+        <MappingFragment StoreEntitySet="Worked_hours">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_project" ColumnName="id_project" />
+          <ScalarProperty Name="id_employee" ColumnName="id_employee" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="hours" ColumnName="hours" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Roles" TypeName="TeConstruyeModel.Roles" StoreEntitySet="Roles">
+      <EndProperty Name="Employee">
+        <ScalarProperty Name="id" ColumnName="id_employee" />
+      </EndProperty>
+      <EndProperty Name="Role_specification">
+        <ScalarProperty Name="id" ColumnName="id_role" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="usp_budget" FunctionName="TeConstruyeModel.Store.usp_budget">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TeConstruyeModel.usp_budget_Result">
+          <ScalarProperty Name="Etapa" ColumnName="Etapa" />
+          <ScalarProperty Name="Material" ColumnName="Material" />
+          <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Costo" ColumnName="Costo" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="ProyectoNombre" ColumnName="ProyectoNombre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_employee_payment" FunctionName="TeConstruyeModel.Store.usp_employee_payment">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TeConstruyeModel.usp_employee_payment_Result">
+          <ScalarProperty Name="Proyecto" ColumnName="Proyecto" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Horas" ColumnName="Horas" />
+          <ScalarProperty Name="Costo" ColumnName="Costo" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_expenses" FunctionName="TeConstruyeModel.Store.usp_expenses">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TeConstruyeModel.usp_expenses_Result">
+          <ScalarProperty Name="Factura" ColumnName="Factura" />
+          <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Etapa" ColumnName="Etapa" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Proyecto" ColumnName="Proyecto" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_project_client" FunctionName="TeConstruyeModel.Store.usp_project_client">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TeConstruyeModel.usp_project_client_Result">
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="ProyectoID" ColumnName="ProyectoID" />
+          <ScalarProperty Name="NombreProyecto" ColumnName="NombreProyecto" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_status" FunctionName="TeConstruyeModel.Store.usp_status">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TeConstruyeModel.usp_status_Result">
+          <ScalarProperty Name="Etapa" ColumnName="Etapa" />
+          <ScalarProperty Name="TotalPresupuesto" ColumnName="TotalPresupuesto" />
+          <ScalarProperty Name="TotalReal" ColumnName="TotalReal" />
+          <ScalarProperty Name="Diferencia" ColumnName="Diferencia" />
+          <ScalarProperty Name="Proyecto" ColumnName="Proyecto" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="TeConstruyeModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="TeConstruyeModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="TeConstruyeModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="TeConstruyeModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TeConstruyeModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="TeConstruyeModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TeConstruyeModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="TeConstruyeModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="TeConstruyeModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>
