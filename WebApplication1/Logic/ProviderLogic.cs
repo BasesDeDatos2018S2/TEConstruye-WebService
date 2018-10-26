@@ -12,7 +12,7 @@ namespace WebApplication1.Logic
         public List<Object> GetListProvider()
         {
             List<Object> dataList = new List<object>();
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 try
                 {
@@ -51,7 +51,7 @@ namespace WebApplication1.Logic
         {
             Provider_Data result = new Provider_Data();
             Provider provider;
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 try
                 { 
@@ -76,7 +76,7 @@ namespace WebApplication1.Logic
 
         public bool existProvider(int id)
         {
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 var i = construyeEntities.Provider.Find(id);
                 if (i == null) return false;
@@ -86,7 +86,7 @@ namespace WebApplication1.Logic
 
         public bool addProvider(Provider_Data data)
         {
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 Provider newProvider = new Provider();
                 newProvider.id = data.id;
@@ -106,7 +106,7 @@ namespace WebApplication1.Logic
 
         public bool eraseProvider(int id)
         {
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 try
                 {
@@ -124,7 +124,7 @@ namespace WebApplication1.Logic
 
         public bool updateProvider(Provider_Data data)
         {
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 try
                 {

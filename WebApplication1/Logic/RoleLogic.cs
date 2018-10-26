@@ -6,20 +6,18 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Logic
 {
-    public class AnotationsLogic
+    public class RoleLogic
     {
 
-
-        public List<Object> GetListAnotations()
+        public List<Object> GetListRoles()
         {
-
             List<Object> dataList = new List<object>();
             using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 try
                 {
-                    var anotationsList = construyeEntities.Anotations.ToList();
-                    int n = anotationsList.Count;
+                    var providerList = construyeEntities.Roles.ToList();
+                    int n = providerList.Count;
                     if (n == 0)
                     {
                         dataList = null;
@@ -27,13 +25,13 @@ namespace WebApplication1.Logic
                     }
                     else
                     {
-                        for (int i = 0; i < anotationsList.Count; ++i)
+
+                        for (int i = 0; i < providerList.Count; ++i)
                         {
-                            Anotations_Data data = new Anotations_Data();
-                            data.id = anotationsList.ElementAt(i).id;
-                            data.id_project = anotationsList.ElementAt(i).id_project;
-                            data.date = anotationsList.ElementAt(i).date;
-                            data.anotation = anotationsList.ElementAt(i).anotation;
+                            Role_Data data = new Role_Data();
+                            data.id_employee = providerList.ElementAt(i).id_employee;
+                            data.id_role = providerList.ElementAt(i).id_role;
+                            data.start_date = providerList.ElementAt(i).start_date;
                             dataList.Add(data);
                         }
                         return dataList;
@@ -41,32 +39,32 @@ namespace WebApplication1.Logic
                 }
                 catch
                 {
+
                     dataList = null;
                     return dataList;
+
                 }
             }
+
         }
 
-
-
-        public Anotations_Data GetAnotation(int ID)
+        public Role_Data GetRoles(int ID)
         {
-            Anotations_Data result = new Anotations_Data();
-            Anotations anotations;
+            Role_Data result = new Role_Data();
+            Roles role;
             using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 try
                 {
-                    if (!this.existAnotation(ID))
+                    if (!this.existRoles(ID))
                     {
                         result = null;
                         return result;
                     }
-                    anotations = construyeEntities.Anotations.Find(ID);
-                    result.id = anotations.id;
-                    result.id_project = anotations.id_project;
-                    result.date = anotations.date;
-                    result.anotation = anotations.anotation;
+                    role = construyeEntities.Roles.Find(ID);
+                    result.id_employee = role.id_employee;
+                    result.id_role = role.id_role;
+                    result.start_date = role.start_date;
                     return result;
 
                 }
@@ -78,32 +76,30 @@ namespace WebApplication1.Logic
             }
         }
 
-
-        public bool existAnotation(int id)
+        public bool existRoles(int id)
         {
             using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
-                var i = construyeEntities.Anotations.Find(id);
+                var i = construyeEntities.Roles.Find(id);
                 if (i == null) return false;
                 else return true;
             }
         }
 
 
-
-        public bool addAnotation(Anotations_Data data)
+        public bool addRoles(Role_Data data)
         {
             using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
-                Anotations newAnotation = new Anotations();
-                newAnotation.id = data.id;
-                newAnotation.id_project = data.id_project;
-                newAnotation.anotation = data.anotation;
-                newAnotation.date = data.date;
-                newAnotation.Project = construyeEntities.Project.Find(data.id_project);
+                Roles role = new Roles();
+                role.id_employee = data.id_employee;
+                role.id_role = data.id_role;
+                role.start_date = data.start_date;
+                role.Role_specification = construyeEntities.Role_specification.Find(data.id_role);
+                role.Employee = construyeEntities.Employee.Find(data.id_employee);
                 try
                 {
-                    construyeEntities.Anotations.Add(newAnotation);
+                    construyeEntities.Roles.Add(role);
                     construyeEntities.SaveChanges();
                     return true;
                 }
@@ -116,14 +112,14 @@ namespace WebApplication1.Logic
 
 
 
-        public bool eraseAnotation(int id)
+        public bool eraseRoles(int id)
         {
             using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 try
                 {
-                    var ms = construyeEntities.Anotations.Find(id);
-                    construyeEntities.Anotations.Remove(ms);
+                    var ms = construyeEntities.Roles.Find(id);
+                    construyeEntities.Roles.Remove(ms);
                     construyeEntities.SaveChanges();
                     return true;
                 }
@@ -136,18 +132,18 @@ namespace WebApplication1.Logic
 
 
 
-        public bool updateAnotations(Anotations_Data data)
+        public bool updateRoles(Role_Data data)
         {
             using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 try
                 {
-                    var anotation = construyeEntities.Anotations.Find(data.id);
-                    anotation.id = data.id;
-                    anotation.id_project = data.id_project;
-                    anotation.anotation = data.anotation;
-                    anotation.date = data.date;
-                    anotation.Project = construyeEntities.Project.Find(data.id_project);
+                    var role = construyeEntities.Roles.Find(data.id_role);
+                    role.id_role = data.id_role;
+                    role.id_employee = data.id_employee;
+                    role.start_date = data.start_date;
+                    role.Role_specification = construyeEntities.Role_specification.Find(data.id_role);
+                    role.Employee = construyeEntities.Employee.Find(data.id_employee);
                     construyeEntities.SaveChanges();
                     return true;
                 }
@@ -157,5 +153,6 @@ namespace WebApplication1.Logic
                 }
             }
         }
+
     }
 }

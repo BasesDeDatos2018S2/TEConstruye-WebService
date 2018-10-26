@@ -12,7 +12,7 @@ namespace WebApplication1.Logic
         public List<Object> GetListMStage()
         {
             List<Object> dataList = new List<object>();
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 try
                 {
@@ -54,7 +54,7 @@ namespace WebApplication1.Logic
         {
             MStage_Data result = new MStage_Data();
             MaterialsxStage materialsxStage;
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 try
                 {
@@ -81,7 +81,7 @@ namespace WebApplication1.Logic
 
         public bool existMStage(int id_stage, int id_material)
         {
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 var i = construyeEntities.MaterialsxStage.Find(id_stage, id_material);
                 if (i == null) return false;
@@ -92,7 +92,7 @@ namespace WebApplication1.Logic
 
         public bool addMStage(MStage_Data data)
         {
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
 
                 MaterialsxStage newMs = new MaterialsxStage();
@@ -120,7 +120,7 @@ namespace WebApplication1.Logic
         public bool eraseMStage(int id_stage, int id_material)
         {
 
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 try
                 {
@@ -141,7 +141,7 @@ namespace WebApplication1.Logic
 
         public bool updateMStage(MStage_Data data)
         {
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
 
                 try

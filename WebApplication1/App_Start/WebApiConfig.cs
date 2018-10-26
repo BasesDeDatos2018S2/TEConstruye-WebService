@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using WebApplication1.Security;
 
 namespace WebApplication1
 {
@@ -16,6 +17,8 @@ namespace WebApplication1
 
             // Rutas de API web
             config.MapHttpAttributeRoutes();
+            config.MessageHandlers.Add(new TokenValidationHandler());
+
             var cors = new EnableCorsAttribute("*","*","*");
             config.EnableCors(cors);
 

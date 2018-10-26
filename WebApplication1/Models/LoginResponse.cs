@@ -5,9 +5,9 @@ using System.Web;
 
 namespace WebApplication1.Models
 {
-    public class LoginRequest
+    public class LoginResponse
     {
-        public int id_employee { get; set; }
-        public string password { get; set; }
+        public string role { get; set; }
+        public string token { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace WebApplication1.Logic
         {
             Bill_Data result = new Bill_Data();
             Bill bill;
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 try
                 {
@@ -44,7 +44,7 @@ namespace WebApplication1.Logic
         public List<Object> GetListBill()
         {
             List<Object> dataList = new List<object>();
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 try
                 {
@@ -85,7 +85,7 @@ namespace WebApplication1.Logic
 
         public bool existBill(int id)
         {
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 var i = construyeEntities.Bill.Find(id);
                 if (i == null) return false;
@@ -96,7 +96,7 @@ namespace WebApplication1.Logic
 
         public bool addBill(Bill_Data data)
         {
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
 
                 Bill bill = new Bill();
@@ -130,7 +130,7 @@ namespace WebApplication1.Logic
         public bool eraseBill(int id)
         {
 
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 try
                 {
@@ -151,7 +151,7 @@ namespace WebApplication1.Logic
 
         public bool updateBill(Bill_Data data)
         {
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
 
                 try

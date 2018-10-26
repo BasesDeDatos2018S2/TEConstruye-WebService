@@ -13,7 +13,7 @@ namespace WebApplication1.Logic
         public List<Object> GetListRole()
         {
             List<Object> dataList = new List<object>();
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 try
                 {
@@ -52,7 +52,7 @@ namespace WebApplication1.Logic
         {
             RoleSpecification_Data result = new RoleSpecification_Data();
             Role_specification role_Specification;
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 try
                 {
@@ -77,7 +77,7 @@ namespace WebApplication1.Logic
 
         public bool existRole(int id)
         {
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 var i = construyeEntities.Role_specification.Find(id);
                 if (i == null) return false;
@@ -88,7 +88,7 @@ namespace WebApplication1.Logic
 
         public bool addRole(RoleSpecification_Data data)
         {
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 Role_specification role = new Role_specification();
                 role.id = data.id_role;
@@ -111,7 +111,7 @@ namespace WebApplication1.Logic
 
         public bool eraseRole(int id)
         {
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 try
                 {
@@ -131,7 +131,7 @@ namespace WebApplication1.Logic
 
         public bool updateRole(RoleSpecification_Data data)
         {
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 try
                 {

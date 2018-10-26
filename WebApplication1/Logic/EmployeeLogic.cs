@@ -11,7 +11,7 @@ namespace WebApplication1.Logic
         public Employee_Data GetEmployee(int ID)
         {
             Employee_Data employee = new Employee_Data();
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 try
                 {
@@ -42,7 +42,7 @@ namespace WebApplication1.Logic
         public List<Object> GetListEmployee()
         {
             List<Object> dataList = new List<object>();
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 try
                 {
@@ -84,7 +84,7 @@ namespace WebApplication1.Logic
 
         public bool existEmployee(int id)
         {
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 var i = construyeEntities.Employee.Find(id);
                 if (i == null) return false;
@@ -94,7 +94,7 @@ namespace WebApplication1.Logic
 
         public bool addEmployee(Employee_Data data)
         {
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 Employee newEmployee = new Employee();
                 newEmployee.id = data.id;
@@ -119,7 +119,7 @@ namespace WebApplication1.Logic
 
         public bool eraseEmployee(int id)
         {
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 try
                 {
@@ -137,7 +137,7 @@ namespace WebApplication1.Logic
 
         public bool updateEmployee(Employee_Data data)
         {
-            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 try
                 {
