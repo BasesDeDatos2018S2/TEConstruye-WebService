@@ -106,3 +106,15 @@ C:\Users\ggg\Documents\GitHub\TEConstruye-WebService\WebApplication1\obj\Debug\W
 C:\Users\ggg\Documents\GitHub\TEConstruye-WebService\WebApplication1\obj\Debug\WebApplication1.dll
 C:\Users\ggg\Documents\GitHub\TEConstruye-WebService\WebApplication1\obj\Debug\WebApplication1.pdb
 C:\Users\ggg\Documents\GitHub\TEConstruye-WebService\WebApplication1\obj\Debug\WebApplication1.csprojAssemblyReference.cache
+C:\Users\ggg\Documents\GitHub\TEConstruye-WebService\WebApplication1\bin\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\ggg\Documents\GitHub\TEConstruye-WebService\WebApplication1\bin\Microsoft.IdentityModel.Logging.dll
+C:\Users\ggg\Documents\GitHub\TEConstruye-WebService\WebApplication1\bin\Microsoft.IdentityModel.Tokens.dll
+C:\Users\ggg\Documents\GitHub\TEConstruye-WebService\WebApplication1\bin\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\ggg\Documents\GitHub\TEConstruye-WebService\WebApplication1\bin\Microsoft.IdentityModel.JsonWebTokens.pdb
+C:\Users\ggg\Documents\GitHub\TEConstruye-WebService\WebApplication1\bin\Microsoft.IdentityModel.JsonWebTokens.xml
+C:\Users\ggg\Documents\GitHub\TEConstruye-WebService\WebApplication1\bin\Microsoft.IdentityModel.Logging.pdb
+C:\Users\ggg\Documents\GitHub\TEConstruye-WebService\WebApplication1\bin\Microsoft.IdentityModel.Logging.xml
+C:\Users\ggg\Documents\GitHub\TEConstruye-WebService\WebApplication1\bin\Microsoft.IdentityModel.Tokens.pdb
+C:\Users\ggg\Documents\GitHub\TEConstruye-WebService\WebApplication1\bin\Microsoft.IdentityModel.Tokens.xml
+C:\Users\ggg\Documents\GitHub\TEConstruye-WebService\WebApplication1\bin\System.IdentityModel.Tokens.Jwt.pdb
+C:\Users\ggg\Documents\GitHub\TEConstruye-WebService\WebApplication1\bin\System.IdentityModel.Tokens.Jwt.xml
