@@ -11,11 +11,13 @@ using System.Web.Http.Cors;
 
 namespace WebApplication1.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class BillController : ApiController
     {
 
         private BillLogic billLogic = new BillLogic();
 
+        [Authorize(Roles = "mediumAccess")]
         [Route("api/bill/{id}")]
         [HttpGet]
         public IHttpActionResult GetBill(int id)
@@ -47,6 +49,7 @@ namespace WebApplication1.Controllers
             }
         }
 
+        [Authorize(Roles = "mediumAccess")]
         [Route("api/bill")]
         [HttpGet]
         public IHttpActionResult GetAllBill()

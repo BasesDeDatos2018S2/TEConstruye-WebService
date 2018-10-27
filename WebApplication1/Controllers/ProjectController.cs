@@ -9,6 +9,8 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
+
+    [Authorize(Roles = "mediumAccess")]
     public class ProjectController : ApiController
     {
         private ProjectLogic projectLogic = new ProjectLogic();

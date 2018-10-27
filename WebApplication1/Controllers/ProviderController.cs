@@ -9,6 +9,7 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
+    [Authorize(Roles = "mediumAccess")]
     public class ProviderController : ApiController
     {
 

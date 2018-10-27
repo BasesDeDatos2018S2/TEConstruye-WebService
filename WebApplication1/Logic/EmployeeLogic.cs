@@ -159,5 +159,37 @@ namespace WebApplication1.Logic
             }
         }
 
+        public List<Object> getRolesXEmployee(int id)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+                List<Object> client = new List<Object>();
+                try
+                {
+                    if (!this.existEmployee(id))
+                    {
+                        client = null;
+                        return client;
+                    }
+                    var roles = construyeEntities.Roles.Where(e => e.id_employee == id).ToList();
+                    for (int i = 0; i < roles.Count; ++i)
+                    {
+                        RoleSpecification_Data roleData = new RoleSpecification_Data();
+                        roleData.id_role = roles.ElementAt(i).Role_specification.id;
+                        roleData.specification = roles.ElementAt(i).Role_specification.specification;
+                        client.Add(roleData);
+                    }
+                    return client;
+
+                }
+                catch (Exception E)
+                {
+                    client = null;
+                    return client;
+                }
+            }
+        }
+
     }
+
 }

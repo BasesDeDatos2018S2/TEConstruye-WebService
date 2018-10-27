@@ -29,6 +29,7 @@ namespace WebApplication1.Logic
                         for (int i = 0; i < providerList.Count; ++i)
                         {
                             Role_Data data = new Role_Data();
+                            data.id = providerList.ElementAt(i).id;
                             data.id_employee = providerList.ElementAt(i).id_employee;
                             data.id_role = providerList.ElementAt(i).id_role;
                             data.start_date = providerList.ElementAt(i).start_date;
@@ -62,6 +63,7 @@ namespace WebApplication1.Logic
                         return result;
                     }
                     role = construyeEntities.Roles.Find(ID);
+                    result.id = role.id;
                     result.id_employee = role.id_employee;
                     result.id_role = role.id_role;
                     result.start_date = role.start_date;
@@ -92,6 +94,7 @@ namespace WebApplication1.Logic
             using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 Roles role = new Roles();
+                role.id = data.id;
                 role.id_employee = data.id_employee;
                 role.id_role = data.id_role;
                 role.start_date = data.start_date;

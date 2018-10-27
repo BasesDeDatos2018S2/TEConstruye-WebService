@@ -10,7 +10,7 @@ using WebApplication1.Logic;
 
 namespace WebApplication1.Controllers
 {
-
+    [Authorize(Roles = "Administrador")]
     public class EmployeeController : ApiController
     {
 
@@ -141,6 +141,28 @@ namespace WebApplication1.Controllers
                 return InternalServerError();
             }
 
+        }
+
+        [Route("api/employeeRoles/{id}")]
+        [HttpGet]
+        public IHttpActionResult GetEmployeeRoles(int id)
+        {
+            if (!employeeLogic.existEmployee(id))
+            {
+                //No se encontró el recurso code 404
+                return NotFound();
+            }
+            List<Object> list = employeeLogic.getRolesXEmployee(id);
+            if (list != null)
+            {
+                // ok code 200
+                return Ok(list);
+            }
+            else
+            {
+                //No se pudo crear el recurso por un error interno code 500
+                return InternalServerError();
+            }
         }
 
 
