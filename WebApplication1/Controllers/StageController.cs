@@ -24,7 +24,7 @@ namespace WebApplication1.Controllers
                 return NotFound();
 
             }
-            Stage_Data stage = stageLogic.GetStage(id);
+            Report_Stage_Data stage = stageLogic.GetStage(id);
             List<Object> list = new List<Object>();
             if (stage != null)
             {

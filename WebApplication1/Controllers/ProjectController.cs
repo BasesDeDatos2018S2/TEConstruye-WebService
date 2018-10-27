@@ -26,7 +26,7 @@ namespace WebApplication1.Controllers
                 return NotFound();
 
             }
-            Project_Data project = projectLogic.GetProject(id);
+            Report_Project_Data project = projectLogic.GetProject(id);
             List<Object> list = new List<Object>();
             if (project != null)
             {
@@ -142,6 +142,38 @@ namespace WebApplication1.Controllers
 
         }
 
+        /*
+        [Route("api/projectReport/{id}")]
+        [HttpGet]
+        public IHttpActionResult GetProjectReport(int id)
+        {
+
+            if (!projectLogic.existProject(id))
+            {
+
+                //No se encontró el recurso code 404
+                return NotFound();
+
+            }
+            Report_Project_Data project = projectLogic.(id);
+            List<Object> list = new List<Object>();
+            if (project != null)
+            {
+
+                list.Add(project);
+                // ok code 200
+                return Ok(list);
+
+            }
+            else
+            {
+
+                //No se pudo crear el recurso por un error interno code 500
+                return InternalServerError();
+
+            }
+        }
+        */
 
     }
 }

@@ -28,13 +28,45 @@ namespace WebApplication1.Logic
 
                         for (int i = 0; i < projectList.Count; ++i)
                         {
-                            Project_Data data = new Project_Data();
-                            data.id = projectList.ElementAt(i).id;
-                            data.id_client = projectList.ElementAt(i).id_client;
-                            data.manager = projectList.ElementAt(i).manager;
-                            data.name = projectList.ElementAt(i).name;
-                            data.ubication = projectList.ElementAt(i).ubication;
-                            dataList.Add(data);
+                            Report_Project_Data project = new Report_Project_Data();
+                            Project pr;
+                            pr = projectList.ElementAt(i);
+                            project.id = pr.id;
+                            project.id_client = pr.id_client;
+                            project.manager = pr.manager;
+                            project.name = pr.name;
+                            project.ubication = pr.ubication;
+
+
+                            var costos = construyeEntities.usp_total_bills(pr.id).First();
+                            var etapasList = construyeEntities.Stage.Where(e => e.id_project == pr.id).ToList();
+                            List<int> idStageList = new List<int>();
+                            for (int j = 0; j < etapasList.Count; ++j)
+                            {
+                                idStageList.Add(etapasList.ElementAt(j).id);
+                            }
+
+                            var anotationsList = construyeEntities.Anotations.Where(e => e.id_project == pr.id).ToList();
+                            List<int> idAnotationList = new List<int>();
+                            for (int j = 0; j < anotationsList.Count; ++j)
+                            {
+                                idAnotationList.Add(anotationsList.ElementAt(j).id);
+                            }
+
+                            if (costos.TotalPresupuesto == null || costos.TotalReal == null)
+                            {
+                                project.totalCost = 0;
+                                project.totalBudget = 0;
+                                project.idAnotations = idAnotationList;
+                                project.idStages = idStageList;
+                                dataList.Add(project);
+                                continue;
+                            }
+                            project.totalCost = (int)costos.TotalReal;
+                            project.totalBudget = (int)costos.TotalPresupuesto;
+                            project.idAnotations = idAnotationList;
+                            project.idStages = idStageList;
+                            dataList.Add(project);
                         }
                         return dataList;
                     }
@@ -50,32 +82,54 @@ namespace WebApplication1.Logic
 
         }
 
-        public Project_Data GetProject(int ID)
+        public Report_Project_Data GetProject(int id)
         {
-            Project_Data result = new Project_Data();
-            Project project;
+            Report_Project_Data project = new Report_Project_Data();
+            Project pr;
             using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 try
                 {
-                    if (!this.existProject(ID))
+                    if (!this.existProject(id))
                     {
-                        result = null;
-                        return result;
+                        project = null;
+                        return project;
                     }
-                    project = construyeEntities.Project.Where(e => e.id == ID).ToList().First();
-                    result.id = project.id;
-                    result.id_client = project.id_client;
-                    result.manager = project.manager;
-                    result.name = project.name;
-                    result.ubication = project.ubication;
-                    return result;
+                    pr = construyeEntities.Project.Where(e => e.id == id).ToList().First();
+                    project.id = pr.id;
+                    project.id_client = pr.id_client;
+                    project.manager = pr.manager;
+                    project.name = pr.name;
+                    project.ubication = pr.ubication;
+
+
+                    var costos = construyeEntities.usp_total_bills(id).First();
+                    var etapasList = construyeEntities.Stage.Where(e => e.id_project == id).ToList();
+                    List<int> idStageList = new List<int>();
+                    for (int i = 0; i < etapasList.Count; ++i)
+                    {
+                        idStageList.Add(etapasList.ElementAt(i).id);
+                    }
+
+                    var anotationsList = construyeEntities.Anotations.Where(e => e.id_project == id).ToList();
+                    List<int> idAnotationList = new List<int>();
+                    for (int i = 0; i < anotationsList.Count; ++i)
+                    {
+                        idAnotationList.Add(anotationsList.ElementAt(i).id);
+                    }
+
+                    project.totalCost = (int)costos.TotalReal;
+                    project.totalBudget = (int)costos.TotalPresupuesto;
+                    project.idAnotations = idAnotationList;
+                    project.idStages = idStageList;
+
+                    return project;
 
                 }
                 catch (Exception E)
                 {
-                    result = null;
-                    return result;
+                    project = null;
+                    return project;
                 }
             }
         }
@@ -155,6 +209,46 @@ namespace WebApplication1.Logic
                 }
             }
         }
+
+        /*
+
+        public Report_Project_Data getInformeProjectoData(int id)
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+                try
+                {
+                    var costos = construyeEntities.usp_total_bills(id).First();
+                    var etapasList = construyeEntities.Stage.Where(e => e.id_project == id).ToList();
+                    List<int> idStageList = new List<int>();
+                    for (int i = 0; i < etapasList.Count; ++i)
+                    {
+                        idStageList.Add(etapasList.ElementAt(i).id);
+                    }
+
+                    var anotationsList = construyeEntities.Anotations.Where(e => e.id_project == id).ToList();
+                    List<int> idAnotationList = new List<int>();
+                    for (int i = 0; i < anotationsList.Count; ++i)
+                    {
+                        idAnotationList.Add(anotationsList.ElementAt(i).id);
+                    }
+                    Report_Project_Data project = new Report_Project_Data();
+                    project.totalCost = (int)costos.TotalReal;
+                    project.totalBudget = (int)costos.TotalPresupuesto;
+                    project.idAnotations = idAnotationList;
+                    project.idStages = idStageList;
+                    return project;
+
+
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
+            }
+            
+        }
+        */
 
     }
 }

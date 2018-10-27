@@ -52,20 +52,20 @@ namespace WebApplication1.Logic
 
         }
 
-        public Stage_Data GetStage(int ID)
+        public Report_Stage_Data GetStage(int id)
         {
-            Stage_Data result = new Stage_Data();
+            Report_Stage_Data result = new Report_Stage_Data();
             Stage data = new Stage();
             using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 try
                 {
-                    if (!this.existStage(ID))
+                    if (!this.existStage(id))
                     {
                         result = null;
                         return result;
                     }
-                    data = construyeEntities.Stage.Find(ID);
+                    data = construyeEntities.Stage.Find(id);
                     result.id = data.id;
                     result.id_project = data.id_project;
                     result.name = data.name;
@@ -73,6 +73,37 @@ namespace WebApplication1.Logic
                     result.status = data.status;
                     result.end_date = data.end_date;
                     result.description = data.description;
+
+                    var costos = construyeEntities.usp_total_stage(id).First();
+                    var idMaterials = construyeEntities.MaterialsxStage.Where(e => e.id_stage == id).ToList();
+                    List<int> idmaterialList = new List<int>();
+                    for (int i = 0; i < idMaterials.Count; ++i)
+                    {
+                        idmaterialList.Add(idMaterials.ElementAt(i).id_material);
+                    }
+
+                    var billList = data.Bill.ToList();
+                    List<int> idbillList = new List<int>();
+                    for (int i = 0; i < billList.Count; ++i)
+                    {
+                        idbillList.Add(billList.ElementAt(i).id);
+                    }
+
+                    if (costos.TotalPresupuesto == null || costos.TotalReal == null)
+                    {
+                        result.totalCost = 0;
+                        result.totalBudget = 0;
+                        result.idMaterials = idmaterialList;
+                        result.idBills = idbillList;
+                        return result;
+ 
+                    }
+
+                    result.totalCost = (int)costos.TotalReal;
+                    result.totalBudget = (int)costos.TotalPresupuesto;
+                    result.idMaterials = idmaterialList;
+                    result.idBills = idbillList;
+                    
                     return result;
 
                 }
