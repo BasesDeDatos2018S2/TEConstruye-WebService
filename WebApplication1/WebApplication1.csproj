@@ -164,9 +164,11 @@
     <Compile Include="Models\Client.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Email.cs" />
     <Compile Include="Models\Employee.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Employee_Payment_Data.cs" />
     <Compile Include="Models\Report_Stage_Data.cs" />
     <Compile Include="Models\Report_Project_Data.cs" />
     <Compile Include="Models\LoginResponse.cs" />
