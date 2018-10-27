@@ -31,14 +31,15 @@ namespace WebApplication1.Controllers
              List<Object> model = new List<Object>();
              foreach (var details in data)
              {
-                 BugetClass_Data buget = new BugetClass_Data();
-                 buget.Cantidad = details.Cantidad;
-                 buget.Costo = details.Costo;
-                 buget.Etapa = details.Etapa;
-                 buget.Material = details.Material;
-                 buget.Nombre = details.Nombre;
-                 buget.ProyectoNombre = buget.ProyectoNombre;
-                 buget.Total = buget.Total;
+                BugetClass_Data buget = new BugetClass_Data();
+                buget.Cantidad = details.Cantidad;
+                buget.Costo = details.Costo;
+                buget.Etapa = details.Etapa;
+                buget.Material = details.Material;
+                buget.Nombre = details.Nombre;
+                buget.ProyectoNombre = details.ProyectoNombre;
+                buget.Total = (int)details.Total;
+                buget.Detalle = details.Detalle;
                  model.Add(buget);
 
              }
@@ -47,12 +48,12 @@ namespace WebApplication1.Controllers
             rd.Load(Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/Reports"), "Budget.rpt"));
             ConnectionInfo connectInfo = new ConnectionInfo()
             {
-                ServerName = "CRISPTOFER"+"\\"+"SQLEXPRESS",
+                ServerName = "CRISPTOFER\\SQLEXPRESS",
                 DatabaseName = "TeConstruye",
                 UserID = "crisptofer12ff",
                 Password = "123456789"
             };
-            rd.SetDatabaseLogon("crisptofer12ff", "123456789");
+            rd.SetDatabaseLogon(connectInfo.UserID, connectInfo.Password, connectInfo.ServerName,connectInfo.DatabaseName);
             foreach (Table tbl in rd.Database.Tables)
             {
                 tbl.LogOnInfo.ConnectionInfo = connectInfo;
