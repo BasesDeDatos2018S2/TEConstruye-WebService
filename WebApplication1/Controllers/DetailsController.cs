@@ -146,5 +146,68 @@ namespace WebApplication1.Controllers
         }
 
 
+        [AllowAnonymous]
+        [Route("report/status/{id}")]
+        [HttpPost]
+        public HttpResponseMessage status([FromBody] Email email, int id)
+        {
+            string EmailTosend = WebUtility.UrlDecode(email.email);
+            var data = cX.usp_status(id);
+            var rd = new ReportDocument();
+
+            List<Object> model = new List<Object>();
+            foreach (var details in data)
+            {
+                Status_Data status = new Status_Data();
+                status.Diferencia = (int)details.Diferencia;
+                status.Etapa = details.Etapa;
+                status.Proyecto = details.Proyecto;
+                status.TotalPresupuesto = (int)details.TotalPresupuesto;
+                status.TotalReal = (int)details.TotalReal;
+                model.Add(status);
+
+            }
+
+
+            rd.Load(Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/Reports"), "status.rpt"));
+            ConnectionInfo connectInfo = new ConnectionInfo()
+            {
+                ServerName = "CRISPTOFER\\SQLEXPRESS",
+                DatabaseName = "TeConstruye",
+                UserID = "crisptofer12ff",
+                Password = "123456789"
+            };
+            rd.SetDatabaseLogon(connectInfo.UserID, connectInfo.Password, connectInfo.ServerName, connectInfo.DatabaseName);
+            foreach (Table tbl in rd.Database.Tables)
+            {
+                tbl.LogOnInfo.ConnectionInfo = connectInfo;
+                tbl.ApplyLogOnInfo(tbl.LogOnInfo);
+            }
+
+            rd.SetDataSource(model);
+            using (var stream = rd.ExportToStream(ExportFormatType.PortableDocFormat))
+            {
+                SmtpClient smtp = new SmtpClient
+                {
+                    Port = 587,
+                    UseDefaultCredentials = true,
+                    Host = "smtp.gmail.com",
+                    EnableSsl = true
+                };
+
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential("teconstruyecompany@gmail.com", "teconstruye");
+                var message = new System.Net.Mail.MailMessage("teconstruyecompany@gmail.com", EmailTosend, "Reporte de Estado", "Se adjunta el reporte de estado.");
+                message.Attachments.Add(new Attachment(stream, "Status.pdf"));
+
+                smtp.Send(message);
+            }
+
+            var Message = string.Format("Report Created and sended to your Mail.");
+            HttpResponseMessage response1 = Request.CreateResponse(HttpStatusCode.OK, Message);
+            return response1;
+        }
+
+
     }
 }
