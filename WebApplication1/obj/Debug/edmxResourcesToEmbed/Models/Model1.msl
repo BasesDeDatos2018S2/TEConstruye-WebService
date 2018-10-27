@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="TeConstruyeModelStoreContainer" CdmEntityContainer="TeConstruyeEntities">
+  <EntityContainerMapping StorageEntityContainer="TeConstruyeModelStoreContainer" CdmEntityContainer="TeConstruyeEntities1">
     <EntitySetMapping Name="Anotations">
       <EntityTypeMapping TypeName="TeConstruyeModel.Anotations">
         <MappingFragment StoreEntitySet="Anotations">
@@ -19,6 +19,7 @@
           <ScalarProperty Name="serial" ColumnName="serial" />
           <ScalarProperty Name="price" ColumnName="price" />
           <ScalarProperty Name="id_stage" ColumnName="id_stage" />
+          <ScalarProperty Name="id_material" ColumnName="id_material" />
           <ScalarProperty Name="id_provider" ColumnName="id_provider" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -44,6 +45,7 @@
           <ScalarProperty Name="lastname1" ColumnName="lastname1" />
           <ScalarProperty Name="lastname2" ColumnName="lastname2" />
           <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="hour_cost" ColumnName="hour_cost" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -67,6 +69,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Passwords">
+      <EntityTypeMapping TypeName="TeConstruyeModel.Passwords">
+        <MappingFragment StoreEntitySet="Passwords">
+          <ScalarProperty Name="id_employee" ColumnName="id_employee" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Project">
       <EntityTypeMapping TypeName="TeConstruyeModel.Project">
         <MappingFragment StoreEntitySet="Project">
@@ -74,6 +84,7 @@
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="ubication" ColumnName="ubication" />
           <ScalarProperty Name="id_client" ColumnName="id_client" />
+          <ScalarProperty Name="manager" ColumnName="manager" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -85,12 +96,21 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Role_specification">
+      <EntityTypeMapping TypeName="TeConstruyeModel.Role_specification">
+        <MappingFragment StoreEntitySet="Role_specification">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="specification" ColumnName="specification" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Roles">
       <EntityTypeMapping TypeName="TeConstruyeModel.Roles">
         <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="id_role" ColumnName="id_role" />
           <ScalarProperty Name="id_employee" ColumnName="id_employee" />
-          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -115,7 +135,6 @@
           <ScalarProperty Name="id_employee" ColumnName="id_employee" />
           <ScalarProperty Name="date" ColumnName="date" />
           <ScalarProperty Name="hours" ColumnName="hours" />
-          <ScalarProperty Name="hour_cost" ColumnName="hour_cost" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -129,28 +148,68 @@
           <ScalarProperty Name="Costo" ColumnName="Costo" />
           <ScalarProperty Name="Total" ColumnName="Total" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="ProyectoNombre" ColumnName="ProyectoNombre" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="usp_employee_payment" FunctionName="TeConstruyeModel.Store.usp_employee_payment">
       <ResultMapping>
         <ComplexTypeMapping TypeName="TeConstruyeModel.usp_employee_payment_Result">
-          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="Proyecto" ColumnName="Proyecto" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
           <ScalarProperty Name="Horas" ColumnName="Horas" />
           <ScalarProperty Name="Costo" ColumnName="Costo" />
           <ScalarProperty Name="Total" ColumnName="Total" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_expenses" FunctionName="TeConstruyeModel.Store.usp_expenses">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TeConstruyeModel.usp_expenses_Result">
+          <ScalarProperty Name="Factura" ColumnName="Factura" />
+          <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Etapa" ColumnName="Etapa" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Proyecto" ColumnName="Proyecto" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_material_stage" FunctionName="TeConstruyeModel.Store.usp_material_stage" />
     <FunctionImportMapping FunctionImportName="usp_project_client" FunctionName="TeConstruyeModel.Store.usp_project_client">
       <ResultMapping>
         <ComplexTypeMapping TypeName="TeConstruyeModel.usp_project_client_Result">
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Apellido" ColumnName="Apellido" />
           <ScalarProperty Name="ProyectoID" ColumnName="ProyectoID" />
+          <ScalarProperty Name="NombreProyecto" ColumnName="NombreProyecto" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_status" FunctionName="TeConstruyeModel.Store.usp_status">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TeConstruyeModel.usp_status_Result">
+          <ScalarProperty Name="Etapa" ColumnName="Etapa" />
+          <ScalarProperty Name="TotalPresupuesto" ColumnName="TotalPresupuesto" />
+          <ScalarProperty Name="TotalReal" ColumnName="TotalReal" />
+          <ScalarProperty Name="Diferencia" ColumnName="Diferencia" />
+          <ScalarProperty Name="Proyecto" ColumnName="Proyecto" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_total_bills" FunctionName="TeConstruyeModel.Store.usp_total_bills">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TeConstruyeModel.usp_total_bills_Result">
+          <ScalarProperty Name="TotalPresupuesto" ColumnName="TotalPresupuesto" />
+          <ScalarProperty Name="TotalReal" ColumnName="TotalReal" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_total_stage" FunctionName="TeConstruyeModel.Store.usp_total_stage">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TeConstruyeModel.usp_total_stage_Result">
+          <ScalarProperty Name="TotalPresupuesto" ColumnName="TotalPresupuesto" />
+          <ScalarProperty Name="TotalReal" ColumnName="TotalReal" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

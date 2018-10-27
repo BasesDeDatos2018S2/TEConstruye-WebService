@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TeConstruyeEntities1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="TeConstruyeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Anotations">
           <Key>
             <PropertyRef Name="id" />
@@ -115,7 +115,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_project" Type="int" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="40" Nullable="false" />
-          <Property Name="description" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="status" Type="bit" Nullable="false" />
           <Property Name="start_date" Type="date" Nullable="false" />
           <Property Name="end_date" Type="date" Nullable="false" />
@@ -298,37 +298,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="usp_budget" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idProject" Type="int" Mode="In" />
         </Function>
@@ -341,11 +310,20 @@
           <Parameter Name="second_date" Type="date" Mode="In" />
           <Parameter Name="id_proj" Type="int" Mode="In" />
         </Function>
+        <Function Name="usp_material_stage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_stage" Type="int" Mode="In" />
+        </Function>
         <Function Name="usp_project_client" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="usp_status" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_proj" Type="int" Mode="In" />
         </Function>
-        <EntityContainer Name="TeConstruyeEntities1StoreContainer">
+        <Function Name="usp_total_bills" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_proj" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_total_stage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_stage" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="TeConstruyeModelStoreContainer">
           <EntitySet Name="Anotations" EntityType="Self.Anotations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Bill" EntityType="Self.Bill" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
@@ -420,7 +398,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="TeConstruyeEntities1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="TeConstruyeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Anotations">
           <Key>
             <PropertyRef Name="id" />
@@ -554,7 +532,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_project" Type="Int32" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="description" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="status" Type="Boolean" Nullable="false" />
           <Property Name="start_date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="end_date" Type="DateTime" Nullable="false" Precision="0" />
@@ -742,7 +720,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="TeConstruyeEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="TeConstruyeEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Anotations" EntityType="Self.Anotations" />
           <EntitySet Name="Bill" EntityType="Self.Bill" />
           <EntitySet Name="Client" EntityType="Self.Client" />
@@ -812,64 +790,32 @@
             <End Role="Role_specification" EntitySet="Role_specification" />
             <End Role="Roles" EntitySet="Roles" />
           </AssociationSet>
-          <FunctionImport Name="sp_alterdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_creatediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_dropdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(TeConstruyeEntities1.sp_helpdiagramdefinition_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(TeConstruyeEntities1.sp_helpdiagrams_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_renamediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="new_diagramname" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_upgraddiagrams" />
-          <FunctionImport Name="usp_budget" ReturnType="Collection(TeConstruyeEntities1.usp_budget_Result)">
+          <FunctionImport Name="usp_budget" ReturnType="Collection(TeConstruyeModel.usp_budget_Result)">
             <Parameter Name="idProject" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="usp_employee_payment" ReturnType="Collection(TeConstruyeEntities1.usp_employee_payment_Result)">
+          <FunctionImport Name="usp_employee_payment" ReturnType="Collection(TeConstruyeModel.usp_employee_payment_Result)">
             <Parameter Name="first_date" Mode="In" Type="DateTime" />
             <Parameter Name="second_date" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="usp_expenses" ReturnType="Collection(TeConstruyeEntities1.usp_expenses_Result)">
+          <FunctionImport Name="usp_expenses" ReturnType="Collection(TeConstruyeModel.usp_expenses_Result)">
             <Parameter Name="first_date" Mode="In" Type="DateTime" />
             <Parameter Name="second_date" Mode="In" Type="DateTime" />
             <Parameter Name="id_proj" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="usp_project_client" ReturnType="Collection(TeConstruyeEntities1.usp_project_client_Result)" />
-          <FunctionImport Name="usp_status" ReturnType="Collection(TeConstruyeEntities1.usp_status_Result)">
+          <FunctionImport Name="usp_material_stage" ReturnType="Collection(Int32)">
+            <Parameter Name="id_stage" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_project_client" ReturnType="Collection(TeConstruyeModel.usp_project_client_Result)" />
+          <FunctionImport Name="usp_status" ReturnType="Collection(TeConstruyeModel.usp_status_Result)">
             <Parameter Name="id_proj" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_total_bills" ReturnType="Collection(TeConstruyeModel.usp_total_bills_Result)">
+            <Parameter Name="id_proj" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_total_stage" ReturnType="Collection(TeConstruyeModel.usp_total_stage_Result)">
+            <Parameter Name="id_stage" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
-        <ComplexType Name="sp_helpdiagramdefinition_Result">
-          <Property Type="Int32" Name="version" Nullable="true" />
-          <Property Type="Binary" Name="definition" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagrams_Result">
-          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="OwnerID" Nullable="false" />
-        </ComplexType>
         <ComplexType Name="usp_budget_Result">
           <Property Type="String" Name="Etapa" Nullable="false" MaxLength="40" />
           <Property Type="String" Name="Material" Nullable="false" MaxLength="60" />
@@ -908,14 +854,22 @@
           <Property Type="Int32" Name="Diferencia" Nullable="true" />
           <Property Type="String" Name="Proyecto" Nullable="false" MaxLength="30" />
         </ComplexType>
+        <ComplexType Name="usp_total_bills_Result">
+          <Property Type="Int32" Name="TotalPresupuesto" Nullable="true" />
+          <Property Type="Int32" Name="TotalReal" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_total_stage_Result">
+          <Property Type="Int32" Name="TotalPresupuesto" Nullable="true" />
+          <Property Type="Int32" Name="TotalReal" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TeConstruyeEntities1StoreContainer" CdmEntityContainer="TeConstruyeEntities">
+        <EntityContainerMapping StorageEntityContainer="TeConstruyeModelStoreContainer" CdmEntityContainer="TeConstruyeEntities1">
           <EntitySetMapping Name="Anotations">
-            <EntityTypeMapping TypeName="TeConstruyeEntities1.Anotations">
+            <EntityTypeMapping TypeName="TeConstruyeModel.Anotations">
               <MappingFragment StoreEntitySet="Anotations">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_project" ColumnName="id_project" />
@@ -925,7 +879,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Bill">
-            <EntityTypeMapping TypeName="TeConstruyeEntities1.Bill">
+            <EntityTypeMapping TypeName="TeConstruyeModel.Bill">
               <MappingFragment StoreEntitySet="Bill">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="date" ColumnName="date" />
@@ -938,7 +892,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Client">
-            <EntityTypeMapping TypeName="TeConstruyeEntities1.Client">
+            <EntityTypeMapping TypeName="TeConstruyeModel.Client">
               <MappingFragment StoreEntitySet="Client">
                 <ScalarProperty Name="identification" ColumnName="identification" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -950,7 +904,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employee">
-            <EntityTypeMapping TypeName="TeConstruyeEntities1.Employee">
+            <EntityTypeMapping TypeName="TeConstruyeModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="identification" ColumnName="identification" />
@@ -963,7 +917,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Materials">
-            <EntityTypeMapping TypeName="TeConstruyeEntities1.Materials">
+            <EntityTypeMapping TypeName="TeConstruyeModel.Materials">
               <MappingFragment StoreEntitySet="Materials">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -973,7 +927,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MaterialsxStage">
-            <EntityTypeMapping TypeName="TeConstruyeEntities1.MaterialsxStage">
+            <EntityTypeMapping TypeName="TeConstruyeModel.MaterialsxStage">
               <MappingFragment StoreEntitySet="MaterialsxStage">
                 <ScalarProperty Name="id_stage" ColumnName="id_stage" />
                 <ScalarProperty Name="id_material" ColumnName="id_material" />
@@ -983,7 +937,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Passwords">
-            <EntityTypeMapping TypeName="TeConstruyeEntities1.Passwords">
+            <EntityTypeMapping TypeName="TeConstruyeModel.Passwords">
               <MappingFragment StoreEntitySet="Passwords">
                 <ScalarProperty Name="id_employee" ColumnName="id_employee" />
                 <ScalarProperty Name="password" ColumnName="password" />
@@ -991,7 +945,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Project">
-            <EntityTypeMapping TypeName="TeConstruyeEntities1.Project">
+            <EntityTypeMapping TypeName="TeConstruyeModel.Project">
               <MappingFragment StoreEntitySet="Project">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -1002,7 +956,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Provider">
-            <EntityTypeMapping TypeName="TeConstruyeEntities1.Provider">
+            <EntityTypeMapping TypeName="TeConstruyeModel.Provider">
               <MappingFragment StoreEntitySet="Provider">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -1010,7 +964,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Role_specification">
-            <EntityTypeMapping TypeName="TeConstruyeEntities1.Role_specification">
+            <EntityTypeMapping TypeName="TeConstruyeModel.Role_specification">
               <MappingFragment StoreEntitySet="Role_specification">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="specification" ColumnName="specification" />
@@ -1018,7 +972,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="TeConstruyeEntities1.Roles">
+            <EntityTypeMapping TypeName="TeConstruyeModel.Roles">
               <MappingFragment StoreEntitySet="Roles">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_role" ColumnName="id_role" />
@@ -1028,7 +982,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Stage">
-            <EntityTypeMapping TypeName="TeConstruyeEntities1.Stage">
+            <EntityTypeMapping TypeName="TeConstruyeModel.Stage">
               <MappingFragment StoreEntitySet="Stage">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_project" ColumnName="id_project" />
@@ -1041,7 +995,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Worked_hours">
-            <EntityTypeMapping TypeName="TeConstruyeEntities1.Worked_hours">
+            <EntityTypeMapping TypeName="TeConstruyeModel.Worked_hours">
               <MappingFragment StoreEntitySet="Worked_hours">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_project" ColumnName="id_project" />
@@ -1051,33 +1005,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="TeConstruyeEntities1.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="TeConstruyeEntities1.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="TeConstruyeEntities1.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="TeConstruyeEntities1.Store.sp_helpdiagramdefinition">
+          <FunctionImportMapping FunctionImportName="usp_budget" FunctionName="TeConstruyeModel.Store.usp_budget">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="TeConstruyeEntities1.sp_helpdiagramdefinition_Result">
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="TeConstruyeEntities1.Store.sp_helpdiagrams">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="TeConstruyeEntities1.sp_helpdiagrams_Result">
-                <ScalarProperty Name="Database" ColumnName="Database" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Owner" ColumnName="Owner" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="TeConstruyeEntities1.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="TeConstruyeEntities1.Store.sp_upgraddiagrams" />
-          <FunctionImportMapping FunctionImportName="usp_budget" FunctionName="TeConstruyeEntities1.Store.usp_budget">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="TeConstruyeEntities1.usp_budget_Result">
+              <ComplexTypeMapping TypeName="TeConstruyeModel.usp_budget_Result">
                 <ScalarProperty Name="Etapa" ColumnName="Etapa" />
                 <ScalarProperty Name="Material" ColumnName="Material" />
                 <ScalarProperty Name="Detalle" ColumnName="Detalle" />
@@ -1089,9 +1019,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="usp_employee_payment" FunctionName="TeConstruyeEntities1.Store.usp_employee_payment">
+          <FunctionImportMapping FunctionImportName="usp_employee_payment" FunctionName="TeConstruyeModel.Store.usp_employee_payment">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="TeConstruyeEntities1.usp_employee_payment_Result">
+              <ComplexTypeMapping TypeName="TeConstruyeModel.usp_employee_payment_Result">
                 <ScalarProperty Name="Proyecto" ColumnName="Proyecto" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Horas" ColumnName="Horas" />
@@ -1100,9 +1030,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="usp_expenses" FunctionName="TeConstruyeEntities1.Store.usp_expenses">
+          <FunctionImportMapping FunctionImportName="usp_expenses" FunctionName="TeConstruyeModel.Store.usp_expenses">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="TeConstruyeEntities1.usp_expenses_Result">
+              <ComplexTypeMapping TypeName="TeConstruyeModel.usp_expenses_Result">
                 <ScalarProperty Name="Factura" ColumnName="Factura" />
                 <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
@@ -1112,9 +1042,10 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="usp_project_client" FunctionName="TeConstruyeEntities1.Store.usp_project_client">
+          <FunctionImportMapping FunctionImportName="usp_material_stage" FunctionName="TeConstruyeModel.Store.usp_material_stage" />
+          <FunctionImportMapping FunctionImportName="usp_project_client" FunctionName="TeConstruyeModel.Store.usp_project_client">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="TeConstruyeEntities1.usp_project_client_Result">
+              <ComplexTypeMapping TypeName="TeConstruyeModel.usp_project_client_Result">
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Apellido" ColumnName="Apellido" />
                 <ScalarProperty Name="ProyectoID" ColumnName="ProyectoID" />
@@ -1122,14 +1053,30 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="usp_status" FunctionName="TeConstruyeEntities1.Store.usp_status">
+          <FunctionImportMapping FunctionImportName="usp_status" FunctionName="TeConstruyeModel.Store.usp_status">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="TeConstruyeEntities1.usp_status_Result">
+              <ComplexTypeMapping TypeName="TeConstruyeModel.usp_status_Result">
                 <ScalarProperty Name="Etapa" ColumnName="Etapa" />
                 <ScalarProperty Name="TotalPresupuesto" ColumnName="TotalPresupuesto" />
                 <ScalarProperty Name="TotalReal" ColumnName="TotalReal" />
                 <ScalarProperty Name="Diferencia" ColumnName="Diferencia" />
                 <ScalarProperty Name="Proyecto" ColumnName="Proyecto" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_total_bills" FunctionName="TeConstruyeModel.Store.usp_total_bills">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TeConstruyeModel.usp_total_bills_Result">
+                <ScalarProperty Name="TotalPresupuesto" ColumnName="TotalPresupuesto" />
+                <ScalarProperty Name="TotalReal" ColumnName="TotalReal" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_total_stage" FunctionName="TeConstruyeModel.Store.usp_total_stage">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TeConstruyeModel.usp_total_stage_Result">
+                <ScalarProperty Name="TotalPresupuesto" ColumnName="TotalPresupuesto" />
+                <ScalarProperty Name="TotalReal" ColumnName="TotalReal" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

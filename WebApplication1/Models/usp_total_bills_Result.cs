@@ -11,12 +11,9 @@ namespace WebApplication1.Models
 {
     using System;
     
-    public partial class sp_helpdiagrams_Result
+    public partial class usp_total_bills_Result
     {
-        public string Database { get; set; }
-        public string Name { get; set; }
-        public int ID { get; set; }
-        public string Owner { get; set; }
-        public int OwnerID { get; set; }
+        public Nullable<int> TotalPresupuesto { get; set; }
+        public Nullable<int> TotalReal { get; set; }
     }
 }

@@ -18,6 +18,7 @@
     <Property Name="serial" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="price" Type="int" Nullable="false" />
     <Property Name="id_stage" Type="int" Nullable="false" />
+    <Property Name="id_material" Type="int" Nullable="false" />
     <Property Name="id_provider" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Client">
@@ -41,6 +42,7 @@
     <Property Name="lastname1" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="lastname2" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="phone" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="hour_cost" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Materials">
     <Key>
@@ -61,6 +63,13 @@
     <Property Name="quantity" Type="int" Nullable="false" />
     <Property Name="price" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="Passwords">
+    <Key>
+      <PropertyRef Name="id_employee" />
+    </Key>
+    <Property Name="id_employee" Type="int" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="12" Nullable="false" />
+  </EntityType>
   <EntityType Name="Project">
     <Key>
       <PropertyRef Name="id" />
@@ -69,6 +78,7 @@
     <Property Name="name" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="ubication" Type="varchar" MaxLength="60" Nullable="false" />
     <Property Name="id_client" Type="varchar" MaxLength="9" Nullable="false" />
+    <Property Name="manager" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Provider">
     <Key>
@@ -77,14 +87,21 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="varchar" MaxLength="40" Nullable="false" />
   </EntityType>
+  <EntityType Name="Role_specification">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="specification" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
   <EntityType Name="Roles">
     <Key>
-      <PropertyRef Name="id_role" />
-      <PropertyRef Name="id_employee" />
+      <PropertyRef Name="id" />
     </Key>
-    <Property Name="id_role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_role" Type="int" Nullable="false" />
     <Property Name="id_employee" Type="int" Nullable="false" />
-    <Property Name="role" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="start_date" Type="date" Nullable="false" />
   </EntityType>
   <EntityType Name="Stage">
     <Key>
@@ -93,7 +110,7 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="id_project" Type="int" Nullable="false" />
     <Property Name="name" Type="varchar" MaxLength="40" Nullable="false" />
-    <Property Name="description" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="500" Nullable="false" />
     <Property Name="status" Type="bit" Nullable="false" />
     <Property Name="start_date" Type="date" Nullable="false" />
     <Property Name="end_date" Type="date" Nullable="false" />
@@ -107,9 +124,8 @@
     <Property Name="id_employee" Type="int" Nullable="false" />
     <Property Name="date" Type="date" Nullable="false" />
     <Property Name="hours" Type="int" Nullable="false" />
-    <Property Name="hour_cost" Type="int" Nullable="false" />
   </EntityType>
-  <Association Name="FK__Anotation__id_pr__571DF1D5">
+  <Association Name="FK__Anotation__id_pr__5BE2A6F2">
     <End Role="Project" Type="Self.Project" Multiplicity="1" />
     <End Role="Anotations" Type="Self.Anotations" Multiplicity="*" />
     <ReferentialConstraint>
@@ -121,7 +137,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Bill__id_provide__6383C8BA">
+  <Association Name="FK__Bill__id_materia__6C190EBB">
+    <End Role="Materials" Type="Self.Materials" Multiplicity="1" />
+    <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Materials">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="id_material" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Bill__id_provide__6B24EA82">
     <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
     <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
     <ReferentialConstraint>
@@ -133,7 +161,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Bill__id_stage__628FA481">
+  <Association Name="FK__Bill__id_stage__6A30C649">
     <End Role="Stage" Type="Self.Stage" Multiplicity="1" />
     <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
     <ReferentialConstraint>
@@ -145,7 +173,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Materials__id_ma__60A75C0F">
+  <Association Name="FK__Materials__id_ma__68487DD7">
     <End Role="Materials" Type="Self.Materials" Multiplicity="1" />
     <End Role="MaterialsxStage" Type="Self.MaterialsxStage" Multiplicity="*" />
     <ReferentialConstraint>
@@ -157,7 +185,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Materials__id_st__5FB337D6">
+  <Association Name="FK__Materials__id_st__6754599E">
     <End Role="Stage" Type="Self.Stage" Multiplicity="1" />
     <End Role="MaterialsxStage" Type="Self.MaterialsxStage" Multiplicity="*" />
     <ReferentialConstraint>
@@ -169,7 +197,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Project__id_clie__5629CD9C">
+  <Association Name="FK__Passwords__id_em__5EBF139D">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Passwords" Type="Self.Passwords" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Passwords">
+        <PropertyRef Name="id_employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Project__id_clie__59FA5E80">
     <End Role="Client" Type="Self.Client" Multiplicity="1" />
     <End Role="Project" Type="Self.Project" Multiplicity="*" />
     <ReferentialConstraint>
@@ -181,7 +221,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Roles__id_employ__59063A47">
+  <Association Name="FK__Project__manager__5AEE82B9">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Project" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="manager" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Roles__id_employ__60A75C0F">
     <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
     <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
     <ReferentialConstraint>
@@ -193,7 +245,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Stage__id_projec__5812160E">
+  <Association Name="FK__Roles__id_role__619B8048">
+    <End Role="Role_specification" Type="Self.Role_specification" Multiplicity="1" />
+    <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role_specification">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Roles">
+        <PropertyRef Name="id_role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Stage__id_projec__5CD6CB2B">
     <End Role="Project" Type="Self.Project" Multiplicity="1" />
     <End Role="Stage" Type="Self.Stage" Multiplicity="*" />
     <ReferentialConstraint>
@@ -205,7 +269,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Worked_ho__id_em__5BE2A6F2">
+  <Association Name="FK__Worked_ho__id_em__6477ECF3">
     <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
     <End Role="Worked_hours" Type="Self.Worked_hours" Multiplicity="*" />
     <ReferentialConstraint>
@@ -217,7 +281,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Worked_ho__id_pr__5AEE82B9">
+  <Association Name="FK__Worked_ho__id_pr__6383C8BA">
     <End Role="Project" Type="Self.Project" Multiplicity="1" />
     <End Role="Worked_hours" Type="Self.Worked_hours" Multiplicity="*" />
     <ReferentialConstraint>
@@ -236,7 +300,24 @@
     <Parameter Name="first_date" Type="date" Mode="In" />
     <Parameter Name="second_date" Type="date" Mode="In" />
   </Function>
+  <Function Name="usp_expenses" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="first_date" Type="date" Mode="In" />
+    <Parameter Name="second_date" Type="date" Mode="In" />
+    <Parameter Name="id_proj" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_material_stage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_stage" Type="int" Mode="In" />
+  </Function>
   <Function Name="usp_project_client" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_status" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_proj" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_total_bills" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_proj" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_total_stage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_stage" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="TeConstruyeModelStoreContainer">
     <EntitySet Name="Anotations" EntityType="Self.Anotations" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Bill" EntityType="Self.Bill" Schema="dbo" store:Type="Tables" />
@@ -244,48 +325,66 @@
     <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Materials" EntityType="Self.Materials" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MaterialsxStage" EntityType="Self.MaterialsxStage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Passwords" EntityType="Self.Passwords" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Provider" EntityType="Self.Provider" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role_specification" EntityType="Self.Role_specification" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Stage" EntityType="Self.Stage" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Worked_hours" EntityType="Self.Worked_hours" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Anotation__id_pr__571DF1D5" Association="Self.FK__Anotation__id_pr__571DF1D5">
+    <AssociationSet Name="FK__Anotation__id_pr__5BE2A6F2" Association="Self.FK__Anotation__id_pr__5BE2A6F2">
       <End Role="Project" EntitySet="Project" />
       <End Role="Anotations" EntitySet="Anotations" />
     </AssociationSet>
-    <AssociationSet Name="FK__Bill__id_provide__6383C8BA" Association="Self.FK__Bill__id_provide__6383C8BA">
+    <AssociationSet Name="FK__Bill__id_materia__6C190EBB" Association="Self.FK__Bill__id_materia__6C190EBB">
+      <End Role="Materials" EntitySet="Materials" />
+      <End Role="Bill" EntitySet="Bill" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Bill__id_provide__6B24EA82" Association="Self.FK__Bill__id_provide__6B24EA82">
       <End Role="Provider" EntitySet="Provider" />
       <End Role="Bill" EntitySet="Bill" />
     </AssociationSet>
-    <AssociationSet Name="FK__Bill__id_stage__628FA481" Association="Self.FK__Bill__id_stage__628FA481">
+    <AssociationSet Name="FK__Bill__id_stage__6A30C649" Association="Self.FK__Bill__id_stage__6A30C649">
       <End Role="Stage" EntitySet="Stage" />
       <End Role="Bill" EntitySet="Bill" />
     </AssociationSet>
-    <AssociationSet Name="FK__Materials__id_ma__60A75C0F" Association="Self.FK__Materials__id_ma__60A75C0F">
+    <AssociationSet Name="FK__Materials__id_ma__68487DD7" Association="Self.FK__Materials__id_ma__68487DD7">
       <End Role="Materials" EntitySet="Materials" />
       <End Role="MaterialsxStage" EntitySet="MaterialsxStage" />
     </AssociationSet>
-    <AssociationSet Name="FK__Materials__id_st__5FB337D6" Association="Self.FK__Materials__id_st__5FB337D6">
+    <AssociationSet Name="FK__Materials__id_st__6754599E" Association="Self.FK__Materials__id_st__6754599E">
       <End Role="Stage" EntitySet="Stage" />
       <End Role="MaterialsxStage" EntitySet="MaterialsxStage" />
     </AssociationSet>
-    <AssociationSet Name="FK__Project__id_clie__5629CD9C" Association="Self.FK__Project__id_clie__5629CD9C">
+    <AssociationSet Name="FK__Passwords__id_em__5EBF139D" Association="Self.FK__Passwords__id_em__5EBF139D">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Passwords" EntitySet="Passwords" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Project__id_clie__59FA5E80" Association="Self.FK__Project__id_clie__59FA5E80">
       <End Role="Client" EntitySet="Client" />
       <End Role="Project" EntitySet="Project" />
     </AssociationSet>
-    <AssociationSet Name="FK__Roles__id_employ__59063A47" Association="Self.FK__Roles__id_employ__59063A47">
+    <AssociationSet Name="FK__Project__manager__5AEE82B9" Association="Self.FK__Project__manager__5AEE82B9">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Project" EntitySet="Project" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Roles__id_employ__60A75C0F" Association="Self.FK__Roles__id_employ__60A75C0F">
       <End Role="Employee" EntitySet="Employee" />
       <End Role="Roles" EntitySet="Roles" />
     </AssociationSet>
-    <AssociationSet Name="FK__Stage__id_projec__5812160E" Association="Self.FK__Stage__id_projec__5812160E">
+    <AssociationSet Name="FK__Roles__id_role__619B8048" Association="Self.FK__Roles__id_role__619B8048">
+      <End Role="Role_specification" EntitySet="Role_specification" />
+      <End Role="Roles" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Stage__id_projec__5CD6CB2B" Association="Self.FK__Stage__id_projec__5CD6CB2B">
       <End Role="Project" EntitySet="Project" />
       <End Role="Stage" EntitySet="Stage" />
     </AssociationSet>
-    <AssociationSet Name="FK__Worked_ho__id_em__5BE2A6F2" Association="Self.FK__Worked_ho__id_em__5BE2A6F2">
+    <AssociationSet Name="FK__Worked_ho__id_em__6477ECF3" Association="Self.FK__Worked_ho__id_em__6477ECF3">
       <End Role="Employee" EntitySet="Employee" />
       <End Role="Worked_hours" EntitySet="Worked_hours" />
     </AssociationSet>
-    <AssociationSet Name="FK__Worked_ho__id_pr__5AEE82B9" Association="Self.FK__Worked_ho__id_pr__5AEE82B9">
+    <AssociationSet Name="FK__Worked_ho__id_pr__6383C8BA" Association="Self.FK__Worked_ho__id_pr__6383C8BA">
       <End Role="Project" EntitySet="Project" />
       <End Role="Worked_hours" EntitySet="Worked_hours" />
     </AssociationSet>

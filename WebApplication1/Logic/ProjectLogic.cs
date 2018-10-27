@@ -12,7 +12,7 @@ namespace WebApplication1.Logic
         public List<Object> GetListProject()
         {
             List<Object> dataList = new List<object>();
-            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 try
                 {
@@ -54,7 +54,7 @@ namespace WebApplication1.Logic
         {
             Project_Data result = new Project_Data();
             Project project;
-            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 try
                 {
@@ -83,7 +83,7 @@ namespace WebApplication1.Logic
 
         public bool existProject(int id)
         {
-            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 var i = construyeEntities.Project.Find(id);
                 if (i == null) return false;
@@ -93,7 +93,7 @@ namespace WebApplication1.Logic
 
         public bool addProject(Project_Data data)
         {
-            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 Project newProject = new Project();
                 newProject.id = data.id;
@@ -117,7 +117,7 @@ namespace WebApplication1.Logic
 
         public bool eraseProject(int id)
         {
-            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 try
                 {
@@ -135,7 +135,7 @@ namespace WebApplication1.Logic
 
         public bool updateProject(Project_Data data)
         {
-            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 try
                 {

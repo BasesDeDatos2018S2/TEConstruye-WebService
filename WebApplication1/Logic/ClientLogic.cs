@@ -13,8 +13,9 @@ namespace WebApplication1.Logic
         public ProjectsxClient_Data GetClient(string ssn)
         {
             ProjectsxClient_Data client = new ProjectsxClient_Data();
-            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1() )
             {
+      
                 try
                 {  
                     if (!this.existClient(ssn))
@@ -50,7 +51,7 @@ namespace WebApplication1.Logic
         public List<Object> GetListClient()
         {
             List<Object> dataList = new List<object>();
-            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 try
                 {
@@ -98,7 +99,7 @@ namespace WebApplication1.Logic
 
         public bool existClient(string id)
         {
-            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 var i = construyeEntities.Client.Find(id);
                 if (i == null) return false;
@@ -109,7 +110,7 @@ namespace WebApplication1.Logic
 
         public bool addClient(Client_Data data)
         {
-            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
 
                 Client newClient = new Client();
@@ -137,7 +138,7 @@ namespace WebApplication1.Logic
         public bool eraseClient(string id)
         {
 
-            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 try
                 {
@@ -158,7 +159,7 @@ namespace WebApplication1.Logic
 
         public bool updateClient(Client_Data data)
         {
-            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
 
                 try

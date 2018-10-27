@@ -11,9 +11,9 @@ namespace WebApplication1.Models
 {
     using System;
     
-    public partial class sp_helpdiagramdefinition_Result
+    public partial class usp_total_stage_Result
     {
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public Nullable<int> TotalPresupuesto { get; set; }
+        public Nullable<int> TotalReal { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace WebApplication1.Logic
         public List<Object> GetListStage()
         {
             List<Object> dataList = new List<object>();
-            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 try
                 {
@@ -56,7 +56,7 @@ namespace WebApplication1.Logic
         {
             Stage_Data result = new Stage_Data();
             Stage data = new Stage();
-            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 try
                 {
@@ -86,7 +86,7 @@ namespace WebApplication1.Logic
 
         public bool existStage(int id)
         {
-            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 var i = construyeEntities.Stage.Find(id);
                 if (i == null) return false;
@@ -98,7 +98,7 @@ namespace WebApplication1.Logic
 
         public bool addStage(Stage_Data data)
         {
-            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 Stage newStage = new Stage();
                 newStage.id = data.id;
@@ -127,7 +127,7 @@ namespace WebApplication1.Logic
 
         public bool eraseStage(int id)
         {
-            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 try
                 {
@@ -147,7 +147,7 @@ namespace WebApplication1.Logic
 
         public bool updateStage(Stage_Data data)
         {
-            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 try
                 {

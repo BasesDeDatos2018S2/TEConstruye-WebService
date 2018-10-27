@@ -11,7 +11,7 @@ namespace WebApplication1.Logic
 
         public bool register(LoginRequest data)
         {
-            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 
                 Passwords login = new Passwords();
@@ -34,7 +34,7 @@ namespace WebApplication1.Logic
 
         public bool revokeRegister(string username)
         {
-            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 try
                 {
@@ -54,7 +54,7 @@ namespace WebApplication1.Logic
 
         public ResponseLoginObject logValidation(LoginRequest log)
         {
-            using ( TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using ( TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 ResponseLoginObject response = new ResponseLoginObject();
                 try
@@ -125,8 +125,12 @@ namespace WebApplication1.Logic
 
         public bool existAccount(string ids)
         {
-            using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
+                if (ids.Equals(""))
+                {
+                    return false;
+                }
                 int id = construyeEntities.Employee.Where(e => e.identification == ids).ToList().First().id;
                 var i = construyeEntities.Passwords.Find(id);
                 if (i == null) return false;

@@ -43,6 +43,14 @@ namespace WebApplication1.Controllers
             {
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
             }
+
+            if (!loginLogic.existAccount(login.ssn))
+            {
+
+                // Unauthorized access 
+                return Unauthorized();
+
+            }
             
             ResponseLoginObject loginObject = loginLogic.logValidation(login);
             if (loginObject.status)
