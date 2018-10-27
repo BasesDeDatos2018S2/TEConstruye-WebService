@@ -10,6 +10,7 @@ using WebApplication1.Logic;
 namespace WebApplication1.Controllers
 {
 
+    [Authorize(Roles = "Administrador")]
     [Authorize(Roles = "mediumAccess")]
     public class StageController : ApiController
     {
