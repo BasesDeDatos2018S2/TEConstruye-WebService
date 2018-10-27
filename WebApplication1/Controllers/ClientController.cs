@@ -10,7 +10,7 @@ using WebApplication1.Models;
 namespace WebApplication1.Controllers
 {
 
-    [Authorize(Roles = "Administrador")]
+    //[Authorize(Roles = "Administrador")]
     public class ClientController : ApiController
     {
         private ClientLogic clientLogic = new ClientLogic();
@@ -77,11 +77,13 @@ namespace WebApplication1.Controllers
                 //Bad request code 400
                 return BadRequest();
             }
+            /*
             if (clientLogic.existClient(data.identification))
             {
                 //petición correcta pero no pudo ser procesada porque ya existe el archivo code 202
                 return StatusCode(HttpStatusCode.Accepted);
             }
+            */
             if (clientLogic.addClient(data))
             {
                 //petición correcta y se ha creado un nuevo recurso code 201

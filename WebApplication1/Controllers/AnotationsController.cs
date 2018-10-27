@@ -9,8 +9,10 @@ using WebApplication1.Logic;
 
 namespace WebApplication1.Controllers
 {
+    /*
     [Authorize(Roles = "Administrador")]
     [Authorize(Roles = "mediumAccess")]
+    */
     public class AnotationsController : ApiController
     {
         private AnotationsLogic anotationsLogic = new AnotationsLogic();
@@ -72,11 +74,13 @@ namespace WebApplication1.Controllers
                 //Bad request code 400
                 return BadRequest();
             }
+            /*
             if (anotationsLogic.existAnotation(data.id))
             {
                 //petición correcta pero no pudo ser procesada porque ya existe el archivo code 202
                 return StatusCode(HttpStatusCode.Accepted);
             }
+            */
             if (anotationsLogic.addAnotation(data))
             {
                 //petición correcta y se ha creado un nuevo recurso code 201

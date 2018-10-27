@@ -10,8 +10,8 @@ using WebApplication1.Logic;
 namespace WebApplication1.Controllers
 {
 
-    [Authorize(Roles = "Administrador")]
-    [Authorize(Roles = "mediumAccess")]
+    //[Authorize(Roles = "Administrador")]
+    //[Authorize(Roles = "mediumAccess")]
     public class StageController : ApiController
     {
         private StageLogic stageLogic = new StageLogic();
@@ -73,11 +73,13 @@ namespace WebApplication1.Controllers
                 //Bad request code 400
                 return BadRequest();
             }
+            /*
             if (stageLogic.existStage(data.id))
             {
                 //petición correcta pero no pudo ser procesada porque ya existe el archivo code 202
                 return StatusCode(HttpStatusCode.Accepted);
             }
+            */
             if (stageLogic.addStage(data))
             {
                 //petición correcta y se ha creado un nuevo recurso code 201

@@ -9,7 +9,7 @@ using WebApplication1.Logic;
 
 namespace WebApplication1.Controllers
 {
-    [Authorize(Roles = "Administrador")]
+    //[Authorize(Roles = "Administrador")]
     public class RoleController : ApiController
     {
         RoleSpecificationLogic roleSpecificationLogic = new RoleSpecificationLogic();
@@ -72,11 +72,13 @@ namespace WebApplication1.Controllers
                 //Bad request code 400
                 return BadRequest();
             }
+           /*
             if (roleSpecificationLogic.existRole(data.id_role))
             {
                 //petición correcta pero no pudo ser procesada porque ya existe el archivo code 202
                 return StatusCode(HttpStatusCode.Accepted);
             }
+            */
             if (roleSpecificationLogic.addRole(data))
             {
                 //petición correcta y se ha creado un nuevo recurso code 201

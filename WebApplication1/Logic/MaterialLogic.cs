@@ -109,14 +109,14 @@ namespace WebApplication1.Logic
             }
         }
 
-        public bool eraseEmployee(int id)
+        public bool eraseMaterial(int id)
         {
             using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 try
                 {
-                    var ms = construyeEntities.Employee.Find(id);
-                    construyeEntities.Employee.Remove(ms);
+                    var ms = construyeEntities.Materials.Find(id);
+                    construyeEntities.Materials.Remove(ms);
                     construyeEntities.SaveChanges();
                     return true;
                 }

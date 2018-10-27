@@ -9,8 +9,8 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    [Authorize(Roles = "Administrador")]
-    [Authorize(Roles = "mediumAccess")]
+    //[Authorize(Roles = "Administrador")]
+    //[Authorize(Roles = "mediumAccess")]
     public class MaterialController : ApiController
     {
 
@@ -76,11 +76,13 @@ namespace WebApplication1.Controllers
                 //Bad request code 400
                 return BadRequest();
             }
+            /*
             if (materialLogic.existMaterial(data.id))
             {
                 //petición correcta pero no pudo ser procesada porque ya existe el archivo code 202
                 return StatusCode(HttpStatusCode.Accepted);
             }
+            */
             if (materialLogic.addMaterial(data))
             {
                 //petición correcta y se ha creado un nuevo recurso code 201
@@ -130,7 +132,7 @@ namespace WebApplication1.Controllers
                 //petición correcta pero no pudo ser procesada porque no existe el archivo code 404
                 return NotFound();
             }
-            if (materialLogic.eraseEmployee(id))
+            if (materialLogic.eraseMaterial(id))
             {
                 //Se completó la solicitud con exito code 200 ok
                 return Ok();

@@ -9,8 +9,8 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    [Authorize(Roles = "Administrador")]
-    [Authorize(Roles = "mediumAccess")]
+    //[Authorize(Roles = "Administrador")]
+    //[Authorize(Roles = "mediumAccess")]
     public class ProjectController : ApiController
     {
         private ProjectLogic projectLogic = new ProjectLogic();
@@ -76,11 +76,13 @@ namespace WebApplication1.Controllers
                 //Bad request code 400
                 return BadRequest();
             }
+            /*
             if (projectLogic.existProject(data.id))
             {
                 //petición correcta pero no pudo ser procesada porque ya existe el archivo code 202
                 return StatusCode(HttpStatusCode.Accepted);
             }
+            */
             if (projectLogic.addProject(data))
             {
                 //petición correcta y se ha creado un nuevo recurso code 201
