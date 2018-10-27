@@ -120,5 +120,10 @@ namespace WebApplication1.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_total_stage_Result>("usp_total_stage", id_stageParameter);
         }
+    
+        public virtual ObjectResult<Nullable<int>> usp_posible_manager()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("usp_posible_manager");
+        }
     }
 }

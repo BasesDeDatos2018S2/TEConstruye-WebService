@@ -213,5 +213,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_posible_manager" FunctionName="TeConstruyeModel.Store.usp_posible_manager" />
   </EntityContainerMapping>
 </Mapping>

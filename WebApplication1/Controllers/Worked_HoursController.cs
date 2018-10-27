@@ -11,7 +11,7 @@ using WebApplication1.Models;
 namespace WebApplication1.Controllers
 {
 
-    //[Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "Administrador")]
     public class Worked_HoursController : ApiController
     {
 

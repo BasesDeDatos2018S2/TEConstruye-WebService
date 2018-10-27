@@ -190,6 +190,32 @@ namespace WebApplication1.Logic
             }
         }
 
+
+        public List<int> GetAllProjectManagers()
+        {
+            using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
+            {
+                List<int> client = new List<int>();
+                try
+                {
+                    var roles = construyeEntities.usp_posible_manager().ToList();
+                    for (int i = 0; i < roles.Count; ++i)
+                    {
+                        client.Add((int)roles.ElementAt(i));
+                    }
+                    return client;
+
+                }
+                catch (Exception E)
+                {
+                    client = null;
+                    return client;
+                }
+            }
+        }
+
+
+
     }
 
 }

@@ -11,8 +11,7 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    //[Authorize(Roles = "Administrador")]
-    //[Authorize(Roles = "mediumAccess")]
+    [Authorize(Roles = "Administrador, mediumAccess")]
     public class MaterialsxStageController : ApiController
     {
 

@@ -9,8 +9,7 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    //[Authorize(Roles = "Administrador")]
-    //[Authorize(Roles = "mediumAccess")]
+    [Authorize(Roles = "Administrador, mediumAccess")]
     public class ProjectController : ApiController
     {
         private ProjectLogic projectLogic = new ProjectLogic();
@@ -35,7 +34,7 @@ namespace WebApplication1.Controllers
 
                 list.Add(project);
                 // ok code 200
-                return Ok(list);
+                return Ok(list.First());
 
             }
             else

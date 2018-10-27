@@ -167,6 +167,27 @@ namespace WebApplication1.Controllers
             }
         }
 
+        [Route("api/employee/projectmanagers")]
+        [HttpGet]
+        public IHttpActionResult ProjectManagers()
+        {
+            
+            List<int> list = new List<int>();
+            list = employeeLogic.GetAllProjectManagers();
+            if (list == null)
+            {
+                //La respuesta no tiene contenido code 204
+                return StatusCode(HttpStatusCode.NoContent);
+            }
+            else
+            {
+                // ok code 200
+                return Ok(list);
+            }
+
+            
+        }
+
 
     }
 }

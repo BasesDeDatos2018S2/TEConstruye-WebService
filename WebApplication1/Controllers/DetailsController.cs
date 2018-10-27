@@ -13,12 +13,12 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
+    [Authorize(Roles = "Administrador, mediumAccess")]
     [RoutePrefix("api/detail")]
     public class DetailsController : ApiController
     {
         TeConstruyeEntities1 cX = new TeConstruyeEntities1();
 
-        [AllowAnonymous]
         [Route("report/budget/{id}")]
         [HttpPost]
         public HttpResponseMessage BudgetReport(int id, [FromBody] Email email)
@@ -83,7 +83,7 @@ namespace WebApplication1.Controllers
         }
 
 
-        [AllowAnonymous]
+       
         [Route("report/employeepayment")]
         [HttpPost]
         public HttpResponseMessage employeePayment([FromBody] Email email)
@@ -146,7 +146,7 @@ namespace WebApplication1.Controllers
         }
 
 
-        [AllowAnonymous]
+      
         [Route("report/status/{id}")]
         [HttpPost]
         public HttpResponseMessage status([FromBody] Email email, int id)
@@ -199,6 +199,68 @@ namespace WebApplication1.Controllers
                 smtp.Credentials = new NetworkCredential("teconstruyecompany@gmail.com", "teconstruye");
                 var message = new System.Net.Mail.MailMessage("teconstruyecompany@gmail.com", EmailTosend, "Reporte de Estado", "Se adjunta el reporte de estado.");
                 message.Attachments.Add(new Attachment(stream, "Status.pdf"));
+
+                smtp.Send(message);
+            }
+
+            var Message = string.Format("Report Created and sended to your Mail.");
+            HttpResponseMessage response1 = Request.CreateResponse(HttpStatusCode.OK, Message);
+            return response1;
+        }
+
+        [Route("report/expenses/{id}")]
+        [HttpPost]
+        public HttpResponseMessage expenses([FromBody] Email email, int id)
+        {
+            string EmailTosend = WebUtility.UrlDecode(email.email);
+            var data = cX.usp_expenses(email.date1, email.date2, id);
+            var rd = new ReportDocument();
+
+            List<Object> model = new List<Object>();
+            foreach (var details in data)
+            {
+                Expenses_Data expenses = new Expenses_Data();
+                expenses.Etapa = details.Etapa;
+                expenses.Factura = details.Factura;
+                expenses.Fecha = details.Fecha.Month.ToString() + "/" + details.Fecha.Day.ToString() + "/" + details.Fecha.Year.ToString();
+                expenses.Precio = details.Precio;
+                expenses.Proveedor = details.Proveedor;
+                expenses.Proyecto = details.Proyecto;
+                model.Add(expenses);
+
+            }
+
+
+            rd.Load(Path.Combine(System.Web.Hosting.HostingEnvironment.MapPath("~/Reports"), "expenses.rpt"));
+            ConnectionInfo connectInfo = new ConnectionInfo()
+            {
+                ServerName = "CRISPTOFER\\SQLEXPRESS",
+                DatabaseName = "TeConstruye",
+                UserID = "crisptofer12ff",
+                Password = "123456789"
+            };
+            rd.SetDatabaseLogon(connectInfo.UserID, connectInfo.Password, connectInfo.ServerName, connectInfo.DatabaseName);
+            foreach (Table tbl in rd.Database.Tables)
+            {
+                tbl.LogOnInfo.ConnectionInfo = connectInfo;
+                tbl.ApplyLogOnInfo(tbl.LogOnInfo);
+            }
+
+            rd.SetDataSource(model);
+            using (var stream = rd.ExportToStream(ExportFormatType.PortableDocFormat))
+            {
+                SmtpClient smtp = new SmtpClient
+                {
+                    Port = 587,
+                    UseDefaultCredentials = true,
+                    Host = "smtp.gmail.com",
+                    EnableSsl = true
+                };
+
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential("teconstruyecompany@gmail.com", "teconstruye");
+                var message = new System.Net.Mail.MailMessage("teconstruyecompany@gmail.com", EmailTosend, "Reporte de Gasto", "Se adjunta el reporte de gastos.");
+                message.Attachments.Add(new Attachment(stream, "Gastos.pdf"));
 
                 smtp.Send(message);
             }

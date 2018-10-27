@@ -11,7 +11,7 @@ using System.Web.Http.Cors;
 
 namespace WebApplication1.Controllers
 {
-    //[Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "Administrador, mediumAccess")]
     public class BillController : ApiController
     {
 

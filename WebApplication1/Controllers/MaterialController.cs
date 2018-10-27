@@ -9,8 +9,7 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    //[Authorize(Roles = "Administrador")]
-    //[Authorize(Roles = "mediumAccess")]
+    [Authorize(Roles = "Administrador")]
     public class MaterialController : ApiController
     {
 

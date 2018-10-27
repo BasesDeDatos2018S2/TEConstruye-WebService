@@ -10,7 +10,7 @@ using WebApplication1.Logic;
 namespace WebApplication1.Controllers
 {
 
-    //[Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "Administrador")]
     public class RolesController : ApiController
     {
 

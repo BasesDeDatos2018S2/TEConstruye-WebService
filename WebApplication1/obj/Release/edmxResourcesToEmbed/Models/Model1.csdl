@@ -416,6 +416,7 @@
     <FunctionImport Name="usp_total_stage" ReturnType="Collection(TeConstruyeModel.usp_total_stage_Result)">
       <Parameter Name="id_stage" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="usp_posible_manager" ReturnType="Collection(Int32)" />
   </EntityContainer>
   <ComplexType Name="usp_budget_Result">
     <Property Type="String" Name="Etapa" Nullable="false" MaxLength="40" />
