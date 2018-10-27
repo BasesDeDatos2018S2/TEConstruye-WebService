@@ -48,7 +48,7 @@ namespace WebApplication1.Controllers
             if (loginObject.status)
             {
                 var rolename = loginObject.role;
-                var token = TokenGenerator.GenerateTokenJwt(Convert.ToString(login.id_employee), rolename);
+                var token = TokenGenerator.GenerateTokenJwt(login.ssn, rolename);
                 LoginResponse response = new LoginResponse();
                 response.role = rolename;
                 response.token = token;
@@ -70,9 +70,8 @@ namespace WebApplication1.Controllers
             {
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
             }
-
-            EmployeeLogic employeeLogic = new EmployeeLogic();
-            if (!employeeLogic.existEmployee(login.id_employee))
+            
+            if (!loginLogic.existAccount(login.ssn))
             {
                 //petición correcta pero no pudo ser procesada porque ya existe el archivo code 202
                 return NotFound();
@@ -91,7 +90,7 @@ namespace WebApplication1.Controllers
 
         [Route("unregister")]
         [Authorize(Roles = "Administrador")]
-        public IHttpActionResult UnRegister(int login)
+        public IHttpActionResult UnRegister(string login)
         {
             if (!loginLogic.existAccount(login))
             {

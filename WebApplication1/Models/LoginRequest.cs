@@ -7,7 +7,7 @@ namespace WebApplication1.Models
 {
     public class LoginRequest
     {
-        public int id_employee { get; set; }
+        public string ssn { get; set; }
         public string password { get; set; }
     }
 }

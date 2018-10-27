@@ -15,9 +15,10 @@ namespace WebApplication1.Logic
             {
                 
                 Passwords login = new Passwords();
-                login.id_employee = data.id_employee;
+                int id = construyeEntities.Employee.Where(e => e.identification == data.ssn).ToList().First().id;
+                login.id_employee = id;
                 login.password = data.password;
-                login.Employee = construyeEntities.Employee.Find(data.id_employee);
+                login.Employee = construyeEntities.Employee.Find(id);
                 try
                 {
                     construyeEntities.Passwords.Add(login);
@@ -31,13 +32,15 @@ namespace WebApplication1.Logic
             }
         }
 
-        public bool revokeRegister(int username)
+        public bool revokeRegister(string username)
         {
             using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 try
                 {
-                    var ms = construyeEntities.Passwords.Find(username);
+
+                    var ms = construyeEntities.Passwords.Find(
+                        construyeEntities.Employee.Where(e => e.identification == username).ToList().First().id);
                     construyeEntities.Passwords.Remove(ms);
                     construyeEntities.SaveChanges();
                     return true;
@@ -56,8 +59,9 @@ namespace WebApplication1.Logic
                 ResponseLoginObject response = new ResponseLoginObject();
                 try
                 {
-                    var loginRequest = construyeEntities.Passwords.Find(log.id_employee);
-                    if (!(loginRequest.id_employee == log.id_employee && loginRequest.password == log.password))
+                    int id = construyeEntities.Employee.Where(e => e.identification == log.ssn).ToList().First().id;
+                    var loginRequest = construyeEntities.Passwords.Find(id);
+                    if (!(loginRequest.id_employee == id && loginRequest.password == log.password))
                     {
                         response.status = false;
                         response.role = null;
@@ -119,10 +123,11 @@ namespace WebApplication1.Logic
             }
         }
 
-        public bool existAccount(int id)
+        public bool existAccount(string ids)
         {
             using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
+                int id = construyeEntities.Employee.Where(e => e.identification == ids).ToList().First().id;
                 var i = construyeEntities.Passwords.Find(id);
                 if (i == null) return false;
                 else return true;

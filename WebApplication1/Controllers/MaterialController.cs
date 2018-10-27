@@ -9,13 +9,14 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class MaterialController : ApiController
     {
 
         private MaterialLogic materialLogic = new MaterialLogic();
 
 
-        [Route("api/materials")]
+        [Route("api/material")]
         [HttpGet]
         public IHttpActionResult GetAllMaterial()
         {
@@ -34,7 +35,7 @@ namespace WebApplication1.Controllers
 
         }
 
-        [Route("api/materials/{id}")]
+        [Route("api/material/{id}")]
         [HttpGet]
         public IHttpActionResult GetMaterial(int id)
         {

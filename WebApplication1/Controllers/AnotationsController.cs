@@ -9,6 +9,8 @@ using WebApplication1.Logic;
 
 namespace WebApplication1.Controllers
 {
+    [Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "mediumAccess")]
     public class AnotationsController : ApiController
     {
         private AnotationsLogic anotationsLogic = new AnotationsLogic();
