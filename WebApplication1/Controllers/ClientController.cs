@@ -26,7 +26,7 @@ namespace WebApplication1.Controllers
                 return NotFound();
 
             }
-            Client_Data client = clientLogic.GetClient(ssn);
+            ProjectsxClient_Data client = clientLogic.GetClient(ssn);
             List<Object> list = new List<Object>();
             if (client != null)
             {

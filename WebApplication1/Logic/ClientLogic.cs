@@ -10,9 +10,9 @@ namespace WebApplication1.Logic
     {
 
 
-        public Client_Data GetClient(string ssn)
+        public ProjectsxClient_Data GetClient(string ssn)
         {
-            Client_Data client = new Client_Data();
+            ProjectsxClient_Data client = new ProjectsxClient_Data();
             using (TeConstruyeEntities construyeEntities = new TeConstruyeEntities())
             {
                 try
@@ -29,6 +29,13 @@ namespace WebApplication1.Logic
                     client.lastname2 = cli.lastname2;
                     client.phone = cli.phone;
                     client.email = cli.email;
+                    var projects = construyeEntities.Project.Where(e => e.id_client == ssn).ToList();
+                    List<Object> lis = new List<Object>();
+                    for (int j = 0; j < projects.Count; ++j)
+                    {
+                        lis.Add(projects.ElementAt(j).id);
+                    }
+                    client.projects = lis;
                     return client;
 
                 }

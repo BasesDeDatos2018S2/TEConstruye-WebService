@@ -91,9 +91,12 @@ namespace WebApplication1.Logic
                         }
                         for (int i = 0; i < temp.Count; ++i)
                         {
-                            
-                            if (temp.ElementAt(i).Role_specification.specification.Substring(0, 9).Equals("Ingeniero") || 
-                                temp.ElementAt(i).Role_specification.specification.Equals("Arquitecto"))
+                            string ab = temp.ElementAt(i).Role_specification.specification;
+                            string ac = temp.ElementAt(i).Role_specification.specification;
+                            bool a = ab.Substring(0,3).Equals("Ing");
+                            bool b = ac.Equals("Arquitecto");
+
+                            if (a ||  b)
                             {
                                 response.status = true;
                                 response.role = "mediumAccess";
