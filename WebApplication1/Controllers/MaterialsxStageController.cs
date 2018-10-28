@@ -30,13 +30,10 @@ namespace WebApplication1.Controllers
 
             }
             MStage_Data data = ms.GetMStage(id_material, id_stage);
-            List<Object> list = new List<Object>();
             if (data != null)
             {
-
-                list.Add(data);
                 // ok code 200
-                return Ok(list);
+                return Ok(data);
 
             }
             else

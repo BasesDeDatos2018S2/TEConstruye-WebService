@@ -29,13 +29,10 @@ namespace WebApplication1.Controllers
 
             }
             Employee_Data employee = employeeLogic.GetEmployee(id);
-            List<Object> list = new List<Object>();
             if (employee != null)
             {
-
-                list.Add(employee);
                 // ok code 200
-                return Ok(list);
+                return Ok(employee);
 
             }
             else
@@ -171,23 +168,20 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public IHttpActionResult ProjectManagers()
         {
-            
-            List<int> list = new List<int>();
-            list = employeeLogic.GetAllProjectManagers();
-            if (list == null)
             {
-                //La respuesta no tiene contenido code 204
-                return StatusCode(HttpStatusCode.NoContent);
+                List<Object> list = new List<Object>();
+                list = employeeLogic.GetAllProjectManagers();
+                if (list == null)
+                {
+                    //La respuesta no tiene contenido code 204
+                    return StatusCode(HttpStatusCode.NoContent);
+                }
+                else
+                {
+                    // ok code 200
+                    return Ok(list);
+                }
             }
-            else
-            {
-                // ok code 200
-                return Ok(list);
-            }
-
-            
         }
-
-
     }
 }

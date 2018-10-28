@@ -29,13 +29,11 @@ namespace WebApplication1.Controllers
 
             }
             ProjectsxClient_Data client = clientLogic.GetClient(ssn);
-            List<Object> list = new List<Object>();
+            
             if (client != null)
             {
-
-                list.Add(client);
                 // ok code 200
-                return Ok(list);
+                return Ok(client);
 
             }
             else

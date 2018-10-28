@@ -31,13 +31,12 @@ namespace WebApplication1.Controllers
 
             }
             Bill_Data bill = billLogic.GetBill(id);
-            List<Object> list = new List<Object>();
             if (bill != null)
             {
 
-                list.Add(bill);
+                
                 // ok code 200
-                return Ok(list);
+                return Ok(bill);
 
             }
             else

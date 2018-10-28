@@ -27,13 +27,10 @@ namespace WebApplication1.Controllers
 
             }
             Report_Stage_Data stage = stageLogic.GetStage(id);
-            List<Object> list = new List<Object>();
             if (stage != null)
             {
-
-                list.Add(stage);
                 // ok code 200
-                return Ok(list);
+                return Ok(stage);
 
             }
             else

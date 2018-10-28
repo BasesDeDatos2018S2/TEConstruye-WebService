@@ -170,9 +170,6 @@
     </Compile>
     <Compile Include="Models\Employee_Payment_Data.cs" />
     <Compile Include="Models\Expenses_Data.cs" />
-    <Compile Include="Models\Report_Stage_Data.cs" />
-    <Compile Include="Models\Report_Project_Data.cs" />
-    <Compile Include="Models\LoginResponse.cs" />
     <Compile Include="Models\Materials.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -203,6 +200,9 @@
     <Compile Include="Models\Provider.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Report_Stage_Data.cs" />
+    <Compile Include="Models\Report_Project_Data.cs" />
+    <Compile Include="Models\LoginResponse.cs" />
     <Compile Include="Models\Roles.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -235,6 +235,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_expenses_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_posible_manager_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_project_client_Result.cs">

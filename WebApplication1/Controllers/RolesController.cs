@@ -28,13 +28,10 @@ namespace WebApplication1.Controllers
 
             }
             Role_Data role = roleLogic.GetRoles(id);
-            List<Object> list = new List<Object>();
             if (role != null)
             {
-
-                list.Add(role);
                 // ok code 200
-                return Ok(list);
+                return Ok(role);
 
             }
             else

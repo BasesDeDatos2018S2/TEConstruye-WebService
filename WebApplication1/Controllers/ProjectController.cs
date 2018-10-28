@@ -28,13 +28,10 @@ namespace WebApplication1.Controllers
 
             }
             Report_Project_Data project = projectLogic.GetProject(id);
-            List<Object> list = new List<Object>();
             if (project != null)
             {
-
-                list.Add(project);
                 // ok code 200
-                return Ok(list.First());
+                return Ok(project);
 
             }
             else

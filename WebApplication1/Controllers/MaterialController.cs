@@ -48,13 +48,10 @@ namespace WebApplication1.Controllers
 
             }
             Material_Data materials = materialLogic.GetMaterial(id);
-            List<Object> list = new List<Object>();
             if (materials != null)
             {
-
-                list.Add(materials);
                 // ok code 200
-                return Ok(list);
+                return Ok(materials);
 
             }
             else

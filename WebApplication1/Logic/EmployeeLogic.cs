@@ -191,26 +191,46 @@ namespace WebApplication1.Logic
         }
 
 
-        public List<int> GetAllProjectManagers()
+        public List<Object> GetAllProjectManagers()
         {
+            List<Object> dataList = new List<object>();
             using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
-                List<int> client = new List<int>();
                 try
                 {
-                    var roles = construyeEntities.usp_posible_manager().ToList();
-                    for (int i = 0; i < roles.Count; ++i)
+                    var employeeList = construyeEntities.usp_posible_manager().ToList();
+                    int n = employeeList.Count;
+                    if (n == 0)
                     {
-                        client.Add((int)roles.ElementAt(i));
+                        dataList = null;
+                        return dataList;
                     }
-                    return client;
+                    else
+                    {
+
+                        for (int i = 0; i < employeeList.Count; ++i)
+                        {
+                            Employee_Data data = new Employee_Data();
+                            data.id = employeeList.ElementAt(i).Id_Employee;
+                            data.identification = employeeList.ElementAt(i).Identification;
+                            data.name = employeeList.ElementAt(i).Name;
+                            data.lastname1 = employeeList.ElementAt(i).Lastname1;
+                            data.lastname2 = employeeList.ElementAt(i).Lastname2;
+                            data.phone = employeeList.ElementAt(i).Phone;
+                            data.hour_cost = employeeList.ElementAt(i).hour_cost;
+                            dataList.Add(data);
+                        }
+                        return dataList;
+                    }
+                }
+                catch
+                {
+
+                    dataList = null;
+                    return dataList;
 
                 }
-                catch (Exception E)
-                {
-                    client = null;
-                    return client;
-                }
+
             }
         }
 

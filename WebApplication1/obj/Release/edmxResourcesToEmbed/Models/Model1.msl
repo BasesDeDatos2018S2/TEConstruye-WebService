@@ -176,6 +176,19 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="usp_material_stage" FunctionName="TeConstruyeModel.Store.usp_material_stage" />
+    <FunctionImportMapping FunctionImportName="usp_posible_manager" FunctionName="TeConstruyeModel.Store.usp_posible_manager">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TeConstruyeModel.usp_posible_manager_Result">
+          <ScalarProperty Name="Id_Employee" ColumnName="Id_Employee" />
+          <ScalarProperty Name="Identification" ColumnName="Identification" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Lastname1" ColumnName="Lastname1" />
+          <ScalarProperty Name="Lastname2" ColumnName="Lastname2" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="hour_cost" ColumnName="hour_cost" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="usp_project_client" FunctionName="TeConstruyeModel.Store.usp_project_client">
       <ResultMapping>
         <ComplexTypeMapping TypeName="TeConstruyeModel.usp_project_client_Result">
@@ -213,6 +226,5 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="usp_posible_manager" FunctionName="TeConstruyeModel.Store.usp_posible_manager" />
   </EntityContainerMapping>
 </Mapping>

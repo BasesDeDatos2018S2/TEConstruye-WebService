@@ -89,6 +89,11 @@ namespace WebApplication1.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("usp_material_stage", id_stageParameter);
         }
     
+        public virtual ObjectResult<usp_posible_manager_Result> usp_posible_manager()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_posible_manager_Result>("usp_posible_manager");
+        }
+    
         public virtual ObjectResult<usp_project_client_Result> usp_project_client()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_project_client_Result>("usp_project_client");
@@ -119,11 +124,6 @@ namespace WebApplication1.Models
                 new ObjectParameter("id_stage", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_total_stage_Result>("usp_total_stage", id_stageParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<int>> usp_posible_manager()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("usp_posible_manager");
         }
     }
 }

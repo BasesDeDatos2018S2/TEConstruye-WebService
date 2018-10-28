@@ -28,13 +28,10 @@ namespace WebApplication1.Controllers
 
             }
             Provider_Data provider = providerLogic.GetProvider(id);
-            List<Object> list = new List<Object>();
             if (provider != null)
             {
-
-                list.Add(provider);
                 // ok code 200
-                return Ok(list);
+                return Ok(provider);
 
             }
             else

@@ -27,13 +27,10 @@ namespace WebApplication1.Controllers
 
             }
             Anotations_Data anotations = anotationsLogic.GetAnotation(id);
-            List<Object> list = new List<Object>();
             if (anotations != null)
             {
-
-                list.Add(anotations);
                 // ok code 200
-                return Ok(list);
+                return Ok(anotations);
 
             }
             else

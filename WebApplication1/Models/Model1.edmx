@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="TeConstruyeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="TeConstruyeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Anotations">
           <Key>
             <PropertyRef Name="id" />
@@ -395,7 +395,8 @@
             <End Role="Worked_hours" EntitySet="Worked_hours" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TeConstruyeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -407,7 +408,7 @@
           <Property Name="id_project" Type="Int32" Nullable="false" />
           <Property Name="anotation" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Project" Relationship="Self.FK__Anotation__id_pr__5BE2A6F2" FromRole="Anotations" ToRole="Project" />
+          <NavigationProperty Name="Project" Relationship="Self.FK__Anotation__id_pr__5CD6CB2B" FromRole="Anotations" ToRole="Project" />
         </EntityType>
         <EntityType Name="Bill">
           <Key>
@@ -420,9 +421,9 @@
           <Property Name="id_stage" Type="Int32" Nullable="false" />
           <Property Name="id_material" Type="Int32" Nullable="false" />
           <Property Name="id_provider" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Materials" Relationship="Self.FK__Bill__id_materia__6C190EBB" FromRole="Bill" ToRole="Materials" />
-          <NavigationProperty Name="Provider" Relationship="Self.FK__Bill__id_provide__6B24EA82" FromRole="Bill" ToRole="Provider" />
-          <NavigationProperty Name="Stage" Relationship="Self.FK__Bill__id_stage__6A30C649" FromRole="Bill" ToRole="Stage" />
+          <NavigationProperty Name="Materials" Relationship="Self.FK__Bill__id_materia__6E01572D" FromRole="Bill" ToRole="Materials" />
+          <NavigationProperty Name="Provider" Relationship="Self.FK__Bill__id_provide__6D0D32F4" FromRole="Bill" ToRole="Provider" />
+          <NavigationProperty Name="Stage" Relationship="Self.FK__Bill__id_stage__6C190EBB" FromRole="Bill" ToRole="Stage" />
         </EntityType>
         <EntityType Name="Client">
           <Key>
@@ -434,7 +435,7 @@
           <Property Name="lastname2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Project" Relationship="Self.FK__Project__id_clie__59FA5E80" FromRole="Client" ToRole="Project" />
+          <NavigationProperty Name="Project" Relationship="Self.FK__Project__id_clie__5AEE82B9" FromRole="Client" ToRole="Project" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -447,10 +448,10 @@
           <Property Name="lastname2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="hour_cost" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Passwords" Relationship="Self.FK__Passwords__id_em__5EBF139D" FromRole="Employee" ToRole="Passwords" />
-          <NavigationProperty Name="Project" Relationship="Self.FK__Project__manager__5AEE82B9" FromRole="Employee" ToRole="Project" />
-          <NavigationProperty Name="Roles" Relationship="Self.FK__Roles__id_employ__60A75C0F" FromRole="Employee" ToRole="Roles" />
-          <NavigationProperty Name="Worked_hours" Relationship="Self.FK__Worked_ho__id_em__6477ECF3" FromRole="Employee" ToRole="Worked_hours" />
+          <NavigationProperty Name="Passwords" Relationship="Self.FK__Passwords__id_em__60A75C0F" FromRole="Employee" ToRole="Passwords" />
+          <NavigationProperty Name="Project" Relationship="Self.FK__Project__manager__5BE2A6F2" FromRole="Employee" ToRole="Project" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Roles__id_employ__628FA481" FromRole="Employee" ToRole="Roles" />
+          <NavigationProperty Name="Worked_hours" Relationship="Self.FK__Worked_ho__id_em__66603565" FromRole="Employee" ToRole="Worked_hours" />
         </EntityType>
         <EntityType Name="Materials">
           <Key>
@@ -460,8 +461,8 @@
           <Property Name="name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="price" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Bill" Relationship="Self.FK__Bill__id_materia__6C190EBB" FromRole="Materials" ToRole="Bill" />
-          <NavigationProperty Name="MaterialsxStage" Relationship="Self.FK__Materials__id_ma__68487DD7" FromRole="Materials" ToRole="MaterialsxStage" />
+          <NavigationProperty Name="Bill" Relationship="Self.FK__Bill__id_materia__6E01572D" FromRole="Materials" ToRole="Bill" />
+          <NavigationProperty Name="MaterialsxStage" Relationship="Self.FK__Materials__id_ma__6A30C649" FromRole="Materials" ToRole="MaterialsxStage" />
         </EntityType>
         <EntityType Name="MaterialsxStage">
           <Key>
@@ -472,8 +473,8 @@
           <Property Name="id_material" Type="Int32" Nullable="false" />
           <Property Name="quantity" Type="Int32" Nullable="false" />
           <Property Name="price" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Materials" Relationship="Self.FK__Materials__id_ma__68487DD7" FromRole="MaterialsxStage" ToRole="Materials" />
-          <NavigationProperty Name="Stage" Relationship="Self.FK__Materials__id_st__6754599E" FromRole="MaterialsxStage" ToRole="Stage" />
+          <NavigationProperty Name="Materials" Relationship="Self.FK__Materials__id_ma__6A30C649" FromRole="MaterialsxStage" ToRole="Materials" />
+          <NavigationProperty Name="Stage" Relationship="Self.FK__Materials__id_st__693CA210" FromRole="MaterialsxStage" ToRole="Stage" />
         </EntityType>
         <EntityType Name="Passwords">
           <Key>
@@ -481,7 +482,7 @@
           </Key>
           <Property Name="id_employee" Type="Int32" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK__Passwords__id_em__5EBF139D" FromRole="Passwords" ToRole="Employee" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Passwords__id_em__60A75C0F" FromRole="Passwords" ToRole="Employee" />
         </EntityType>
         <EntityType Name="Project">
           <Key>
@@ -492,11 +493,11 @@
           <Property Name="ubication" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="id_client" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="manager" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Anotations" Relationship="Self.FK__Anotation__id_pr__5BE2A6F2" FromRole="Project" ToRole="Anotations" />
-          <NavigationProperty Name="Client" Relationship="Self.FK__Project__id_clie__59FA5E80" FromRole="Project" ToRole="Client" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK__Project__manager__5AEE82B9" FromRole="Project" ToRole="Employee" />
-          <NavigationProperty Name="Stage" Relationship="Self.FK__Stage__id_projec__5CD6CB2B" FromRole="Project" ToRole="Stage" />
-          <NavigationProperty Name="Worked_hours" Relationship="Self.FK__Worked_ho__id_pr__6383C8BA" FromRole="Project" ToRole="Worked_hours" />
+          <NavigationProperty Name="Anotations" Relationship="Self.FK__Anotation__id_pr__5CD6CB2B" FromRole="Project" ToRole="Anotations" />
+          <NavigationProperty Name="Client" Relationship="Self.FK__Project__id_clie__5AEE82B9" FromRole="Project" ToRole="Client" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Project__manager__5BE2A6F2" FromRole="Project" ToRole="Employee" />
+          <NavigationProperty Name="Stage" Relationship="Self.FK__Stage__id_projec__5DCAEF64" FromRole="Project" ToRole="Stage" />
+          <NavigationProperty Name="Worked_hours" Relationship="Self.FK__Worked_ho__id_pr__656C112C" FromRole="Project" ToRole="Worked_hours" />
         </EntityType>
         <EntityType Name="Provider">
           <Key>
@@ -504,7 +505,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Bill" Relationship="Self.FK__Bill__id_provide__6B24EA82" FromRole="Provider" ToRole="Bill" />
+          <NavigationProperty Name="Bill" Relationship="Self.FK__Bill__id_provide__6D0D32F4" FromRole="Provider" ToRole="Bill" />
         </EntityType>
         <EntityType Name="Role_specification">
           <Key>
@@ -512,7 +513,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="specification" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Roles" Relationship="Self.FK__Roles__id_role__619B8048" FromRole="Role_specification" ToRole="Roles" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Roles__id_role__6383C8BA" FromRole="Role_specification" ToRole="Roles" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -522,8 +523,8 @@
           <Property Name="id_role" Type="Int32" Nullable="false" />
           <Property Name="id_employee" Type="Int32" Nullable="false" />
           <Property Name="start_date" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK__Roles__id_employ__60A75C0F" FromRole="Roles" ToRole="Employee" />
-          <NavigationProperty Name="Role_specification" Relationship="Self.FK__Roles__id_role__619B8048" FromRole="Roles" ToRole="Role_specification" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Roles__id_employ__628FA481" FromRole="Roles" ToRole="Employee" />
+          <NavigationProperty Name="Role_specification" Relationship="Self.FK__Roles__id_role__6383C8BA" FromRole="Roles" ToRole="Role_specification" />
         </EntityType>
         <EntityType Name="Stage">
           <Key>
@@ -536,9 +537,9 @@
           <Property Name="status" Type="Boolean" Nullable="false" />
           <Property Name="start_date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="end_date" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Bill" Relationship="Self.FK__Bill__id_stage__6A30C649" FromRole="Stage" ToRole="Bill" />
-          <NavigationProperty Name="MaterialsxStage" Relationship="Self.FK__Materials__id_st__6754599E" FromRole="Stage" ToRole="MaterialsxStage" />
-          <NavigationProperty Name="Project" Relationship="Self.FK__Stage__id_projec__5CD6CB2B" FromRole="Stage" ToRole="Project" />
+          <NavigationProperty Name="Bill" Relationship="Self.FK__Bill__id_stage__6C190EBB" FromRole="Stage" ToRole="Bill" />
+          <NavigationProperty Name="MaterialsxStage" Relationship="Self.FK__Materials__id_st__693CA210" FromRole="Stage" ToRole="MaterialsxStage" />
+          <NavigationProperty Name="Project" Relationship="Self.FK__Stage__id_projec__5DCAEF64" FromRole="Stage" ToRole="Project" />
         </EntityType>
         <EntityType Name="Worked_hours">
           <Key>
@@ -549,10 +550,10 @@
           <Property Name="id_employee" Type="Int32" Nullable="false" />
           <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="hours" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK__Worked_ho__id_em__6477ECF3" FromRole="Worked_hours" ToRole="Employee" />
-          <NavigationProperty Name="Project" Relationship="Self.FK__Worked_ho__id_pr__6383C8BA" FromRole="Worked_hours" ToRole="Project" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Worked_ho__id_em__66603565" FromRole="Worked_hours" ToRole="Employee" />
+          <NavigationProperty Name="Project" Relationship="Self.FK__Worked_ho__id_pr__656C112C" FromRole="Worked_hours" ToRole="Project" />
         </EntityType>
-        <Association Name="FK__Anotation__id_pr__5BE2A6F2">
+        <Association Name="FK__Anotation__id_pr__5CD6CB2B">
           <End Role="Project" Type="Self.Project" Multiplicity="1" />
           <End Role="Anotations" Type="Self.Anotations" Multiplicity="*" />
           <ReferentialConstraint>
@@ -564,7 +565,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Bill__id_materia__6C190EBB">
+        <Association Name="FK__Bill__id_materia__6E01572D">
           <End Role="Materials" Type="Self.Materials" Multiplicity="1" />
           <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
           <ReferentialConstraint>
@@ -576,7 +577,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Bill__id_provide__6B24EA82">
+        <Association Name="FK__Bill__id_provide__6D0D32F4">
           <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
           <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
           <ReferentialConstraint>
@@ -588,7 +589,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Bill__id_stage__6A30C649">
+        <Association Name="FK__Bill__id_stage__6C190EBB">
           <End Role="Stage" Type="Self.Stage" Multiplicity="1" />
           <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
           <ReferentialConstraint>
@@ -600,7 +601,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Project__id_clie__59FA5E80">
+        <Association Name="FK__Project__id_clie__5AEE82B9">
           <End Role="Client" Type="Self.Client" Multiplicity="1" />
           <End Role="Project" Type="Self.Project" Multiplicity="*" />
           <ReferentialConstraint>
@@ -612,7 +613,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Passwords__id_em__5EBF139D">
+        <Association Name="FK__Passwords__id_em__60A75C0F">
           <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="Passwords" Type="Self.Passwords" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -624,7 +625,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Project__manager__5AEE82B9">
+        <Association Name="FK__Project__manager__5BE2A6F2">
           <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="Project" Type="Self.Project" Multiplicity="*" />
           <ReferentialConstraint>
@@ -636,7 +637,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Roles__id_employ__60A75C0F">
+        <Association Name="FK__Roles__id_employ__628FA481">
           <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
           <ReferentialConstraint>
@@ -648,7 +649,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Worked_ho__id_em__6477ECF3">
+        <Association Name="FK__Worked_ho__id_em__66603565">
           <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="Worked_hours" Type="Self.Worked_hours" Multiplicity="*" />
           <ReferentialConstraint>
@@ -660,7 +661,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Materials__id_ma__68487DD7">
+        <Association Name="FK__Materials__id_ma__6A30C649">
           <End Role="Materials" Type="Self.Materials" Multiplicity="1" />
           <End Role="MaterialsxStage" Type="Self.MaterialsxStage" Multiplicity="*" />
           <ReferentialConstraint>
@@ -672,7 +673,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Materials__id_st__6754599E">
+        <Association Name="FK__Materials__id_st__693CA210">
           <End Role="Stage" Type="Self.Stage" Multiplicity="1" />
           <End Role="MaterialsxStage" Type="Self.MaterialsxStage" Multiplicity="*" />
           <ReferentialConstraint>
@@ -684,7 +685,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Stage__id_projec__5CD6CB2B">
+        <Association Name="FK__Stage__id_projec__5DCAEF64">
           <End Role="Project" Type="Self.Project" Multiplicity="1" />
           <End Role="Stage" Type="Self.Stage" Multiplicity="*" />
           <ReferentialConstraint>
@@ -696,7 +697,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Worked_ho__id_pr__6383C8BA">
+        <Association Name="FK__Worked_ho__id_pr__656C112C">
           <End Role="Project" Type="Self.Project" Multiplicity="1" />
           <End Role="Worked_hours" Type="Self.Worked_hours" Multiplicity="*" />
           <ReferentialConstraint>
@@ -708,7 +709,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Roles__id_role__619B8048">
+        <Association Name="FK__Roles__id_role__6383C8BA">
           <End Role="Role_specification" Type="Self.Role_specification" Multiplicity="1" />
           <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
           <ReferentialConstraint>
@@ -734,64 +735,64 @@
           <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="Stage" EntityType="Self.Stage" />
           <EntitySet Name="Worked_hours" EntityType="Self.Worked_hours" />
-          <AssociationSet Name="FK__Anotation__id_pr__5BE2A6F2" Association="Self.FK__Anotation__id_pr__5BE2A6F2">
+          <AssociationSet Name="FK__Anotation__id_pr__5CD6CB2B" Association="Self.FK__Anotation__id_pr__5CD6CB2B">
             <End Role="Project" EntitySet="Project" />
             <End Role="Anotations" EntitySet="Anotations" />
           </AssociationSet>
-          <AssociationSet Name="FK__Bill__id_materia__6C190EBB" Association="Self.FK__Bill__id_materia__6C190EBB">
+          <AssociationSet Name="FK__Bill__id_materia__6E01572D" Association="Self.FK__Bill__id_materia__6E01572D">
             <End Role="Materials" EntitySet="Materials" />
             <End Role="Bill" EntitySet="Bill" />
           </AssociationSet>
-          <AssociationSet Name="FK__Bill__id_provide__6B24EA82" Association="Self.FK__Bill__id_provide__6B24EA82">
+          <AssociationSet Name="FK__Bill__id_provide__6D0D32F4" Association="Self.FK__Bill__id_provide__6D0D32F4">
             <End Role="Provider" EntitySet="Provider" />
             <End Role="Bill" EntitySet="Bill" />
           </AssociationSet>
-          <AssociationSet Name="FK__Bill__id_stage__6A30C649" Association="Self.FK__Bill__id_stage__6A30C649">
+          <AssociationSet Name="FK__Bill__id_stage__6C190EBB" Association="Self.FK__Bill__id_stage__6C190EBB">
             <End Role="Stage" EntitySet="Stage" />
             <End Role="Bill" EntitySet="Bill" />
           </AssociationSet>
-          <AssociationSet Name="FK__Project__id_clie__59FA5E80" Association="Self.FK__Project__id_clie__59FA5E80">
+          <AssociationSet Name="FK__Project__id_clie__5AEE82B9" Association="Self.FK__Project__id_clie__5AEE82B9">
             <End Role="Client" EntitySet="Client" />
             <End Role="Project" EntitySet="Project" />
           </AssociationSet>
-          <AssociationSet Name="FK__Passwords__id_em__5EBF139D" Association="Self.FK__Passwords__id_em__5EBF139D">
+          <AssociationSet Name="FK__Passwords__id_em__60A75C0F" Association="Self.FK__Passwords__id_em__60A75C0F">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Passwords" EntitySet="Passwords" />
           </AssociationSet>
-          <AssociationSet Name="FK__Project__manager__5AEE82B9" Association="Self.FK__Project__manager__5AEE82B9">
+          <AssociationSet Name="FK__Project__manager__5BE2A6F2" Association="Self.FK__Project__manager__5BE2A6F2">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Project" EntitySet="Project" />
           </AssociationSet>
-          <AssociationSet Name="FK__Roles__id_employ__60A75C0F" Association="Self.FK__Roles__id_employ__60A75C0F">
+          <AssociationSet Name="FK__Roles__id_employ__628FA481" Association="Self.FK__Roles__id_employ__628FA481">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Roles" EntitySet="Roles" />
           </AssociationSet>
-          <AssociationSet Name="FK__Worked_ho__id_em__6477ECF3" Association="Self.FK__Worked_ho__id_em__6477ECF3">
+          <AssociationSet Name="FK__Worked_ho__id_em__66603565" Association="Self.FK__Worked_ho__id_em__66603565">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Worked_hours" EntitySet="Worked_hours" />
           </AssociationSet>
-          <AssociationSet Name="FK__Materials__id_ma__68487DD7" Association="Self.FK__Materials__id_ma__68487DD7">
+          <AssociationSet Name="FK__Materials__id_ma__6A30C649" Association="Self.FK__Materials__id_ma__6A30C649">
             <End Role="Materials" EntitySet="Materials" />
             <End Role="MaterialsxStage" EntitySet="MaterialsxStage" />
           </AssociationSet>
-          <AssociationSet Name="FK__Materials__id_st__6754599E" Association="Self.FK__Materials__id_st__6754599E">
+          <AssociationSet Name="FK__Materials__id_st__693CA210" Association="Self.FK__Materials__id_st__693CA210">
             <End Role="Stage" EntitySet="Stage" />
             <End Role="MaterialsxStage" EntitySet="MaterialsxStage" />
           </AssociationSet>
-          <AssociationSet Name="FK__Stage__id_projec__5CD6CB2B" Association="Self.FK__Stage__id_projec__5CD6CB2B">
+          <AssociationSet Name="FK__Stage__id_projec__5DCAEF64" Association="Self.FK__Stage__id_projec__5DCAEF64">
             <End Role="Project" EntitySet="Project" />
             <End Role="Stage" EntitySet="Stage" />
           </AssociationSet>
-          <AssociationSet Name="FK__Worked_ho__id_pr__6383C8BA" Association="Self.FK__Worked_ho__id_pr__6383C8BA">
+          <AssociationSet Name="FK__Worked_ho__id_pr__656C112C" Association="Self.FK__Worked_ho__id_pr__656C112C">
             <End Role="Project" EntitySet="Project" />
             <End Role="Worked_hours" EntitySet="Worked_hours" />
           </AssociationSet>
-          <AssociationSet Name="FK__Roles__id_role__619B8048" Association="Self.FK__Roles__id_role__619B8048">
+          <AssociationSet Name="FK__Roles__id_role__6383C8BA" Association="Self.FK__Roles__id_role__6383C8BA">
             <End Role="Role_specification" EntitySet="Role_specification" />
             <End Role="Roles" EntitySet="Roles" />
           </AssociationSet>
           <FunctionImport Name="usp_budget" ReturnType="Collection(TeConstruyeModel.usp_budget_Result)">
-          <Parameter Name="idProject" Mode="In" Type="Int32" />
+            <Parameter Name="idProject" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="usp_employee_payment" ReturnType="Collection(TeConstruyeModel.usp_employee_payment_Result)">
             <Parameter Name="first_date" Mode="In" Type="DateTime" />
@@ -803,19 +804,19 @@
             <Parameter Name="id_proj" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="usp_material_stage" ReturnType="Collection(Int32)">
-          <Parameter Name="id_stage" Mode="In" Type="Int32" />
+            <Parameter Name="id_stage" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="usp_posible_manager" ReturnType="Collection(TeConstruyeModel.usp_posible_manager_Result)" />
           <FunctionImport Name="usp_project_client" ReturnType="Collection(TeConstruyeModel.usp_project_client_Result)" />
           <FunctionImport Name="usp_status" ReturnType="Collection(TeConstruyeModel.usp_status_Result)">
-          <Parameter Name="id_proj" Mode="In" Type="Int32" />
+            <Parameter Name="id_proj" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="usp_total_bills" ReturnType="Collection(TeConstruyeModel.usp_total_bills_Result)">
-          <Parameter Name="id_proj" Mode="In" Type="Int32" />
+            <Parameter Name="id_proj" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="usp_total_stage" ReturnType="Collection(TeConstruyeModel.usp_total_stage_Result)">
-          <Parameter Name="id_stage" Mode="In" Type="Int32" />
+            <Parameter Name="id_stage" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="usp_posible_manager" ReturnType="Collection(Int32)" />
         </EntityContainer>
         <ComplexType Name="usp_budget_Result">
           <Property Type="String" Name="Etapa" Nullable="false" MaxLength="40" />
@@ -841,6 +842,15 @@
           <Property Type="String" Name="Etapa" Nullable="false" MaxLength="40" />
           <Property Type="Int32" Name="Precio" Nullable="false" />
           <Property Type="String" Name="Proyecto" Nullable="false" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="usp_posible_manager_Result">
+          <Property Type="Int32" Name="Id_Employee" Nullable="false" />
+          <Property Type="String" Name="Identification" Nullable="false" MaxLength="9" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Lastname1" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Lastname2" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Phone" Nullable="false" MaxLength="15" />
+          <Property Type="Int32" Name="hour_cost" Nullable="false" />
         </ComplexType>
         <ComplexType Name="usp_project_client_Result">
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
@@ -1044,6 +1054,19 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="usp_material_stage" FunctionName="TeConstruyeModel.Store.usp_material_stage" />
+          <FunctionImportMapping FunctionImportName="usp_posible_manager" FunctionName="TeConstruyeModel.Store.usp_posible_manager">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TeConstruyeModel.usp_posible_manager_Result">
+                <ScalarProperty Name="Id_Employee" ColumnName="Id_Employee" />
+                <ScalarProperty Name="Identification" ColumnName="Identification" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Lastname1" ColumnName="Lastname1" />
+                <ScalarProperty Name="Lastname2" ColumnName="Lastname2" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="hour_cost" ColumnName="hour_cost" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="usp_project_client" FunctionName="TeConstruyeModel.Store.usp_project_client">
             <ResultMapping>
               <ComplexTypeMapping TypeName="TeConstruyeModel.usp_project_client_Result">
@@ -1081,7 +1104,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="usp_posible_manager" FunctionName="TeConstruyeModel.Store.usp_posible_manager" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
