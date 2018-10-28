@@ -29,13 +29,10 @@ namespace WebApplication1.Controllers
 
             }
             Worked_Hours_Data wh = worked_Hours_Logic.GetWorkedHours(id);
-            List<Object> list = new List<Object>();
             if (wh != null)
             {
-
-                list.Add(wh);
                 // ok code 200
-                return Ok(list);
+                return Ok(wh);
 
             }
             else
