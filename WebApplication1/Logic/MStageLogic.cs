@@ -16,7 +16,7 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    var mstageList = construyeEntities.MaterialsxStage.ToList();
+                    var mstageList = construyeEntities.MaterialsxStages.ToList();
                     int n = mstageList.Count;
                     if (n == 0)
                     {
@@ -63,7 +63,7 @@ namespace WebApplication1.Logic
                         result = null;
                         return result;
                     }
-                    materialsxStage = construyeEntities.MaterialsxStage.Find(id_stage, id_material);
+                    materialsxStage = construyeEntities.MaterialsxStages.Find(id_stage, id_material);
                     result.id_material = materialsxStage.id_material;
                     result.id_stage = materialsxStage.id_stage;
                     result.price = materialsxStage.price;
@@ -83,7 +83,7 @@ namespace WebApplication1.Logic
         {
             using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
-                var i = construyeEntities.MaterialsxStage.Find(id_stage, id_material);
+                var i = construyeEntities.MaterialsxStages.Find(id_stage, id_material);
                 if (i == null) return false;
                 else return true;
 
@@ -100,11 +100,11 @@ namespace WebApplication1.Logic
                 newMs.id_stage = data.id_stage;
                 newMs.price = data.price;
                 newMs.quantity = data.quantity;
-                newMs.Materials = construyeEntities.Materials.Find(data.id_material);
-                newMs.Stage = construyeEntities.Stage.Find(data.id_stage);
+                newMs.Material = construyeEntities.Materials.Find(data.id_material);
+                newMs.Stage = construyeEntities.Stages.Find(data.id_stage);
                 try
                 {
-                    construyeEntities.MaterialsxStage.Add(newMs);
+                    construyeEntities.MaterialsxStages.Add(newMs);
                     construyeEntities.SaveChanges();
                     return true;
                 }
@@ -124,8 +124,8 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    var ms = construyeEntities.MaterialsxStage.Find(id_stage, id_material);
-                    construyeEntities.MaterialsxStage.Remove(ms);
+                    var ms = construyeEntities.MaterialsxStages.Find(id_stage, id_material);
+                    construyeEntities.MaterialsxStages.Remove(ms);
                     construyeEntities.SaveChanges();
                     return true;
                 }
@@ -146,13 +146,13 @@ namespace WebApplication1.Logic
 
                 try
                 {
-                    var ms = construyeEntities.MaterialsxStage.Find(data.id_stage, data.id_material);
+                    var ms = construyeEntities.MaterialsxStages.Find(data.id_stage, data.id_material);
                     ms.id_material = data.id_material;
                     ms.id_stage = data.id_stage;
                     ms.price = data.price;
                     ms.quantity = data.quantity;
-                    ms.Materials = construyeEntities.Materials.Find(data.id_material);
-                    ms.Stage = construyeEntities.Stage.Find(data.id_stage);
+                    ms.Material = construyeEntities.Materials.Find(data.id_material);
+                    ms.Stage = construyeEntities.Stages.Find(data.id_stage);
                     construyeEntities.SaveChanges();
                     return true;
 

@@ -17,7 +17,7 @@ namespace WebApplication1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Client()
         {
-            this.Project = new HashSet<Project>();
+            this.Projects = new HashSet<Project>();
         }
     
         public string identification { get; set; }
@@ -28,6 +28,6 @@ namespace WebApplication1.Models
         public string email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Project> Project { get; set; }
+        public virtual ICollection<Project> Projects { get; set; }
     }
 }

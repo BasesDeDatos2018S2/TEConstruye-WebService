@@ -52,7 +52,7 @@ namespace WebApplication1.Logic
         public Role_Data GetRoles(int ID)
         {
             Role_Data result = new Role_Data();
-            Roles role;
+            Role role;
             using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 try
@@ -93,13 +93,13 @@ namespace WebApplication1.Logic
         {
             using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
-                Roles role = new Roles();
+                Role role = new Role();
                 role.id = data.id;
                 role.id_employee = data.id_employee;
                 role.id_role = data.id_role;
                 role.start_date = data.start_date;
                 role.Role_specification = construyeEntities.Role_specification.Find(data.id_role);
-                role.Employee = construyeEntities.Employee.Find(data.id_employee);
+                role.Employee = construyeEntities.Employees.Find(data.id_employee);
                 try
                 {
                     construyeEntities.Roles.Add(role);
@@ -146,7 +146,7 @@ namespace WebApplication1.Logic
                     role.id_employee = data.id_employee;
                     role.start_date = data.start_date;
                     role.Role_specification = construyeEntities.Role_specification.Find(data.id_role);
-                    role.Employee = construyeEntities.Employee.Find(data.id_employee);
+                    role.Employee = construyeEntities.Employees.Find(data.id_employee);
                     construyeEntities.SaveChanges();
                     return true;
                 }

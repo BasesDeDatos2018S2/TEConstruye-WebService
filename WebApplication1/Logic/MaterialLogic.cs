@@ -91,7 +91,7 @@ namespace WebApplication1.Logic
         {
             using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
-                Materials material = new Materials();
+                Material material = new Material();
                 material.id = data.id;
                 material.name = data.name;
                 material.price = data.price;

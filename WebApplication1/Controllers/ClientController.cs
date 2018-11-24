@@ -10,10 +10,17 @@ using WebApplication1.Models;
 namespace WebApplication1.Controllers
 {
 
-    [Authorize(Roles = "Administrador")]
+    //[Authorize(Roles = "Administrador")]
     public class ClientController : ApiController
     {
         private ClientLogic clientLogic = new ClientLogic();
+
+        [Route("api/tavo")]
+        [HttpGet]
+        public IHttpActionResult GetResult()
+        {
+            return Ok("nanitos123");
+        }
 
         [Route("api/client/{ssn}")]
         [HttpGet]

@@ -12,10 +12,10 @@ namespace WebApplication1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Passwords
+    public partial class Password
     {
         public int id_employee { get; set; }
-        public string password { get; set; }
+        public string password1 { get; set; }
     
         public virtual Employee Employee { get; set; }
     }

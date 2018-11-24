@@ -22,7 +22,7 @@ namespace WebApplication1.Logic
                         result = null;
                         return result;
                     }
-                    bill = construyeEntities.Bill.Find(ID);
+                    bill = construyeEntities.Bills.Find(ID);
                     result.id = bill.id;
                     result.id_material = bill.id_material;
                     result.id_provider = bill.id_provider;
@@ -48,7 +48,7 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    var billList = construyeEntities.Bill.ToList();
+                    var billList = construyeEntities.Bills.ToList();
                     int n = billList.Count;
                     if (n == 0)
                     {
@@ -87,7 +87,7 @@ namespace WebApplication1.Logic
         {
             using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
-                var i = construyeEntities.Bill.Find(id);
+                var i = construyeEntities.Bills.Find(id);
                 if (i == null) return false;
                 else return true;
 
@@ -107,14 +107,14 @@ namespace WebApplication1.Logic
                 bill.price = data.price;
                 bill.serial = data.serial;
                 bill.date = data.date;
-                bill.Materials = construyeEntities.Materials.Find(data.id_material);
-                bill.Provider = construyeEntities.Provider.Find(data.id_provider);
-                bill.Stage = construyeEntities.Stage.Find(data.id_stage);
+                bill.Material = construyeEntities.Materials.Find(data.id_material);
+                bill.Provider = construyeEntities.Providers.Find(data.id_provider);
+                bill.Stage = construyeEntities.Stages.Find(data.id_stage);
                 
                 
                 try
                 {
-                    construyeEntities.Bill.Add(bill);
+                    construyeEntities.Bills.Add(bill);
                     construyeEntities.SaveChanges();
                     return true;
                 }
@@ -134,8 +134,8 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    var ms = construyeEntities.Bill.Find(id);
-                    construyeEntities.Bill.Remove(ms);
+                    var ms = construyeEntities.Bills.Find(id);
+                    construyeEntities.Bills.Remove(ms);
                     construyeEntities.SaveChanges();
                     return true;
                 }
@@ -156,7 +156,7 @@ namespace WebApplication1.Logic
 
                 try
                 {
-                    var bill = construyeEntities.Bill.Find(data.id);
+                    var bill = construyeEntities.Bills.Find(data.id);
                     bill.id = data.id;
                     bill.id_material = data.id_material;
                     bill.id_provider = data.id_provider;
@@ -164,9 +164,9 @@ namespace WebApplication1.Logic
                     bill.price = data.price;
                     bill.serial = data.serial;
                     bill.date = data.date;
-                    bill.Materials = construyeEntities.Materials.Find(data.id_material);
-                    bill.Provider = construyeEntities.Provider.Find(data.id_provider);
-                    bill.Stage = construyeEntities.Stage.Find(data.id_stage);
+                    bill.Material = construyeEntities.Materials.Find(data.id_material);
+                    bill.Provider = construyeEntities.Providers.Find(data.id_provider);
+                    bill.Stage = construyeEntities.Stages.Find(data.id_stage);
                     construyeEntities.SaveChanges();
                     return true;
 

@@ -33,7 +33,7 @@ namespace WebApplication1.Logic
                             data.id = anotationsList.ElementAt(i).id;
                             data.id_project = anotationsList.ElementAt(i).id_project;
                             data.date = anotationsList.ElementAt(i).date;
-                            data.anotation = anotationsList.ElementAt(i).anotation;
+                            data.anotation = anotationsList.ElementAt(i).anotation1;
                             dataList.Add(data);
                         }
                         return dataList;
@@ -52,7 +52,7 @@ namespace WebApplication1.Logic
         public Anotations_Data GetAnotation(int ID)
         {
             Anotations_Data result = new Anotations_Data();
-            Anotations anotations;
+            Anotation anotations;
             using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 try
@@ -66,7 +66,7 @@ namespace WebApplication1.Logic
                     result.id = anotations.id;
                     result.id_project = anotations.id_project;
                     result.date = anotations.date;
-                    result.anotation = anotations.anotation;
+                    result.anotation = anotations.anotation1;
                     return result;
 
                 }
@@ -95,12 +95,12 @@ namespace WebApplication1.Logic
         {
             using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
-                Anotations newAnotation = new Anotations();
+                Anotation newAnotation = new Anotation();
                 newAnotation.id = data.id;
                 newAnotation.id_project = data.id_project;
-                newAnotation.anotation = data.anotation;
+                newAnotation.anotation1 = data.anotation;
                 newAnotation.date = data.date;
-                newAnotation.Project = construyeEntities.Project.Find(data.id_project);
+                newAnotation.Project = construyeEntities.Projects.Find(data.id_project);
                 try
                 {
                     construyeEntities.Anotations.Add(newAnotation);
@@ -145,9 +145,9 @@ namespace WebApplication1.Logic
                     var anotation = construyeEntities.Anotations.Find(data.id);
                     anotation.id = data.id;
                     anotation.id_project = data.id_project;
-                    anotation.anotation = data.anotation;
+                    anotation.anotation1 = data.anotation;
                     anotation.date = data.date;
-                    anotation.Project = construyeEntities.Project.Find(data.id_project);
+                    anotation.Project = construyeEntities.Projects.Find(data.id_project);
                     construyeEntities.SaveChanges();
                     return true;
                 }

@@ -17,8 +17,8 @@ namespace WebApplication1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Project()
         {
-            this.Anotations = new HashSet<Anotations>();
-            this.Stage = new HashSet<Stage>();
+            this.Anotations = new HashSet<Anotation>();
+            this.Stages = new HashSet<Stage>();
             this.Worked_hours = new HashSet<Worked_hours>();
         }
     
@@ -29,11 +29,11 @@ namespace WebApplication1.Models
         public int manager { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Anotations> Anotations { get; set; }
+        public virtual ICollection<Anotation> Anotations { get; set; }
         public virtual Client Client { get; set; }
         public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Stage> Stage { get; set; }
+        public virtual ICollection<Stage> Stages { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Worked_hours> Worked_hours { get; set; }
     }

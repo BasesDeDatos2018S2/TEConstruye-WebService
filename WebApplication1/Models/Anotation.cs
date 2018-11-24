@@ -12,11 +12,11 @@ namespace WebApplication1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Anotations
+    public partial class Anotation
     {
         public int id { get; set; }
         public int id_project { get; set; }
-        public string anotation { get; set; }
+        public string anotation1 { get; set; }
         public System.DateTime date { get; set; }
     
         public virtual Project Project { get; set; }

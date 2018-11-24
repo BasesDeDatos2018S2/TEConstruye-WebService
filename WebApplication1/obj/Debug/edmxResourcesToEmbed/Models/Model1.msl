@@ -2,16 +2,16 @@
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="TeConstruyeModelStoreContainer" CdmEntityContainer="TeConstruyeEntities1">
     <EntitySetMapping Name="Anotations">
-      <EntityTypeMapping TypeName="TeConstruyeModel.Anotations">
+      <EntityTypeMapping TypeName="TeConstruyeModel.Anotation">
         <MappingFragment StoreEntitySet="Anotations">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="id_project" ColumnName="id_project" />
-          <ScalarProperty Name="anotation" ColumnName="anotation" />
+          <ScalarProperty Name="anotation1" ColumnName="anotation" />
           <ScalarProperty Name="date" ColumnName="date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Bill">
+    <EntitySetMapping Name="Bills">
       <EntityTypeMapping TypeName="TeConstruyeModel.Bill">
         <MappingFragment StoreEntitySet="Bill">
           <ScalarProperty Name="id" ColumnName="id" />
@@ -24,7 +24,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Client">
+    <EntitySetMapping Name="Clients">
       <EntityTypeMapping TypeName="TeConstruyeModel.Client">
         <MappingFragment StoreEntitySet="Client">
           <ScalarProperty Name="identification" ColumnName="identification" />
@@ -36,7 +36,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Employee">
+    <EntitySetMapping Name="Employees">
       <EntityTypeMapping TypeName="TeConstruyeModel.Employee">
         <MappingFragment StoreEntitySet="Employee">
           <ScalarProperty Name="id" ColumnName="id" />
@@ -50,7 +50,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Materials">
-      <EntityTypeMapping TypeName="TeConstruyeModel.Materials">
+      <EntityTypeMapping TypeName="TeConstruyeModel.Material">
         <MappingFragment StoreEntitySet="Materials">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
@@ -59,7 +59,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="MaterialsxStage">
+    <EntitySetMapping Name="MaterialsxStages">
       <EntityTypeMapping TypeName="TeConstruyeModel.MaterialsxStage">
         <MappingFragment StoreEntitySet="MaterialsxStage">
           <ScalarProperty Name="id_stage" ColumnName="id_stage" />
@@ -70,14 +70,14 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Passwords">
-      <EntityTypeMapping TypeName="TeConstruyeModel.Passwords">
+      <EntityTypeMapping TypeName="TeConstruyeModel.Password">
         <MappingFragment StoreEntitySet="Passwords">
           <ScalarProperty Name="id_employee" ColumnName="id_employee" />
-          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="password1" ColumnName="password" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Project">
+    <EntitySetMapping Name="Projects">
       <EntityTypeMapping TypeName="TeConstruyeModel.Project">
         <MappingFragment StoreEntitySet="Project">
           <ScalarProperty Name="id" ColumnName="id" />
@@ -88,7 +88,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Provider">
+    <EntitySetMapping Name="Providers">
       <EntityTypeMapping TypeName="TeConstruyeModel.Provider">
         <MappingFragment StoreEntitySet="Provider">
           <ScalarProperty Name="id" ColumnName="id" />
@@ -105,7 +105,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Roles">
-      <EntityTypeMapping TypeName="TeConstruyeModel.Roles">
+      <EntityTypeMapping TypeName="TeConstruyeModel.Role">
         <MappingFragment StoreEntitySet="Roles">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="id_role" ColumnName="id_role" />
@@ -114,7 +114,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Stage">
+    <EntitySetMapping Name="Stages">
       <EntityTypeMapping TypeName="TeConstruyeModel.Stage">
         <MappingFragment StoreEntitySet="Stage">
           <ScalarProperty Name="id" ColumnName="id" />

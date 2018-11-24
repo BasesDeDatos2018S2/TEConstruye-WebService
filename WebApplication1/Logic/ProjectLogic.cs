@@ -16,7 +16,7 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    var projectList = construyeEntities.Project.ToList();
+                    var projectList = construyeEntities.Projects.ToList();
                     int n = projectList.Count;
                     if (n == 0)
                     {
@@ -39,7 +39,7 @@ namespace WebApplication1.Logic
 
 
                             var costos = construyeEntities.usp_total_bills(pr.id).First();
-                            var etapasList = construyeEntities.Stage.Where(e => e.id_project == pr.id).ToList();
+                            var etapasList = construyeEntities.Stages.Where(e => e.id_project == pr.id).ToList();
                             List<int> idStageList = new List<int>();
                             for (int j = 0; j < etapasList.Count; ++j)
                             {
@@ -95,7 +95,7 @@ namespace WebApplication1.Logic
                         project = null;
                         return project;
                     }
-                    pr = construyeEntities.Project.Where(e => e.id == id).ToList().First();
+                    pr = construyeEntities.Projects.Where(e => e.id == id).ToList().First();
                     project.id = pr.id;
                     project.id_client = pr.id_client;
                     project.manager = pr.manager;
@@ -104,7 +104,7 @@ namespace WebApplication1.Logic
 
 
                     var costos = construyeEntities.usp_total_bills(id).First();
-                    var etapasList = construyeEntities.Stage.Where(e => e.id_project == id).ToList();
+                    var etapasList = construyeEntities.Stages.Where(e => e.id_project == id).ToList();
                     List<int> idStageList = new List<int>();
                     for (int i = 0; i < etapasList.Count; ++i)
                     {
@@ -139,7 +139,7 @@ namespace WebApplication1.Logic
         {
             using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
-                var i = construyeEntities.Project.Find(id);
+                var i = construyeEntities.Projects.Find(id);
                 if (i == null) return false;
                 else return true;
             }
@@ -155,10 +155,10 @@ namespace WebApplication1.Logic
                 newProject.manager = data.manager;
                 newProject.name = data.name;
                 newProject.ubication = data.ubication;
-                newProject.Client = construyeEntities.Client.Find(data.id_client);
+                newProject.Client = construyeEntities.Clients.Find(data.id_client);
                 try
                 {
-                    construyeEntities.Project.Add(newProject);
+                    construyeEntities.Projects.Add(newProject);
                     construyeEntities.SaveChanges();
                     return true;
                 }
@@ -175,8 +175,8 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    var ms = construyeEntities.Project.Find(id);
-                    construyeEntities.Project.Remove(ms);
+                    var ms = construyeEntities.Projects.Find(id);
+                    construyeEntities.Projects.Remove(ms);
                     construyeEntities.SaveChanges();
                     return true;
                 }
@@ -193,13 +193,13 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    var project = construyeEntities.Project.Find(data.id);
+                    var project = construyeEntities.Projects.Find(data.id);
                     project.id = data.id;
                     project.id_client = data.id_client;
                     project.manager = data.manager;
                     project.name = data.name;
                     project.ubication = data.ubication;
-                    project.Client = construyeEntities.Client.Find(data.id_client);
+                    project.Client = construyeEntities.Clients.Find(data.id_client);
                     construyeEntities.SaveChanges();
                     return true;
                 }

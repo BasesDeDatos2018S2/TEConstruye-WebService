@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="TeConstruyeEntities1-Web.config Connection String" description="TeConstruyeEntities1 Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="metadata=res://*/Models.Model1.csdl|res://*/Models.Model1.ssdl|res://*/Models.Model1.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=teconstruye-db.cg8mqwwu18oy.us-east-2.rds.amazonaws.com;initial catalog=TeConstruye;user id=tavo;password=K8tS2b68Km58gGQmaGZN;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\ggg\\Documents\\GitHub\\TEConstruye-WebService\\WebApplication1\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='TeConstruyeEntities1']/@connectionString" />
+  </parameter>
+</parameters>

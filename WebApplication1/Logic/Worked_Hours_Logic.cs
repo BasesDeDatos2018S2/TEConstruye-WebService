@@ -103,8 +103,8 @@ namespace WebApplication1.Logic
                 newwh.id_project = data.id_project;
                 newwh.hours = data.hours;
                 newwh.date = data.date;
-                newwh.Project = construyeEntities.Project.Find(data.id_project);
-                newwh.Employee = construyeEntities.Employee.Find(data.id_employee);
+                newwh.Project = construyeEntities.Projects.Find(data.id_project);
+                newwh.Employee = construyeEntities.Employees.Find(data.id_employee);
                 
                 try
                 {
@@ -153,8 +153,8 @@ namespace WebApplication1.Logic
                     wh.id_project = data.id_project;
                     wh.hours = data.hours;
                     wh.date = data.date;
-                    wh.Project = construyeEntities.Project.Find(data.id_project);
-                    wh.Employee = construyeEntities.Employee.Find(data.id_employee);
+                    wh.Project = construyeEntities.Projects.Find(data.id_project);
+                    wh.Employee = construyeEntities.Employees.Find(data.id_employee);
                     construyeEntities.SaveChanges();
                     return true;
                 }

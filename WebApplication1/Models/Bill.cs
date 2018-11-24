@@ -22,7 +22,7 @@ namespace WebApplication1.Models
         public int id_material { get; set; }
         public int id_provider { get; set; }
     
-        public virtual Materials Materials { get; set; }
+        public virtual Material Material { get; set; }
         public virtual Provider Provider { get; set; }
         public virtual Stage Stage { get; set; }
     }

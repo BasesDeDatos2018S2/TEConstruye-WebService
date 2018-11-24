@@ -20,7 +20,7 @@ namespace WebApplication1.Logic
                         employee = null;
                         return employee;
                     }
-                    var emp = construyeEntities.Employee.Find(ID);
+                    var emp = construyeEntities.Employees.Find(ID);
                     employee.id = emp.id;
                     employee.identification = emp.identification;
                     employee.name = emp.name;
@@ -46,7 +46,7 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    var employeeList = construyeEntities.Employee.ToList();
+                    var employeeList = construyeEntities.Employees.ToList();
                     int n = employeeList.Count;
                     if (n == 0)
                     {
@@ -86,7 +86,7 @@ namespace WebApplication1.Logic
         {
             using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
-                var i = construyeEntities.Employee.Find(id);
+                var i = construyeEntities.Employees.Find(id);
                 if (i == null) return false;
                 else return true;
             }
@@ -106,7 +106,7 @@ namespace WebApplication1.Logic
                 newEmployee.hour_cost = data.hour_cost;
                 try
                 {
-                    construyeEntities.Employee.Add(newEmployee);
+                    construyeEntities.Employees.Add(newEmployee);
                     construyeEntities.SaveChanges();
                     return true;
                 }
@@ -123,8 +123,8 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    var ms = construyeEntities.Employee.Find(id);
-                    construyeEntities.Employee.Remove(ms);
+                    var ms = construyeEntities.Employees.Find(id);
+                    construyeEntities.Employees.Remove(ms);
                     construyeEntities.SaveChanges();
                     return true;
                 }
@@ -141,7 +141,7 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    var employee = construyeEntities.Employee.Find(data.id);
+                    var employee = construyeEntities.Employees.Find(data.id);
                     employee.id = data.id;
                     employee.identification = data.identification;
                     employee.name = data.name;

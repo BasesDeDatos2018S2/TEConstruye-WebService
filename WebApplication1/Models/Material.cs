@@ -12,13 +12,13 @@ namespace WebApplication1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Materials
+    public partial class Material
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Materials()
+        public Material()
         {
-            this.Bill = new HashSet<Bill>();
-            this.MaterialsxStage = new HashSet<MaterialsxStage>();
+            this.Bills = new HashSet<Bill>();
+            this.MaterialsxStages = new HashSet<MaterialsxStage>();
         }
     
         public int id { get; set; }
@@ -27,8 +27,8 @@ namespace WebApplication1.Models
         public int price { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Bill> Bill { get; set; }
+        public virtual ICollection<Bill> Bills { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MaterialsxStage> MaterialsxStage { get; set; }
+        public virtual ICollection<MaterialsxStage> MaterialsxStages { get; set; }
     }
 }

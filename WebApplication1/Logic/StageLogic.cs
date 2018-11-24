@@ -16,7 +16,7 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    var stageList = construyeEntities.Stage.ToList();
+                    var stageList = construyeEntities.Stages.ToList();
                     int n = stageList.Count;
                     if (n == 0)
                     {
@@ -39,14 +39,14 @@ namespace WebApplication1.Logic
 
 
                             var costos = construyeEntities.usp_total_stage(data.id).First();
-                            var idMaterials = construyeEntities.MaterialsxStage.Where(e => e.id_stage == data.id).ToList();
+                            var idMaterials = construyeEntities.MaterialsxStages.Where(e => e.id_stage == data.id).ToList();
                             List<int> idmaterialList = new List<int>();
                             for (int j = 0; j < idMaterials.Count; ++j)
                             {
                                 idmaterialList.Add(idMaterials.ElementAt(j).id_material);
                             }
 
-                            var billList = stageList.ElementAt(i).Bill.ToList();
+                            var billList = stageList.ElementAt(i).Bills.ToList();
                             List<int> idbillList = new List<int>();
                             for (int j = 0; j < billList.Count; j++)
                             {
@@ -96,7 +96,7 @@ namespace WebApplication1.Logic
                         result = null;
                         return result;
                     }
-                    data = construyeEntities.Stage.Find(id);
+                    data = construyeEntities.Stages.Find(id);
                     result.id = data.id;
                     result.id_project = data.id_project;
                     result.name = data.name;
@@ -106,14 +106,14 @@ namespace WebApplication1.Logic
                     result.description = data.description;
 
                     var costos = construyeEntities.usp_total_stage(id).First();
-                    var idMaterials = construyeEntities.MaterialsxStage.Where(e => e.id_stage == id).ToList();
+                    var idMaterials = construyeEntities.MaterialsxStages.Where(e => e.id_stage == id).ToList();
                     List<int> idmaterialList = new List<int>();
                     for (int i = 0; i < idMaterials.Count; ++i)
                     {
                         idmaterialList.Add(idMaterials.ElementAt(i).id_material);
                     }
 
-                    var billList = data.Bill.ToList();
+                    var billList = data.Bills.ToList();
                     List<int> idbillList = new List<int>();
                     for (int i = 0; i < billList.Count; ++i)
                     {
@@ -150,7 +150,7 @@ namespace WebApplication1.Logic
         {
             using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
-                var i = construyeEntities.Stage.Find(id);
+                var i = construyeEntities.Stages.Find(id);
                 if (i == null) return false;
                 else return true;
             }
@@ -170,11 +170,11 @@ namespace WebApplication1.Logic
                 newStage.status = data.status;
                 newStage.end_date = data.end_date;
                 newStage.description = data.description;
-                newStage.Project = construyeEntities.Project.Find(data.id_project);
+                newStage.Project = construyeEntities.Projects.Find(data.id_project);
                 
                 try
                 {
-                    construyeEntities.Stage.Add(newStage);
+                    construyeEntities.Stages.Add(newStage);
                     construyeEntities.SaveChanges();
                     return true;
                 }
@@ -193,8 +193,8 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    var ms = construyeEntities.Stage.Find(id);
-                    construyeEntities.Stage.Remove(ms);
+                    var ms = construyeEntities.Stages.Find(id);
+                    construyeEntities.Stages.Remove(ms);
                     construyeEntities.SaveChanges();
                     return true;
                 }
@@ -213,7 +213,7 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    var stage = construyeEntities.Stage.Find(data.id);
+                    var stage = construyeEntities.Stages.Find(data.id);
                     stage.id = data.id;
                     stage.id_project = data.id_project;
                     stage.name = data.name;
@@ -221,7 +221,7 @@ namespace WebApplication1.Logic
                     stage.status = data.status;
                     stage.end_date = data.end_date;
                     stage.description = data.description;
-                    stage.Project = construyeEntities.Project.Find(data.id_project);
+                    stage.Project = construyeEntities.Projects.Find(data.id_project);
                     construyeEntities.SaveChanges();
                     return true;
                 }

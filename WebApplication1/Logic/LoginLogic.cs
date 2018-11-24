@@ -14,11 +14,11 @@ namespace WebApplication1.Logic
             using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
                 
-                Passwords login = new Passwords();
-                int id = construyeEntities.Employee.Where(e => e.identification == data.ssn).ToList().First().id;
+                Password login = new Password();
+                int id = construyeEntities.Employees.Where(e => e.identification == data.ssn).ToList().First().id;
                 login.id_employee = id;
-                login.password = data.password;
-                login.Employee = construyeEntities.Employee.Find(id);
+                login.password1 = data.password;
+                login.Employee = construyeEntities.Employees.Find(id);
                 try
                 {
                     construyeEntities.Passwords.Add(login);
@@ -40,7 +40,7 @@ namespace WebApplication1.Logic
                 {
 
                     var ms = construyeEntities.Passwords.Find(
-                        construyeEntities.Employee.Where(e => e.identification == username).ToList().First().id);
+                        construyeEntities.Employees.Where(e => e.identification == username).ToList().First().id);
                     construyeEntities.Passwords.Remove(ms);
                     construyeEntities.SaveChanges();
                     return true;
@@ -59,9 +59,9 @@ namespace WebApplication1.Logic
                 ResponseLoginObject response = new ResponseLoginObject();
                 try
                 {
-                    int id = construyeEntities.Employee.Where(e => e.identification == log.ssn).ToList().First().id;
+                    int id = construyeEntities.Employees.Where(e => e.identification == log.ssn).ToList().First().id;
                     var loginRequest = construyeEntities.Passwords.Find(id);
-                    if (!(loginRequest.id_employee == id && loginRequest.password == log.password))
+                    if (!(loginRequest.id_employee == id && loginRequest.password1 == log.password))
                     {
                         response.status = false;
                         response.role = null;
@@ -131,7 +131,7 @@ namespace WebApplication1.Logic
                 {
                     return false;
                 }
-                int id = construyeEntities.Employee.Where(e => e.identification == ids).ToList().First().id;
+                int id = construyeEntities.Employees.Where(e => e.identification == ids).ToList().First().id;
                 var i = construyeEntities.Passwords.Find(id);
                 if (i == null) return false;
                 else return true;

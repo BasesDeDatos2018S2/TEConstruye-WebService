@@ -23,14 +23,14 @@ namespace WebApplication1.Logic
                         client = null;
                         return client;
                     }
-                    var cli = construyeEntities.Client.Find(ssn);
+                    var cli = construyeEntities.Clients.Find(ssn);
                     client.identification = cli.identification;
                     client.name = cli.name;
                     client.lastname1 = cli.lastname1;
                     client.lastname2 = cli.lastname2;
                     client.phone = cli.phone;
                     client.email = cli.email;
-                    var projects = construyeEntities.Project.Where(e => e.id_client == ssn).ToList();
+                    var projects = construyeEntities.Projects.Where(e => e.id_client == ssn).ToList();
                     List<Object> lis = new List<Object>();
                     for (int j = 0; j < projects.Count; ++j)
                     {
@@ -55,7 +55,7 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    var clientList = construyeEntities.Client.ToList();
+                    var clientList = construyeEntities.Clients.ToList();
                     int n = clientList.Count;
                     if (n == 0)
                     {
@@ -74,7 +74,7 @@ namespace WebApplication1.Logic
                             data.lastname2 = clientList.ElementAt(i).lastname2;
                             data.phone = clientList.ElementAt(i).phone;
                             data.email = clientList.ElementAt(i).email;
-                            var projects = construyeEntities.Project.Where(e => e.id_client == data.identification).ToList();
+                            var projects = construyeEntities.Projects.Where(e => e.id_client == data.identification).ToList();
                             List<Object> lis = new List<Object>();
                             for (int j = 0; j < projects.Count; ++j)
                             {
@@ -101,7 +101,7 @@ namespace WebApplication1.Logic
         {
             using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
-                var i = construyeEntities.Client.Find(id);
+                var i = construyeEntities.Clients.Find(id);
                 if (i == null) return false;
                 else return true;
 
@@ -122,7 +122,7 @@ namespace WebApplication1.Logic
                 newClient.email = data.email;
                 try
                 {
-                    construyeEntities.Client.Add(newClient);
+                    construyeEntities.Clients.Add(newClient);
                     construyeEntities.SaveChanges();
                     return true;
                 }
@@ -142,8 +142,8 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    var ms = construyeEntities.Client.Find(id);
-                    construyeEntities.Client.Remove(ms);
+                    var ms = construyeEntities.Clients.Find(id);
+                    construyeEntities.Clients.Remove(ms);
                     construyeEntities.SaveChanges();
                     return true;
                 }
@@ -164,7 +164,7 @@ namespace WebApplication1.Logic
 
                 try
                 {
-                    var client = construyeEntities.Client.Find(data.identification);
+                    var client = construyeEntities.Clients.Find(data.identification);
                     client.identification = data.identification;
                     client.name = data.name;
                     client.lastname1 = data.lastname1;

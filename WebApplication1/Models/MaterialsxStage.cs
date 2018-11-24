@@ -19,7 +19,7 @@ namespace WebApplication1.Models
         public int quantity { get; set; }
         public int price { get; set; }
     
-        public virtual Materials Materials { get; set; }
+        public virtual Material Material { get; set; }
         public virtual Stage Stage { get; set; }
     }
 }

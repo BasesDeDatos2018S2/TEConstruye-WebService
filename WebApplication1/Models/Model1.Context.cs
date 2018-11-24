@@ -27,18 +27,18 @@ namespace WebApplication1.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Anotations> Anotations { get; set; }
-        public virtual DbSet<Bill> Bill { get; set; }
-        public virtual DbSet<Client> Client { get; set; }
-        public virtual DbSet<Employee> Employee { get; set; }
-        public virtual DbSet<Materials> Materials { get; set; }
-        public virtual DbSet<MaterialsxStage> MaterialsxStage { get; set; }
-        public virtual DbSet<Passwords> Passwords { get; set; }
-        public virtual DbSet<Project> Project { get; set; }
-        public virtual DbSet<Provider> Provider { get; set; }
+        public virtual DbSet<Anotation> Anotations { get; set; }
+        public virtual DbSet<Bill> Bills { get; set; }
+        public virtual DbSet<Client> Clients { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<Material> Materials { get; set; }
+        public virtual DbSet<MaterialsxStage> MaterialsxStages { get; set; }
+        public virtual DbSet<Password> Passwords { get; set; }
+        public virtual DbSet<Project> Projects { get; set; }
+        public virtual DbSet<Provider> Providers { get; set; }
         public virtual DbSet<Role_specification> Role_specification { get; set; }
-        public virtual DbSet<Roles> Roles { get; set; }
-        public virtual DbSet<Stage> Stage { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Stage> Stages { get; set; }
         public virtual DbSet<Worked_hours> Worked_hours { get; set; }
     
         public virtual ObjectResult<usp_budget_Result> usp_budget(Nullable<int> idProject)

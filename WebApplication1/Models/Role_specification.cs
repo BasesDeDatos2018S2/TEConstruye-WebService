@@ -17,13 +17,13 @@ namespace WebApplication1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Role_specification()
         {
-            this.Roles = new HashSet<Roles>();
+            this.Roles = new HashSet<Role>();
         }
     
         public int id { get; set; }
         public string specification { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Roles> Roles { get; set; }
+        public virtual ICollection<Role> Roles { get; set; }
     }
 }

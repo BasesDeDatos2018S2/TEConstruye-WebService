@@ -12,7 +12,7 @@ namespace WebApplication1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Roles
+    public partial class Role
     {
         public int id { get; set; }
         public int id_role { get; set; }

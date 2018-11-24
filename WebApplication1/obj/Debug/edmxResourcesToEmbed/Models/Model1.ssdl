@@ -125,7 +125,7 @@
     <Property Name="date" Type="date" Nullable="false" />
     <Property Name="hours" Type="int" Nullable="false" />
   </EntityType>
-  <Association Name="FK__Anotation__id_pr__5CD6CB2B">
+  <Association Name="FK__Anotation__id_pr__5BE2A6F2">
     <End Role="Project" Type="Self.Project" Multiplicity="1" />
     <End Role="Anotations" Type="Self.Anotations" Multiplicity="*" />
     <ReferentialConstraint>
@@ -137,7 +137,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Bill__id_materia__6E01572D">
+  <Association Name="FK__Bill__id_materia__6D0D32F4">
     <End Role="Materials" Type="Self.Materials" Multiplicity="1" />
     <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
     <ReferentialConstraint>
@@ -149,7 +149,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Bill__id_provide__6D0D32F4">
+  <Association Name="FK__Bill__id_provide__6C190EBB">
     <End Role="Provider" Type="Self.Provider" Multiplicity="1" />
     <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
     <ReferentialConstraint>
@@ -161,7 +161,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Bill__id_stage__6C190EBB">
+  <Association Name="FK__Bill__id_stage__6B24EA82">
     <End Role="Stage" Type="Self.Stage" Multiplicity="1" />
     <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
     <ReferentialConstraint>
@@ -173,7 +173,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Materials__id_ma__6A30C649">
+  <Association Name="FK__Materials__id_ma__693CA210">
     <End Role="Materials" Type="Self.Materials" Multiplicity="1" />
     <End Role="MaterialsxStage" Type="Self.MaterialsxStage" Multiplicity="*" />
     <ReferentialConstraint>
@@ -185,7 +185,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Materials__id_st__693CA210">
+  <Association Name="FK__Materials__id_st__68487DD7">
     <End Role="Stage" Type="Self.Stage" Multiplicity="1" />
     <End Role="MaterialsxStage" Type="Self.MaterialsxStage" Multiplicity="*" />
     <ReferentialConstraint>
@@ -197,7 +197,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Passwords__id_em__60A75C0F">
+  <Association Name="FK__Passwords__id_em__5FB337D6">
     <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
     <End Role="Passwords" Type="Self.Passwords" Multiplicity="0..1" />
     <ReferentialConstraint>
@@ -209,7 +209,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Project__id_clie__5AEE82B9">
+  <Association Name="FK__Project__id_clie__59FA5E80">
     <End Role="Client" Type="Self.Client" Multiplicity="1" />
     <End Role="Project" Type="Self.Project" Multiplicity="*" />
     <ReferentialConstraint>
@@ -221,7 +221,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Project__manager__5BE2A6F2">
+  <Association Name="FK__Project__manager__5AEE82B9">
     <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
     <End Role="Project" Type="Self.Project" Multiplicity="*" />
     <ReferentialConstraint>
@@ -233,7 +233,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Roles__id_employ__628FA481">
+  <Association Name="FK__Roles__id_employ__619B8048">
     <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
     <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
     <ReferentialConstraint>
@@ -245,7 +245,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Roles__id_role__6383C8BA">
+  <Association Name="FK__Roles__id_role__628FA481">
     <End Role="Role_specification" Type="Self.Role_specification" Multiplicity="1" />
     <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
     <ReferentialConstraint>
@@ -257,7 +257,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Stage__id_projec__5DCAEF64">
+  <Association Name="FK__Stage__id_projec__5CD6CB2B">
     <End Role="Project" Type="Self.Project" Multiplicity="1" />
     <End Role="Stage" Type="Self.Stage" Multiplicity="*" />
     <ReferentialConstraint>
@@ -269,7 +269,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Worked_ho__id_em__66603565">
+  <Association Name="FK__Worked_ho__id_em__656C112C">
     <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
     <End Role="Worked_hours" Type="Self.Worked_hours" Multiplicity="*" />
     <ReferentialConstraint>
@@ -281,7 +281,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Worked_ho__id_pr__656C112C">
+  <Association Name="FK__Worked_ho__id_pr__6477ECF3">
     <End Role="Project" Type="Self.Project" Multiplicity="1" />
     <End Role="Worked_hours" Type="Self.Worked_hours" Multiplicity="*" />
     <ReferentialConstraint>
@@ -333,59 +333,59 @@
     <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Stage" EntityType="Self.Stage" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Worked_hours" EntityType="Self.Worked_hours" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Anotation__id_pr__5CD6CB2B" Association="Self.FK__Anotation__id_pr__5CD6CB2B">
+    <AssociationSet Name="FK__Anotation__id_pr__5BE2A6F2" Association="Self.FK__Anotation__id_pr__5BE2A6F2">
       <End Role="Project" EntitySet="Project" />
       <End Role="Anotations" EntitySet="Anotations" />
     </AssociationSet>
-    <AssociationSet Name="FK__Bill__id_materia__6E01572D" Association="Self.FK__Bill__id_materia__6E01572D">
+    <AssociationSet Name="FK__Bill__id_materia__6D0D32F4" Association="Self.FK__Bill__id_materia__6D0D32F4">
       <End Role="Materials" EntitySet="Materials" />
       <End Role="Bill" EntitySet="Bill" />
     </AssociationSet>
-    <AssociationSet Name="FK__Bill__id_provide__6D0D32F4" Association="Self.FK__Bill__id_provide__6D0D32F4">
+    <AssociationSet Name="FK__Bill__id_provide__6C190EBB" Association="Self.FK__Bill__id_provide__6C190EBB">
       <End Role="Provider" EntitySet="Provider" />
       <End Role="Bill" EntitySet="Bill" />
     </AssociationSet>
-    <AssociationSet Name="FK__Bill__id_stage__6C190EBB" Association="Self.FK__Bill__id_stage__6C190EBB">
+    <AssociationSet Name="FK__Bill__id_stage__6B24EA82" Association="Self.FK__Bill__id_stage__6B24EA82">
       <End Role="Stage" EntitySet="Stage" />
       <End Role="Bill" EntitySet="Bill" />
     </AssociationSet>
-    <AssociationSet Name="FK__Materials__id_ma__6A30C649" Association="Self.FK__Materials__id_ma__6A30C649">
+    <AssociationSet Name="FK__Materials__id_ma__693CA210" Association="Self.FK__Materials__id_ma__693CA210">
       <End Role="Materials" EntitySet="Materials" />
       <End Role="MaterialsxStage" EntitySet="MaterialsxStage" />
     </AssociationSet>
-    <AssociationSet Name="FK__Materials__id_st__693CA210" Association="Self.FK__Materials__id_st__693CA210">
+    <AssociationSet Name="FK__Materials__id_st__68487DD7" Association="Self.FK__Materials__id_st__68487DD7">
       <End Role="Stage" EntitySet="Stage" />
       <End Role="MaterialsxStage" EntitySet="MaterialsxStage" />
     </AssociationSet>
-    <AssociationSet Name="FK__Passwords__id_em__60A75C0F" Association="Self.FK__Passwords__id_em__60A75C0F">
+    <AssociationSet Name="FK__Passwords__id_em__5FB337D6" Association="Self.FK__Passwords__id_em__5FB337D6">
       <End Role="Employee" EntitySet="Employee" />
       <End Role="Passwords" EntitySet="Passwords" />
     </AssociationSet>
-    <AssociationSet Name="FK__Project__id_clie__5AEE82B9" Association="Self.FK__Project__id_clie__5AEE82B9">
+    <AssociationSet Name="FK__Project__id_clie__59FA5E80" Association="Self.FK__Project__id_clie__59FA5E80">
       <End Role="Client" EntitySet="Client" />
       <End Role="Project" EntitySet="Project" />
     </AssociationSet>
-    <AssociationSet Name="FK__Project__manager__5BE2A6F2" Association="Self.FK__Project__manager__5BE2A6F2">
+    <AssociationSet Name="FK__Project__manager__5AEE82B9" Association="Self.FK__Project__manager__5AEE82B9">
       <End Role="Employee" EntitySet="Employee" />
       <End Role="Project" EntitySet="Project" />
     </AssociationSet>
-    <AssociationSet Name="FK__Roles__id_employ__628FA481" Association="Self.FK__Roles__id_employ__628FA481">
+    <AssociationSet Name="FK__Roles__id_employ__619B8048" Association="Self.FK__Roles__id_employ__619B8048">
       <End Role="Employee" EntitySet="Employee" />
       <End Role="Roles" EntitySet="Roles" />
     </AssociationSet>
-    <AssociationSet Name="FK__Roles__id_role__6383C8BA" Association="Self.FK__Roles__id_role__6383C8BA">
+    <AssociationSet Name="FK__Roles__id_role__628FA481" Association="Self.FK__Roles__id_role__628FA481">
       <End Role="Role_specification" EntitySet="Role_specification" />
       <End Role="Roles" EntitySet="Roles" />
     </AssociationSet>
-    <AssociationSet Name="FK__Stage__id_projec__5DCAEF64" Association="Self.FK__Stage__id_projec__5DCAEF64">
+    <AssociationSet Name="FK__Stage__id_projec__5CD6CB2B" Association="Self.FK__Stage__id_projec__5CD6CB2B">
       <End Role="Project" EntitySet="Project" />
       <End Role="Stage" EntitySet="Stage" />
     </AssociationSet>
-    <AssociationSet Name="FK__Worked_ho__id_em__66603565" Association="Self.FK__Worked_ho__id_em__66603565">
+    <AssociationSet Name="FK__Worked_ho__id_em__656C112C" Association="Self.FK__Worked_ho__id_em__656C112C">
       <End Role="Employee" EntitySet="Employee" />
       <End Role="Worked_hours" EntitySet="Worked_hours" />
     </AssociationSet>
-    <AssociationSet Name="FK__Worked_ho__id_pr__656C112C" Association="Self.FK__Worked_ho__id_pr__656C112C">
+    <AssociationSet Name="FK__Worked_ho__id_pr__6477ECF3" Association="Self.FK__Worked_ho__id_pr__6477ECF3">
       <End Role="Project" EntitySet="Project" />
       <End Role="Worked_hours" EntitySet="Worked_hours" />
     </AssociationSet>

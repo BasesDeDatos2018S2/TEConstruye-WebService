@@ -4,34 +4,34 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f9a38055800840e38db24259fb05ff95" Name="Diagram1">
-        <EntityTypeShape EntityType="TeConstruyeModel.Anotations" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
+      <Diagram DiagramId="ed9ce23dfb8b440394818e7567474ef0" Name="Diagram1">
+        <EntityTypeShape EntityType="TeConstruyeModel.Anotation" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
         <EntityTypeShape EntityType="TeConstruyeModel.Bill" Width="1.5" PointX="7.5" PointY="7" IsExpanded="true" />
         <EntityTypeShape EntityType="TeConstruyeModel.Client" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="TeConstruyeModel.Employee" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TeConstruyeModel.Materials" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeConstruyeModel.Material" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TeConstruyeModel.MaterialsxStage" Width="1.5" PointX="10.5" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TeConstruyeModel.Passwords" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeConstruyeModel.Password" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="TeConstruyeModel.Project" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TeConstruyeModel.Provider" Width="1.5" PointX="5.25" PointY="15.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TeConstruyeModel.Role_specification" Width="1.5" PointX="0.75" PointY="13.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TeConstruyeModel.Roles" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeConstruyeModel.Role" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TeConstruyeModel.Stage" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
         <EntityTypeShape EntityType="TeConstruyeModel.Worked_hours" Width="1.5" PointX="5.25" PointY="11.5" IsExpanded="true" />
-        <AssociationConnector Association="TeConstruyeModel.FK__Anotation__id_pr__5CD6CB2B" ManuallyRouted="false" />
-        <AssociationConnector Association="TeConstruyeModel.FK__Bill__id_materia__6E01572D" ManuallyRouted="false" />
-        <AssociationConnector Association="TeConstruyeModel.FK__Bill__id_provide__6D0D32F4" ManuallyRouted="false" />
-        <AssociationConnector Association="TeConstruyeModel.FK__Bill__id_stage__6C190EBB" ManuallyRouted="false" />
-        <AssociationConnector Association="TeConstruyeModel.FK__Project__id_clie__5AEE82B9" ManuallyRouted="false" />
-        <AssociationConnector Association="TeConstruyeModel.FK__Passwords__id_em__60A75C0F" ManuallyRouted="false" />
-        <AssociationConnector Association="TeConstruyeModel.FK__Project__manager__5BE2A6F2" ManuallyRouted="false" />
-        <AssociationConnector Association="TeConstruyeModel.FK__Roles__id_employ__628FA481" ManuallyRouted="false" />
-        <AssociationConnector Association="TeConstruyeModel.FK__Worked_ho__id_em__66603565" ManuallyRouted="false" />
-        <AssociationConnector Association="TeConstruyeModel.FK__Materials__id_ma__6A30C649" ManuallyRouted="false" />
-        <AssociationConnector Association="TeConstruyeModel.FK__Materials__id_st__693CA210" ManuallyRouted="false" />
-        <AssociationConnector Association="TeConstruyeModel.FK__Stage__id_projec__5DCAEF64" ManuallyRouted="false" />
-        <AssociationConnector Association="TeConstruyeModel.FK__Worked_ho__id_pr__656C112C" ManuallyRouted="false" />
-        <AssociationConnector Association="TeConstruyeModel.FK__Roles__id_role__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="TeConstruyeModel.FK__Anotation__id_pr__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="TeConstruyeModel.FK__Bill__id_materia__6D0D32F4" ManuallyRouted="false" />
+        <AssociationConnector Association="TeConstruyeModel.FK__Bill__id_provide__6C190EBB" ManuallyRouted="false" />
+        <AssociationConnector Association="TeConstruyeModel.FK__Bill__id_stage__6B24EA82" ManuallyRouted="false" />
+        <AssociationConnector Association="TeConstruyeModel.FK__Project__id_clie__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="TeConstruyeModel.FK__Passwords__id_em__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="TeConstruyeModel.FK__Project__manager__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="TeConstruyeModel.FK__Roles__id_employ__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="TeConstruyeModel.FK__Worked_ho__id_em__656C112C" ManuallyRouted="false" />
+        <AssociationConnector Association="TeConstruyeModel.FK__Materials__id_ma__693CA210" ManuallyRouted="false" />
+        <AssociationConnector Association="TeConstruyeModel.FK__Materials__id_st__68487DD7" ManuallyRouted="false" />
+        <AssociationConnector Association="TeConstruyeModel.FK__Stage__id_projec__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="TeConstruyeModel.FK__Worked_ho__id_pr__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="TeConstruyeModel.FK__Roles__id_role__628FA481" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

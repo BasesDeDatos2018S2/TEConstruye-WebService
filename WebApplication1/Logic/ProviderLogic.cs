@@ -16,7 +16,7 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    var providerList = construyeEntities.Provider.ToList();
+                    var providerList = construyeEntities.Providers.ToList();
                     int n = providerList.Count;
                     if (n == 0)
                     {
@@ -60,7 +60,7 @@ namespace WebApplication1.Logic
                         result = null;
                         return result;
                     }
-                    provider = construyeEntities.Provider.Find(ID);
+                    provider = construyeEntities.Providers.Find(ID);
                     result.id = provider.id;
                     result.name = provider.name;
                     return result;
@@ -78,7 +78,7 @@ namespace WebApplication1.Logic
         {
             using (TeConstruyeEntities1 construyeEntities = new TeConstruyeEntities1())
             {
-                var i = construyeEntities.Provider.Find(id);
+                var i = construyeEntities.Providers.Find(id);
                 if (i == null) return false;
                 else return true;
             }
@@ -93,7 +93,7 @@ namespace WebApplication1.Logic
                 newProvider.name = data.name;
                 try
                 {
-                    construyeEntities.Provider.Add(newProvider);
+                    construyeEntities.Providers.Add(newProvider);
                     construyeEntities.SaveChanges();
                     return true;
                 }
@@ -110,8 +110,8 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    var ms = construyeEntities.Provider.Find(id);
-                    construyeEntities.Provider.Remove(ms);
+                    var ms = construyeEntities.Providers.Find(id);
+                    construyeEntities.Providers.Remove(ms);
                     construyeEntities.SaveChanges();
                     return true;
                 }
@@ -128,7 +128,7 @@ namespace WebApplication1.Logic
             {
                 try
                 {
-                    var provider = construyeEntities.Provider.Find(data.id);
+                    var provider = construyeEntities.Providers.Find(data.id);
                     provider.id = data.id;
                     provider.name = data.name;
                     construyeEntities.SaveChanges();
